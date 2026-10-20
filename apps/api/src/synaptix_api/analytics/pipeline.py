@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from synaptix_api.analytics.decision import apply_decision_rules
+from synaptix_api.analytics.explain import ExplanationResult, explain_decision
 from synaptix_api.analytics.mocks import run_bureau_check, run_registry_check
 from synaptix_api.analytics.risk import assess_risk
 from synaptix_api.analytics.types import CheckOutcome, DecisionResult, FinancialInput, RiskResult
@@ -25,6 +26,7 @@ class AnalyticsBundle:
     bureau: CheckOutcome
     risk: RiskResult
     decision: DecisionResult
+    explanation: ExplanationResult
 
 
 def run_analytics(
@@ -49,4 +51,12 @@ def run_analytics(
         product_max_term=product.max_term_months,
         demo_rate_annual=product.demo_rate_annual,
     )
-    return AnalyticsBundle(registry=registry, bureau=bureau, risk=risk, decision=decision)
+    # Explanation is post-hoc only — never feeds back into decision.
+    explanation = explain_decision(decision, risk)
+    return AnalyticsBundle(
+        registry=registry,
+        bureau=bureau,
+        risk=risk,
+        decision=decision,
+        explanation=explanation,
+    )

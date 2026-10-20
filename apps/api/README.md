@@ -39,5 +39,9 @@ python -c "from synaptix_api.db.session import SessionLocal; from synaptix_api.d
 
 - `assess_risk` → score 0..100 + factors; отсутствие полей **не** подменяется нулём.
 - `apply_decision_rules` → APPROVED / REJECTED / NEEDS_INFO / ALTERNATIVE / CHECK_UNAVAILABLE.
+- `explain_decision` → текст для клиента/банка **после** решения (REQ-20).
+  По умолчанию `LLM_BACKEND=template`. Опционально локальный Ollama
+  (`LLM_BACKEND=ollama`, open-weight модель, напр. `tinyllama`). Сбой LLM
+  не ломает кредитный путь и не меняет outcome.
 - `unavailable` мока ≠ кредитный отказ.
 - ADR-0002: PostgreSQL + SQLAlchemy.

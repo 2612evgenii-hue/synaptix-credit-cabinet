@@ -11,7 +11,7 @@
     {
       "login": "NamePantrer",
       "role": "write",
-      "area": "backend data model, PostgreSQL, migrations, synthetic seed, risk analytics storage (Issues #4, #6)"
+      "area": "backend data model, PostgreSQL, migrations, synthetic seed, risk/decision analytics, open-weight LLM explanations (Issues #4, #6; REQ-20)"
     },
     {
       "login": "SergeEvdokimov",

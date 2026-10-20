@@ -6,6 +6,7 @@ import uuid
 
 from sqlalchemy.orm import Session
 
+from synaptix_api.analytics.explain import ExplanationResult
 from synaptix_api.analytics.types import CheckOutcome, DecisionResult, RiskResult
 from synaptix_api.models import CheckResult, Decision, RiskAssessment
 
@@ -41,7 +42,20 @@ def store_decision(
     decision: DecisionResult,
     *,
     actor_id: uuid.UUID | None = None,
+    explanation: ExplanationResult | None = None,
 ) -> Decision:
+    llm_meta: dict = {}
+    explanation_client = None
+    explanation_bank = None
+    if explanation is not None:
+        explanation_client = explanation.text_client
+        explanation_bank = explanation.text_bank
+        llm_meta = {
+            "backend": explanation.backend,
+            "model_id": explanation.model_id,
+            "used_llm": explanation.used_llm,
+            "fallback_reason": explanation.fallback_reason,
+        }
     row = Decision(
         application_id=application_id,
         outcome=decision.outcome,
@@ -49,6 +63,9 @@ def store_decision(
         offered_terms=dict(decision.offered_terms),
         metrics=dict(decision.metrics),
         rules_version=decision.rules_version,
+        explanation_client=explanation_client,
+        explanation_bank=explanation_bank,
+        llm_meta=llm_meta,
         actor_id=actor_id,
     )
     db.add(row)

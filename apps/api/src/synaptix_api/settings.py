@@ -11,6 +11,12 @@ class Settings(BaseSettings):
     secret_key: str = "change-me-demo-only"
     rules_version: str = "demo-rules-v1"
     risk_model_version: str = "demo-risk-v1"
+    # Open-weight LLM explain (optional). Default template — credit path never depends on LLM.
+    # llm_backend: template | ollama  (local Ollama-compatible runtime only)
+    llm_backend: str = "template"
+    llm_base_url: str = "http://127.0.0.1:11434"
+    llm_model: str = "tinyllama"  # open-weight; pull locally via ollama pull tinyllama
+    llm_timeout_seconds: float = 8.0
 
 
 @lru_cache

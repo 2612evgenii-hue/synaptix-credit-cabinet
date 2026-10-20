@@ -52,9 +52,14 @@ Planned simulated integrations (NOT IMPLEMENTED):
 - Company registry / tax authority: deterministic local response
 - Signing and disbursement: local simulation; no real signature or money transfer
 
-LLM/models: none selected or included. If introduced, open weights required by
-case; record model revision, weights license, artifact checksums, resource needs
-and offline fallback. Hosted paid APIs must not be required by the review build.
+LLM/models (analytics explanations, optional):
+- Runtime protocol: Ollama-compatible local HTTP (`/api/chat`) on allowlisted hosts only
+  (localhost / docker service DNS). Hosted paid APIs are blocked in code.
+- Recommended open-weight demo model: TinyLlama (Apache-2.0 weights via Ollama
+  `tinyllama`). Weights are NOT vendored in this repository; pull locally if used.
+- Default review build: `LLM_BACKEND=template` (deterministic rules narration,
+  no model download). Absence or failure of LLM must not change credit decisions.
+- Record when enabling: model tag, license, checksum from upstream, RAM needs.
 
 Project source license: not selected by the team. No open-source license grant
 is implied by repository creation. Resolve submission/IP terms before publishing.

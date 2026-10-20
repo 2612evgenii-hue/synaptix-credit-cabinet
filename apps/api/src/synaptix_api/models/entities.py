@@ -189,6 +189,10 @@ class Decision(Base):
     offered_terms: Mapped[dict] = mapped_column(JSON, default=dict)
     metrics: Mapped[dict] = mapped_column(JSON, default=dict)
     rules_version: Mapped[str] = mapped_column(String(64), nullable=False)
+    # Post-hoc open-weight / template narration — never input to credit rules
+    explanation_client: Mapped[str | None] = mapped_column(Text, nullable=True)
+    explanation_bank: Mapped[str | None] = mapped_column(Text, nullable=True)
+    llm_meta: Mapped[dict] = mapped_column(JSON, default=dict)
     actor_id: Mapped[uuid.UUID | None] = mapped_column(Uuid, ForeignKey("users.id"))
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
 

@@ -30,13 +30,14 @@ def coverage_ratio(
     new_payment_minor: int,
     existing_debt_payment_minor: int = 0,
 ) -> float | None:
+    """Exact coverage ratio used for gates — do not round up into K_PASS."""
     available = finances.available_cashflow_minor()
     if available is None:
         return None
     denom = existing_debt_payment_minor + new_payment_minor
     if denom <= 0:
         return None
-    return round(available / denom, 4)
+    return available / denom
 
 
 def max_principal_for_k(
@@ -47,6 +48,7 @@ def max_principal_for_k(
     existing_debt_payment_minor: int = 0,
     target_k: float = K_PASS,
     search_hi_minor: int | None = None,
+    min_offer_minor: int = 0,
 ) -> int:
     available = finances.available_cashflow_minor()
     if available is None:
@@ -64,7 +66,15 @@ def max_principal_for_k(
             lo = mid + 1
         else:
             hi = mid - 1
-    return (best // 10_000_00) * 10_000_00
+    floored = (best // 10_000_00) * 10_000_00
+    # 10k display grid must not erase an in-band offer at product_min.
+    if (
+        min_offer_minor > 0
+        and floored < min_offer_minor <= best
+        and _annuity_minor(min_offer_minor, annual_rate, term_months) <= max_pay
+    ):
+        return min_offer_minor
+    return floored
 
 
 KNOWN_CHECK_STATUSES = frozenset({"ok", "negative", "unavailable", "missing_data"})
@@ -305,7 +315,8 @@ def apply_decision_rules(
     payment = _annuity_minor(finances.amount_minor, demo_rate_annual, finances.term_months)
     k = coverage_ratio(finances, new_payment_minor=payment)
     metrics["new_payment_minor"] = payment
-    metrics["coverage_k"] = k
+    # Display rounding must not feed the approve gate (see adv18).
+    metrics["coverage_k"] = None if k is None else round(k, 6)
 
     if k is None:
         return DecisionResult(
@@ -346,6 +357,7 @@ def apply_decision_rules(
         term_months=finances.term_months,
         target_k=K_PASS,
         search_hi_minor=product_max_minor,
+        min_offer_minor=product_min_minor,
     )
     if alt >= product_min_minor and alt < finances.amount_minor:
         alt_pay = _annuity_minor(alt, demo_rate_annual, finances.term_months)

@@ -645,3 +645,214 @@ Cycle 13: NO NEW FINDINGS
 Prior cycles 1–12 treated as fixed; suite green at 78 passed. Serious probing of
 seed/persist/decision/risk/money and registry edges found no new load-bearing bugs
 beyond speculative nits already scoped out in cycles 10–12.
+
+---
+
+## Cycle A1 / Cycle 14
+
+Scope: new LLM explain path (`analytics/explain.py`), pipeline wiring, persist
+`explanation` / `llm_meta`, settings `llm_*`. No product fixes applied.
+Prior seed/decision/risk cycles 1–13 treated as still green (83 passed before attacks).
+
+### 1. Contradictory LLM text accepted as `used_llm=True`
+
+- **File:line:** `apps/api/src/synaptix_api/analytics/explain.py:166–199` (`_validate_llm_client_text`)
+- **Attack:**
+  - APPROVED + `"Заявка одобрена, но отклонена комитетом."` → `used_llm=True`
+  - NEEDS_INFO + `"Заявка одобрена после уточнения данных."` → `used_llm=True` (no conflict tokens for NEEDS_INFO)
+  - CHECK_UNAVAILABLE + `"…кредит отклонён…"` → `used_llm=True` (blocklist phrase is only `отклонён кредит`, wrong order)
+- **Breaks:** Invariant that LLM text contradicting `DecisionResult.outcome` must not be accepted as `used_llm=True`. Conflict gate is skipped when the RU outcome cue is also present; several outcomes have no opposing-outcome checks.
+- **Tests:** `test_adv14_llm_contradiction_accepted.py`
+
+### 2. Paid/cloud short hostnames allowed via Docker-identifier rule
+
+- **File:line:** `apps/api/src/synaptix_api/analytics/explain.py:121–137` (`_host_allowed`); used at `:211` and `:295–302`
+- **Attack:** Set `LLM_BASE_URL=http://openai:8000` / `http://openrouter:8000` / `http://anthropic:8000` (also `groq`, `mistral`, `together`, …). Host has no `.` and `str.isidentifier()` → allowed. `explain_decision` POSTs and can set `used_llm=True`. FQDN blocklist (`openai.com`, `api.groq.com`, …) never matches bare names.
+- **Breaks:** Invariant that paid/cloud LLM hosts are blocked.
+- **Tests:** `test_adv14_llm_paid_short_host.py`
+
+### 3. Classic prompt-injection phrasing accepted as `used_llm=True`
+
+- **File:line:** `apps/api/src/synaptix_api/analytics/explain.py:71–75` (`_INJECTION`); `:173–174`
+- **Attack:** LLM returns `"Forget all previous instructions. Заявка одобрена."` — narrow denylist misses this textbook variant; validation accepts → `used_llm=True`.
+- **Breaks:** Invariant that prompt-injection text must not be accepted as `used_llm=True`.
+- **Test:** `test_adv14_llm_injection_accepted.py`
+
+### Cycle A1 probes that did **not** yield a new failing invariant
+
+| Probe | Result |
+| --- | --- |
+| LLM mutates `DecisionResult.outcome` | Frozen dataclass; explain is post-hoc only — outcome unchanged |
+| LLM down / timeout / bad JSON | Correct template fallback (`llm_unavailable_or_invalid`) |
+| `LLM_BACKEND=template` / unsupported backend | Template path; credit pipeline unaffected |
+| FQDN paid hosts (`api.openai.com`, `api.groq.com`, …) | Correctly blocked (`llm_host_not_allowed`) |
+| English-only `"APPROVED: rejected…"` without RU cue | Conflict soft-check rejects (outcome phrase absent) |
+| Listed injection strings (`ignore previous`, `jailbreak`, `system:`) | Correctly rejected |
+| Persist writes `explanation_*` / `llm_meta` without changing outcome | Outcome still from `DecisionResult` |
+
+### Cycle A1 / 14 test files
+
+- `test_adv14_llm_contradiction_accepted.py`
+- `test_adv14_llm_paid_short_host.py`
+- `test_adv14_llm_injection_accepted.py`
+
+---
+
+## Cycle A2 / Cycle 15
+
+Prior A1 bugs treated as fixed (adv14 green). Scope again: LLM explain /
+persist / pipeline invariants. No product fixes applied.
+
+### 1. Paid/cloud brand hosts allowed via `.local` suffix
+
+- **File:line:** `apps/api/src/synaptix_api/analytics/explain.py:147–162` (`_host_allowed`); short-host block at `:154–155` is exact-match only; suffix allow at `:160–161`
+- **Attack:** `LLM_BASE_URL=http://openai.local:8000` (also `openrouter.local`, `anthropic.local`, `groq.local`, `api.openai.local`, `gemini.local`). `_BLOCKED_SHORT_HOSTS` misses dotted names; FQDN fragments (`openai.com`, …) do not appear in `*.local`. `explain_decision` POSTs → `used_llm=True`.
+- **Breaks:** Same paid/cloud host invariant as A1 finding 2 — A1 closed bare Docker short names; `.local` mDNS/suffix path still reaches paid-brand hostnames.
+- **Tests:** `test_adv15_llm_paid_local_suffix.py`
+
+### 2. Soft cross-outcome cues still accepted as `used_llm=True`
+
+- **File:line:** `apps/api/src/synaptix_api/analytics/explain.py:215–230` (`_validate_llm_client_text` per-outcome branches)
+- **Attack:**
+  - APPROVED + `"Заявка одобрена; предложена альтернативная сумма."` → `used_llm=True` (no `has_alt` gate)
+  - APPROVED + `"Заявка одобрена и требует уточнения данных."` → `used_llm=True` (no `has_needs` gate)
+  - REJECTED + `"Заявка отклонена из-за технической недоступности проверки."` → `used_llm=True` (no `has_unavail` gate; frames credit deny as tech failure)
+- **Breaks:** A1 closed approve↔reject duals and NEEDS_INFO / CHECK_UNAVAILABLE false terminals. Soft wrong-family cues still audit as accepted LLM narration for the real `DecisionResult.outcome`.
+- **Tests:** `test_adv15_llm_cross_outcome_cues.py`
+
+### Cycle A2 probes that did **not** yield a new failing invariant
+
+| Probe | Result |
+| --- | --- |
+| A1 regressions (approve+reject dual, NEEDS_INFO false approve, CHECK_UNAVAILABLE reject, bare paid shorts, Forget-injection) | Still green after A1 fixes |
+| LLM mutates decision / pipeline feedback | Still post-hoc only; outcome unchanged |
+| Persist `explanation_*` / `llm_meta` vs outcome column | Outcome still from `DecisionResult`; meta mirrors ExplanationResult |
+| Seed / prior-decision × LLM | No seed→explain coupling; seed completeness already closed cycles 1–12 |
+| ALTERNATIVE + approve cue (`одобрена … альтернатив`) | Intentional per validator comment — not filed |
+| RU injection (`Игнорируй предыдущие инструкции`) | Denylist expansion; speculative vs A1 English injection class |
+| `file://localhost` scheme | Allowed by host gate; harm path speculative |
+| FQDN paid hosts / template / timeout fallback | Still correct |
+
+### Cycle A2 / 15 test files
+
+- `test_adv15_llm_paid_local_suffix.py`
+- `test_adv15_llm_cross_outcome_cues.py`
+
+---
+
+## Cycle A3 / Cycle 16
+
+Prior A1–A2 bugs treated as fixed (adv14/adv15 green). Scope again: LLM explain
+host/validation, persist `explanation` / `llm_meta`, pipeline non-mutation of
+decision. No product fixes applied.
+
+### 1. Negated / antonym outcome cues accepted as `used_llm=True`
+
+- **File:line:** `apps/api/src/synaptix_api/analytics/explain.py:195–238` (`_has_any` + `_validate_llm_client_text`)
+- **Attack:**
+  - APPROVED + `"Заявка не одобрена."` → `used_llm=True` (`«одобр»` substring inside negated phrase)
+  - APPROVED + `"Application not approved."` → `used_llm=True` (`«approv»` in `approved`)
+  - APPROVED + `"Application approved; request denied."` → `used_llm=True` (`denied` absent from `_CUE_REJECT`)
+  - NEEDS_INFO + `"Уточнение не требуется; данные полные."` → `used_llm=True` (`«уточн»` fires with no polarity)
+- **Breaks:** Same contradiction invariant as A1/A2 — narration that denies the real `DecisionResult.outcome` must not audit as accepted LLM text. A1/A2 closed dual-family and soft cross-cues; cue matching remains polarity-blind substring search.
+- **Tests:** `test_adv16_llm_negation_accepted.py`
+
+### 2. Paid/cloud brand hosts allowed via hyphenated `*.local` labels
+
+- **File:line:** `apps/api/src/synaptix_api/analytics/explain.py:147–166` (`_host_allowed`); label check at `:156–157` is exact-match only
+- **Attack:** `LLM_BASE_URL=http://openai-api.local:8000` (also `api-openai.local`, `anthropic-api.local`, `groq-llm.local`, `openrouter-gw.local`, `azure-openai.local`). DNS label is a single compound token not in `_BLOCKED_SHORT_HOSTS`; `.local` suffix allowlist accepts it → POST → `used_llm=True`.
+- **Breaks:** Same paid/cloud host invariant as A1 finding 2 / A2 finding 1 — A2 closed exact labels (`openai.local`); hyphenated brand labels still reach the allowlist.
+- **Tests:** `test_adv16_llm_paid_hyphen_local.py`
+
+### Cycle A3 probes that did **not** yield a new failing invariant
+
+| Probe | Result |
+| --- | --- |
+| A1/A2 regressions (dual approve+reject, cross-family soft cues, bare shorts, `*.local` exact brands, Forget-injection) | Still green after A1–A2 fixes |
+| LLM mutates `DecisionResult.outcome` / pipeline feedback | Still post-hoc only; frozen dataclass; explain after `apply_decision_rules` |
+| Persist `explanation_*` / `llm_meta` vs outcome column | Outcome still copied only from `DecisionResult`; meta mirrors `ExplanationResult` |
+| FQDN paid hosts / template / timeout fallback | Still correct |
+| Bare `file://localhost` / non-brand `.local` open names | Allowed by design of local suffix; harm path speculative without brand embedding |
+
+### Cycle A3 / 16 test files
+
+- `test_adv16_llm_negation_accepted.py`
+- `test_adv16_llm_paid_hyphen_local.py`
+
+---
+
+## Cycle A4 / Cycle 17
+
+Prior A1–A3 bugs treated as fixed (adv14–adv16 green). Scope again: LLM explain
+validation, decision money/K / alternative principal, persist/seed. No product
+fixes applied.
+
+### 1. Reject-meaning English stems accepted as `used_llm=True` for APPROVED
+
+- **File:line:** `apps/api/src/synaptix_api/analytics/explain.py:206–218` (`_has_positive_cue`); `_CUE_APPROVE` at `:97` includes `"approv"`
+- **Attack:** APPROVED + `"Application disapproved."` / `"Application unapproved."` → `used_llm=True`. Substring «approv» matches inside the reject-meaning word; `_NEGATION_BEFORE` only strips spaced tokens (`not` / `не` / …), not `dis`/`un` prefixes.
+- **Breaks:** Same contradiction invariant as A1–A3 — narration that **denies** approval must not audit as accepted LLM text for `DecisionResult.outcome == APPROVED` (explicit reverse of false-APPROVED-on-REJECTED). A3 closed spaced polarity; prefix antonyms still pass.
+- **Tests:** `test_adv17_llm_disapproved_as_approved.py`
+
+### 2. 10k RUB floor erases in-band ALTERNATIVE → false `REJECTED`
+
+- **File:line:** `apps/api/src/synaptix_api/analytics/decision.py:68` (`(best // 10_000_00) * 10_000_00`); alt gate at `:350–351`
+- **Attack:** Cashflow such that unfloored max principal at `K_PASS` is in `[305_000_00, 309_999_99]` with `product_min_minor=305_000_00` and request `5_000_000_00`, mid-band risk (score=50). Unfloored ≥ product_min; floored `300_000_00` < product_min → alt branch skipped → `REJECTED` / `COVERAGE_OR_RISK_FAIL`.
+- **Breaks:** Affordable principal inside the product amount band is silently discarded by an undocumented floor grid; applicant gets a hard reject instead of `ALTERNATIVE`.
+- **Test:** `test_adv17_alt_floor_below_product_min.py`
+
+### Cycle A4 probes that did **not** yield a new failing invariant
+
+| Probe | Result |
+| --- | --- |
+| A1–A3 regressions (dual cues, soft cross-family, spaced negation, bare/`.local`/hyphen paid hosts) | Still green before new adv17 tests |
+| False APPROVED narration for REJECTED (and dual approve+reject) | Correctly rejected by validator |
+| Paid FQDN allowlist / `openai.com@127.0.0.1` userinfo | Request host is loopback; no `used_llm=True` via public commercial FQDN |
+| urllib POST→GET on 301–303; 307/308 not re-POSTed | No `used_llm=True` via redirect-to-paid path in default client |
+| ALTERNATIVE post-floor `k_alt < K_PASS` (~28k mid-risk grid) | No repro |
+| Canonical product_min on 10k grid + floor | Floored value stays ≥ min when unfloored ≥ min |
+| Seed name-only / rules_version repair; corrupt hash | Prior cycles still hold |
+| Nan/`bool` handmade `RiskResult.score` | No in-package path past `assess_risk` clip — speculative |
+| LLM mutates `DecisionResult.outcome` | Still post-hoc only |
+
+### Cycle A4 / 17 test files
+
+- `test_adv17_llm_disapproved_as_approved.py`
+- `test_adv17_alt_floor_below_product_min.py`
+
+---
+
+## Cycle A5 / Cycle 18
+
+Prior A1–A4 bugs treated as fixed (adv14–adv17 green; suite 127 passed before
+this pass). Scope: decision money/K gate, risk/persist/seed, LLM only if
+outcome mutation or plain-language APPROVED↔REJECTED contradiction. No product
+fixes applied.
+
+### 1. `coverage_ratio` `round(..., 4)` lifts true `k < K_PASS` → false `APPROVED`
+
+- **File:line:** `apps/api/src/synaptix_api/analytics/decision.py:39` (`round(available / denom, 4)`); gate at `:338` (`k >= K_PASS`)
+- **Attack:** `term=6`, `amount=300_000_00`, `rate=0.16` → payment `5_235_909`; available `6_806_420`. Unrounded `available/payment ≈ 1.299950018 < 1.3`; `round(..., 4) == 1.3`. Strong risk + clean checks → `APPROVED` with `K_PASS` and `metrics.coverage_k == 1.3`.
+- **Breaks:** Documented coverage gate `K_PASS=1.3`. Banking approval and audit reason claim pass-band coverage while true cashflow/payment is still below the threshold. Distinct from cycle-1 border fall-through and A4 floor erase (false reject): this is a **false APPROVED** via display rounding used as the hard gate.
+- **Test:** `test_adv18_k_round_false_approve.py::test_adv18_rounded_k_must_not_approve_below_k_pass`
+
+### Cycle A5 probes that did **not** yield a new failing invariant
+
+| Probe | Result |
+| --- | --- |
+| A1–A4 regressions (LLM dual/negation/prefix, paid hosts, alt floor erase) | Treated fixed; not re-filed |
+| LLM lexicon / host micro-variants without APPROVED↔REJECTED plain contradiction or outcome mutation | Scoped out per A5 brief |
+| Alt 10k floor / `min_offer_minor` nits without false APPROVED | Scoped out; A4 class |
+| Registry/bureau case variants (`LIQUIDATING` / `OK`+overdue) | Soft `NEEDS_INFO`; no false APPROVE |
+| Negative / zero `product_min_minor` allowing sub-catalog amounts | Caller-supplied limits; seed repairs canonical bounds (adv4); not filed as decision invariant |
+| Mid-band risk + strong k → reject; risk floor blocks alt | Holds |
+| LLM mutates `DecisionResult.outcome` | Still post-hoc only |
+
+### Cycle A5 / 18 test files
+
+- `test_adv18_k_round_false_approve.py`
+
+---
+
+Cycle A6: NO NEW FINDINGS
+

@@ -59,12 +59,21 @@ def test_persist_analytics_rows(db, monkeypatch):
     store_check(db, app.id, bundle.registry)
     store_check(db, app.id, bundle.bureau)
     store_risk(db, app.id, bundle.risk)
-    store_decision(db, app.id, bundle.decision, actor_id=None)
+    store_decision(
+        db,
+        app.id,
+        bundle.decision,
+        actor_id=None,
+        explanation=bundle.explanation,
+    )
     db.commit()
 
     assert db.query(CheckResult).filter_by(application_id=app.id).count() == 2
     assert db.query(RiskAssessment).filter_by(application_id=app.id).one().score == bundle.risk.score
-    assert db.query(Decision).filter_by(application_id=app.id).one().outcome == "APPROVED"
+    row = db.query(Decision).filter_by(application_id=app.id).one()
+    assert row.outcome == "APPROVED"
+    assert row.explanation_client
+    assert row.llm_meta.get("backend") == "template"
 
 
 def test_seed_blocked_outside_demo(db, monkeypatch):
