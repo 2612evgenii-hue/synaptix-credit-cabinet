@@ -1,27 +1,49 @@
-# Фактический статус GitHub
-
-Проверка первичной настройки выполняется 2026-10-20. Итоговые результаты будут
-записаны после push и чтения API. Желаемые JSON-профили не равны применённым правилам.
+# Статус и проверка GitHub
 
 Репозиторий: https://github.com/2612evgenii-hue/synaptix-credit-cabinet
-Видимость: private. Владелец: 2612evgenii-hue.
 
-Повторная проверка: `python3 scripts/github_audit.py` (только чтение; JSON в
-`artifacts/audit/github-settings.json`; ненулевой код при пробеле в защите/доступе).
+| Область | Настройка / источник фактического результата |
+| --- | --- |
+| Видимость | **public**, явно выбрано владельцем 2026-10-20 |
+| Главный администратор | 2612evgenii-hue, владелец личного репозитория |
+| NamePantrer | Приглашён с write, на первичной проверке ожидал принятия |
+| SergeEvdokimov | Приглашён с write, на первичной проверке ожидал принятия |
+| Merge | Только squash; автоматическое удаление рабочей ветки; auto-merge выключен |
+| main | Профиль config/github/main-protection.json; итог активации и проверки в Issue #1 |
+| Теги v* | Неизменяемость без bypass; отдельное правило создания только admin |
+| CI | repository-policy и secret-scan, GitHub Actions, минимальный read token |
+| Issues | 12 начальных задач, P0/P1, 3 milestones; распределение работы ещё согласовать |
+| Доступ жюри | Чтение public repo без приглашения; проверить точную ссылку сдачи |
 
-## Применение профилей главным администратором
+GitHub отклонил защиту private repo с HTTP 403. После выбора владельцем public
+это ограничение устранено. Публичность не предоставляет автоматически лицензию
+на использование кода; решение о лицензии команда ещё не приняла.
 
-Команды меняют только настройки этого репозитория. Если правило уже существует,
-сначала прочитать его и сравнить, а не перезаписывать неизвестные требования.
+Документ фиксирует bootstrap. Текущее состояние проверяет
+`python3 scripts/github_audit.py`: это только чтение, JSON записывается в
+`artifacts/audit/github-settings.json`. Ненулевой код показывает пробелы в защите
+или непринятые приглашения. Исправная защита и принятое приглашение — разные проверки.
+Проверка 2FA личных аккаунтов не доступна этому скрипту.
+
+[Issue #1: результаты активации и проверки защиты](https://github.com/2612evgenii-hue/synaptix-credit-cabinet/issues/1).
+[История CI](https://github.com/2612evgenii-hue/synaptix-credit-cabinet/actions).
+
+## Повторное применение администратором
+
+Профили не применяются фоновым процессом и не меняют настройки сами.
+Для нового окружения сначала прочитать действующие правила и сравнить:
 
 ```sh
+gh api repos/2612evgenii-hue/synaptix-credit-cabinet/branches/main/protection
+gh api repos/2612evgenii-hue/synaptix-credit-cabinet/rulesets
+# PUT обновляет main profile; POST создаёт НОВОЕ правило — не дублировать существующее.
 gh api --method PUT repos/2612evgenii-hue/synaptix-credit-cabinet/branches/main/protection --input config/github/main-protection.json
+# Для отсутствующих tag rulesets:
 gh api --method POST repos/2612evgenii-hue/synaptix-credit-cabinet/rulesets --input config/github/tag-ruleset.json
+gh api --method POST repos/2612evgenii-hue/synaptix-credit-cabinet/rulesets --input config/github/tag-creation-ruleset.json
 python3 scripts/github_audit.py
 ```
 
-При 403 из-за тарифа сохранить private и не считать локальный hook эквивалентом
-серверной защиты. Варианты: GitHub Pro для личного private repo либо организация
-с подходящим тарифом. Покупка/публичная публикация требуют отдельного решения владельца.
-Настройки платного GitHub относятся к инструментам разработки, а не к зависимости
-проверяемого прототипа от платного сервиса (условие кейса, страница 10).
+Администратор технически может изменять настройки репозитория. Правила GitHub
+не защищают от владельца, намеренно отключившего их. Для контроля таких изменений
+используются журнал решений и независимые экспорты состояния.

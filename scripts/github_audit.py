@@ -9,6 +9,16 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def sanitize(data):
+    """GitHub metadata may include temp_clone_token; never persist credentials."""
+    if isinstance(data, dict):
+        return {key: ("<redacted>" if any(word in key.lower() for word in ("token", "password", "secret")) else sanitize(value))
+                for key, value in data.items()}
+    if isinstance(data, list):
+        return [sanitize(value) for value in data]
+    return data
+
+
 def api(endpoint, paginate=False):
     command = ["gh", "api", endpoint]
     if paginate:
@@ -18,8 +28,8 @@ def api(endpoint, paginate=False):
         return {"unavailable": True, "error": result.stderr.strip()}
     data = json.loads(result.stdout)
     if paginate:
-        return [item for page in data for item in page]
-    return data
+        return sanitize([item for page in data for item in page])
+    return sanitize(data)
 
 
 def protection_gaps(actual):
@@ -65,6 +75,19 @@ def tag_gaps(rulesets):
     return ["No active no-bypass update/deletion protection for v* tags"]
 
 
+def tag_creation_gaps(rulesets):
+    if not isinstance(rulesets, list):
+        return ["Cannot verify owner-only tag creation"]
+    owner = {"actor_id": 5, "actor_type": "RepositoryRole", "bypass_mode": "always"}
+    for rule in rulesets:
+        if (rule.get("target") == "tag" and rule.get("enforcement") == "active"
+                and rule.get("conditions", {}).get("ref_name") == {"include": ["refs/tags/v*"], "exclude": []}
+                and {r.get("type") for r in rule.get("rules", [])} == {"creation"}
+                and rule.get("bypass_actors") == [owner]):
+            return []
+    return ["No owner-only creation rule for v* release tags"]
+
+
 def main():
     team = json.loads((ROOT / "config/team.json").read_text())
     repo = team["repository"]
@@ -83,10 +106,12 @@ def main():
     rulesets = snapshot["rulesets"]
     if isinstance(rulesets, list):
         snapshot["rulesets"] = [api(prefix + f"/rulesets/{r['id']}") for r in rulesets]
-    errors = protection_gaps(snapshot["main_protection"]) + tag_gaps(snapshot["rulesets"])
+    errors = (protection_gaps(snapshot["main_protection"])
+              + tag_gaps(snapshot["rulesets"])
+              + tag_creation_gaps(snapshot["rulesets"]))
     actual = snapshot["repository"]
-    if actual.get("private") is not True:
-        errors.append("Repository is not private or metadata is unavailable")
+    if actual.get("visibility") != team["visibility"]:
+        errors.append("Repository visibility differs from config/team.json or metadata is unavailable")
     for key, desired in {"allow_squash_merge": True, "allow_merge_commit": False, "allow_rebase_merge": False, "delete_branch_on_merge": True}.items():
         if actual.get(key) is not desired:
             errors.append(f"Repository setting mismatch: {key}")
