@@ -10,18 +10,41 @@ MOCK_VERSION = "local-mock-v1"
 # Fixed timestamp for reproducible payloads (not wall-clock)
 CHECKED_AT = "1970-01-01T00:00:00+00:00"
 
+_ACTIVE = {"found": True, "status": "active"}
+_BUREAU_OK = {"status": "ok", "overdue_days": 0, "obligations": 1}
+
+# Healthy-check keys used by expanded DATA01 scenarios (and legacy three).
+_HEALTHY_KEYS = (
+    "approval",
+    "approval_equipment",
+    "clarification",
+    "clarification_fixed",
+    "alternative",
+    "boundary_min_wc",
+    "boundary_max_eq",
+    "out_of_bounds",
+    "null_vs_zero",
+    "negative_cashflow",
+    "high_load",
+    "isolation_peer_a",
+    "isolation_peer_b",
+    "reconsider",
+)
+
 REGISTRY: dict[str, dict[str, Any]] = {
-    "approval": {"found": True, "status": "active"},
-    "clarification": {"found": True, "status": "active"},
-    "rejection": {"found": True, "status": "active"},
-    "bureau_down": {"found": True, "status": "active"},
+    **{k: dict(_ACTIVE) for k in _HEALTHY_KEYS},
+    "rejection": dict(_ACTIVE),
+    "reject_registry": {"found": True, "status": "liquidating"},
+    "check_unavailable": dict(_ACTIVE),
+    "bureau_down": dict(_ACTIVE),
     "inactive": {"found": True, "status": "liquidating"},
 }
 
 BUREAU: dict[str, dict[str, Any]] = {
-    "approval": {"status": "ok", "overdue_days": 0, "obligations": 1},
-    "clarification": {"status": "ok", "overdue_days": 0, "obligations": 0},
+    **{k: dict(_BUREAU_OK) for k in _HEALTHY_KEYS},
     "rejection": {"status": "negative", "overdue_days": 90, "obligations": 3},
+    "reject_registry": dict(_BUREAU_OK),
+    "check_unavailable": {"status": "unavailable", "error": "simulator_timeout"},
     "bureau_down": {"status": "unavailable", "error": "simulator_timeout"},
     "inactive": {"status": "ok", "overdue_days": 0, "obligations": 0},
 }

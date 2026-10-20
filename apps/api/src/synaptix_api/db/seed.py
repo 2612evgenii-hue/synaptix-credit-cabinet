@@ -1,4 +1,7 @@
-"""Idempotent synthetic seed for APP_ENV=demo. Not production data."""
+"""Idempotent synthetic seed for APP_ENV=demo. Not production data.
+
+Product catalog source of truth: data/products.json (D11 / AI02).
+"""
 
 from __future__ import annotations
 
@@ -16,10 +19,28 @@ DEMO_PASSWORD = "demo1234"
 
 REPO_ROOT = Path(__file__).resolve().parents[5]
 SCENARIOS = REPO_ROOT / "data" / "synthetic" / "scenarios.json"
+PRODUCTS_JSON = REPO_ROOT / "data" / "products.json"
 
-CANONICAL_PRODUCTS = (
-    ("working_capital", "Оборотные средства (демо)", 300_000_00, 5_000_000_00, 6, 36),
-    ("equipment", "Оборудование (демо)", 500_000_00, 10_000_000_00, 12, 60),
+
+def _load_catalog() -> dict:
+    return json.loads(PRODUCTS_JSON.read_text(encoding="utf-8"))
+
+
+def _catalog_products() -> list[dict]:
+    return list(_load_catalog()["products"])
+
+
+# Backward-compatible tuple used by adversarial seed tests
+CANONICAL_PRODUCTS = tuple(
+    (
+        p["code"],
+        p["name"],
+        int(p["min_amount_minor"]),
+        int(p["max_amount_minor"]),
+        int(p["min_term_months"]),
+        int(p["max_term_months"]),
+    )
+    for p in _catalog_products()
 )
 
 
@@ -27,14 +48,18 @@ def _scenarios() -> list[dict]:
     return json.loads(SCENARIOS.read_text(encoding="utf-8"))["cases"]
 
 
-def _product_matches(row: Product, amin: int, amax: int, tmin: int, tmax: int, rules: str) -> bool:
+def _product_matches(row: Product, spec: dict, rules: str) -> bool:
     return (
         row.active
-        and row.min_amount_minor == amin
-        and row.max_amount_minor == amax
-        and row.min_term_months == tmin
-        and row.max_term_months == tmax
+        and row.min_amount_minor == int(spec["min_amount_minor"])
+        and row.max_amount_minor == int(spec["max_amount_minor"])
+        and row.min_term_months == int(spec["min_term_months"])
+        and row.max_term_months == int(spec["max_term_months"])
         and row.rules_version == rules
+        and row.demo_rate_annual == float(spec.get("demo_rate_annual") or 0)
+        and row.product_version == spec.get("version")
+        and row.allowed_goals == spec.get("allowed_goals")
+        and row.required_fields == spec.get("required_fields")
     )
 
 
@@ -47,13 +72,28 @@ def _officer_identity_ok(user: User | None) -> bool:
     )
 
 
+def _apply_product_fields(row: Product, spec: dict, rules: str) -> None:
+    row.active = True
+    row.name = spec["name"]
+    row.min_amount_minor = int(spec["min_amount_minor"])
+    row.max_amount_minor = int(spec["max_amount_minor"])
+    row.min_term_months = int(spec["min_term_months"])
+    row.max_term_months = int(spec["max_term_months"])
+    row.rules_version = rules
+    row.demo_rate_annual = float(spec["demo_rate_annual"]) if spec.get("demo_rate_annual") is not None else None
+    row.product_version = spec.get("version")
+    row.allowed_goals = list(spec.get("allowed_goals") or [])
+    row.required_fields = list(spec.get("required_fields") or [])
+    row.fit_note = spec.get("fit_note")
+
+
 def _seed_complete(db: Session, rules_version: str) -> bool:
     officer = db.query(User).filter(User.demo_login == "bank.officer@demo.local").first()
     if not _officer_identity_ok(officer):
         return False
-    for code, _name, amin, amax, tmin, tmax in CANONICAL_PRODUCTS:
-        row = db.query(Product).filter_by(code=code).first()
-        if row is None or not _product_matches(row, amin, amax, tmin, tmax, rules_version):
+    for spec in _catalog_products():
+        row = db.query(Product).filter_by(code=spec["code"]).first()
+        if row is None or not _product_matches(row, spec, rules_version):
             return False
     if not SCENARIOS.is_file():
         return False
@@ -86,6 +126,8 @@ def seed_demo(db: Session) -> dict:
 
     if not SCENARIOS.is_file():
         raise FileNotFoundError(f"Missing scenarios file: {SCENARIOS}")
+    if not PRODUCTS_JSON.is_file():
+        raise FileNotFoundError(f"Missing products catalog: {PRODUCTS_JSON}")
 
     if _seed_complete(db, settings.rules_version):
         return {"seeded": False, "reason": "already_seeded"}
@@ -107,29 +149,16 @@ def seed_demo(db: Session) -> dict:
         officer.password_hash = hash_password(DEMO_PASSWORD)
         officer.full_name = "Синтетический сотрудник банка"
 
-    for code, name, amin, amax, tmin, tmax in CANONICAL_PRODUCTS:
-        row = db.query(Product).filter_by(code=code).first()
+    for spec in _catalog_products():
+        row = db.query(Product).filter_by(code=spec["code"]).first()
         if row is None:
-            db.add(
-                Product(
-                    code=code,
-                    name=name,
-                    min_amount_minor=amin,
-                    max_amount_minor=amax,
-                    min_term_months=tmin,
-                    max_term_months=tmax,
-                    rules_version=settings.rules_version,
-                    active=True,
-                )
-            )
-        else:
-            row.active = True
-            row.name = name
-            row.min_amount_minor = amin
-            row.max_amount_minor = amax
-            row.min_term_months = tmin
-            row.max_term_months = tmax
-            row.rules_version = settings.rules_version
+            row = Product(code=spec["code"], name=spec["name"], rules_version=settings.rules_version,
+                          min_amount_minor=int(spec["min_amount_minor"]),
+                          max_amount_minor=int(spec["max_amount_minor"]),
+                          min_term_months=int(spec["min_term_months"]),
+                          max_term_months=int(spec["max_term_months"]))
+            db.add(row)
+        _apply_product_fields(row, spec, settings.rules_version)
 
     created_logins: list[str] = []
     for case in _scenarios():
@@ -173,4 +202,5 @@ def seed_demo(db: Session) -> dict:
         "seeded": True,
         "logins": created_logins or ["repaired"],
         "complete": _seed_complete(db, settings.rules_version),
+        "catalog_source": str(PRODUCTS_JSON.as_posix()),
     }

@@ -1,0 +1,65 @@
+{
+  "started_at": "2026-10-20T18:01:13.698998+00:00",
+  "database_url_host": "127.0.0.1:54329/synaptix_verify",
+  "steps": [
+    {
+      "step": "upgrade_1",
+      "ok": true,
+      "output": "ade  -> 20261020_0001, initial schema for credit cabinet persistence\nINFO  [alembic.runtime.migration] Running upgrade 20261020_0001 -> 20261020_0002, add ALTERNATIVE/CHECK_UNAVAILABLE states and decision.metrics\nINFO  [alembic.runtime.migration] Running upgrade 20261020_0002 -> 20261020_0003, add decision explanation columns for open-weight LLM narration\nINFO  [alembic.runtime.migration] Running upgrade 20261020_0003 -> 20261020_0004, link decisions to financial snapshot; product catalog extras"
+    },
+    {
+      "step": "upgrade_2_idempotent",
+      "ok": true,
+      "output": "INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.\nINFO  [alembic.runtime.migration] Will assume transactional DDL."
+    },
+    {
+      "step": "current",
+      "ok": true,
+      "output": "20261020_0004 (head)\nINFO  [alembic.runtime.migration] Context impl PostgresqlImpl.\nINFO  [alembic.runtime.migration] Will assume transactional DDL."
+    },
+    {
+      "step": "seed",
+      "first": {
+        "seeded": true,
+        "logins": [
+          "client.approval@demo.local",
+          "client.approval_equipment@demo.local",
+          "client.clarification@demo.local",
+          "client.clarification_fixed@demo.local",
+          "client.rejection@demo.local",
+          "client.reject_registry@demo.local",
+          "client.alternative@demo.local",
+          "client.check_unavailable@demo.local",
+          "client.boundary_min_wc@demo.local",
+          "client.boundary_max_eq@demo.local",
+          "client.out_of_bounds@demo.local",
+          "client.null_vs_zero@demo.local",
+          "client.negative_cashflow@demo.local",
+          "client.high_load@demo.local",
+          "client.isolation_peer_a@demo.local",
+          "client.isolation_peer_b@demo.local",
+          "client.reconsider@demo.local"
+        ],
+        "complete": true,
+        "catalog_source": "C:/AI/synaptix-credit-cabinet/data/products.json"
+      },
+      "second": {
+        "seeded": false,
+        "reason": "already_seeded"
+      }
+    },
+    {
+      "step": "rollback_unique",
+      "ok": true,
+      "error": "IntegrityError"
+    },
+    {
+      "step": "reconnect_read",
+      "decision_outcome": "APPROVED",
+      "snapshot_bound": true,
+      "application_preserved_after_reseed": true
+    }
+  ],
+  "finished_at": "2026-10-20T18:01:32.197448+00:00",
+  "ok": true
+}

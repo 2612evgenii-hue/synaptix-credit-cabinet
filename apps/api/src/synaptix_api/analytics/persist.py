@@ -43,6 +43,9 @@ def store_decision(
     *,
     actor_id: uuid.UUID | None = None,
     explanation: ExplanationResult | None = None,
+    financial_snapshot_id: uuid.UUID | None = None,
+    product_code: str | None = None,
+    application_version: int | None = None,
 ) -> Decision:
     llm_meta: dict = {}
     explanation_client = None
@@ -66,6 +69,9 @@ def store_decision(
         explanation_client=explanation_client,
         explanation_bank=explanation_bank,
         llm_meta=llm_meta,
+        financial_snapshot_id=financial_snapshot_id,
+        product_code=product_code,
+        application_version=application_version,
         actor_id=actor_id,
     )
     db.add(row)

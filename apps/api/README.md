@@ -15,8 +15,9 @@
 | `../../contracts` | JSON Schema extract/checks/decision |
 | `../../data/products.json` | каталог демо-продуктов |
 | `../../ai/` | prompts, model-manifest, eval |
-| `alembic/` | миграция `20261020_0001` |
+| `alembic/` | миграции `20261020_0001`…`0004` |
 | `tests/` | юнит/интеграция БД и аналитики |
+| `docker-compose.postgres-verify.yml` | временный Postgres для AI01 (не product Compose) |
 
 ## Установка и тесты
 
@@ -24,19 +25,22 @@
 cd apps/api
 python -m pip install -r requirements.txt
 set PYTHONPATH=src
+set LLM_BACKEND=template
 python -m pytest -q
+python -m pytest tests/test_extract_qa_phrases.py -q
 ```
 
-SQLite in-memory используется в тестах (`create_all`). Для Postgres:
+SQLite in-memory используется в pytest (`create_all`). Целевая проверка PostgreSQL (AI01):
 
 ```sh
-set DATABASE_URL=postgresql+psycopg2://synaptix:synaptix@localhost:5432/synaptix
+docker compose -f docker-compose.postgres-verify.yml up -d
+set DATABASE_URL=postgresql+psycopg2://synaptix:synaptix@127.0.0.1:54329/synaptix_verify
 set APP_ENV=demo
-alembic upgrade head
-python -c "from synaptix_api.db.session import SessionLocal; from synaptix_api.db.seed import seed_demo; db=SessionLocal(); print(seed_demo(db))"
+python scripts/verify_postgres_ai01.py --write-log
+docker compose -f docker-compose.postgres-verify.yml down -v
 ```
 
-Демо-пароль seed: `demo1234`.
+Демо-пароль seed: `demo1234`. Handoff: `docs/handoff-p0-ai-data.md`.
 
 ## Аналитика (кратко)
 

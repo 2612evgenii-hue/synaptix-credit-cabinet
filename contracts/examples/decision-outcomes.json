@@ -1,0 +1,43 @@
+{
+  "schema_version": "1",
+  "note": "Analytics DecisionResult outcomes for Evgeny OpenAPI mapping. Application workflow state is separate.",
+  "outcomes": [
+    {
+      "outcome": "APPROVED",
+      "public_message_key": "approved",
+      "next_action": "show_terms_and_await_customer_accept",
+      "example_reason_codes": ["K_PASS", "RISK_OK", "CHECKS_OK"]
+    },
+    {
+      "outcome": "REJECTED",
+      "public_message_key": "rejected",
+      "next_action": "show_reasons_no_resubmit_same_facts",
+      "example_reason_codes": ["BUREAU_NEGATIVE", "REGISTRY_NEGATIVE", "PRODUCT_LIMIT", "COVERAGE_OR_RISK_FAIL", "RISK_FLOOR"]
+    },
+    {
+      "outcome": "NEEDS_INFO",
+      "public_message_key": "needs_info",
+      "next_action": "request_required_fields_then_resubmit",
+      "example_reason_codes": ["INCOMPLETE_FINANCIALS", "CHECKS_INCOMPLETE", "K_UNAVAILABLE"],
+      "required_fields_example": ["revenue_minor", "expenses_minor", "liabilities_minor"]
+    },
+    {
+      "outcome": "ALTERNATIVE",
+      "public_message_key": "alternative_offer",
+      "next_action": "show_offered_terms_for_customer_choice",
+      "example_reason_codes": ["ALTERNATIVE_AMOUNT"],
+      "note": "Not yet in OpenAPI ApplicationState — process layer must map explicitly (D09)."
+    },
+    {
+      "outcome": "CHECK_UNAVAILABLE",
+      "public_message_key": "check_unavailable",
+      "next_action": "safe_retry_without_credit_reject",
+      "example_reason_codes": ["CHECK_TECHNICAL_FAILURE"],
+      "note": "Technical mock/API failure ≠ credit rejection."
+    }
+  ],
+  "score_semantics": "Higher risk.score means lower credit risk (0..100). Score is not a PD.",
+  "money": "All amounts are integer kopecks (*_minor). amount_rub strings use two decimals.",
+  "snapshot_binding": "Decision.financial_snapshot_id + product_code + application_version + rules_version identify the input version.",
+  "debt_service_simplification": "Demo treats debt_service_monthly_minor as 0 unless provided (D10)."
+}

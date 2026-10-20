@@ -43,7 +43,9 @@ def upgrade() -> None:
     )
     op.create_index("ix_products_code", "products", ["code"], unique=True)
 
-    user_role = sa.Enum("customer", "bank", name="user_role")
+    # Create ENUM types once; columns must use create_type=False so SQLAlchemy
+    # does not emit a second CREATE TYPE (D01 / AI01).
+    user_role = postgresql.ENUM("customer", "bank", name="user_role", create_type=False)
     user_role.create(op.get_bind(), checkfirst=True)
     op.create_table(
         "users",
@@ -58,7 +60,7 @@ def upgrade() -> None:
     op.create_index("ix_users_demo_login", "users", ["demo_login"], unique=True)
     op.create_index("ix_users_role", "users", ["role"])
 
-    app_state = sa.Enum(
+    app_state = postgresql.ENUM(
         "DRAFT",
         "SUBMITTED",
         "VALIDATING",
@@ -71,6 +73,7 @@ def upgrade() -> None:
         "SIGNED_SIMULATED",
         "DISBURSED_SIMULATED",
         name="application_state",
+        create_type=False,
     )
     app_state.create(op.get_bind(), checkfirst=True)
     op.create_table(

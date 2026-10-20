@@ -1,0 +1,35 @@
+{
+  "input": {
+    "schema_version": "1",
+    "input_text": "От 500 тысяч до миллиона примерно на годик-полтора, на оборот",
+    "currency": "RUB",
+    "allowed_goal_codes": ["working_capital", "equipment", "other"]
+  },
+  "output": {
+    "schema_version": "1",
+    "goal_code": "working_capital",
+    "goal_text": "оборот",
+    "amount_rub": null,
+    "amount_minor": null,
+    "term_months": null,
+    "evidence": {
+      "goal": "оборот",
+      "amount": "от 500 тысяч до миллиона",
+      "term": "годик-полтора"
+    },
+    "missing_fields": ["amount_rub", "term_months"],
+    "ambiguities": ["amount:range", "term_months:ambiguous_range"],
+    "clarifying_questions": [
+      "Укажите точную сумму кредита в рублях.",
+      "Укажите точный срок в месяцах."
+    ],
+    "needs_user_confirm": true,
+    "meta": {
+      "backend": "heuristic",
+      "model_id": "ru-heuristic-v2",
+      "used_llm": false,
+      "fallback_reason": null,
+      "injection_detected": false
+    }
+  }
+}

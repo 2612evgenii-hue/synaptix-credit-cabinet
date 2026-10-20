@@ -4,8 +4,9 @@
 
 ## Доступный поток
 
-`available = revenue_minor - expenses_minor` (за сопоставимый период).  
-Если `revenue` или `expenses` = null → поток неизвестен → `NEEDS_INFO`.
+`available = revenue_minor - expenses_minor` (месячные величины за `period_label`, демо: один месяц).  
+Если `revenue` или `expenses` = null → поток неизвестен → `NEEDS_INFO`.  
+`null ≠ 0`. Поле `liabilities_minor` — остаток обязательств (не месячный платёж).
 
 ## Аннуитет (месяц)
 
@@ -25,7 +26,7 @@ S — сумма в копейках, n — месяцы, A — округлен
 K = available / (existing_debt_payment + new_payment)
 ```
 
-В текущем демо `existing_debt_payment = 0` (обязательства учитываются в risk через leverage, не как месячный платёж).  
+В текущем демо `existing_debt_payment = 0` (упрощение D10). Поле `FinancialSnapshot.debt_service_monthly_minor` сохраняет явный месячный платёж по старым долгам для API/UI; движок пока не подставляет его в K, пока интегратор не передаст значение. `liabilities_minor` — остаток обязательств, учитывается в risk (leverage), не как месячный платёж.  
 Порог одобрения: `K_PASS = 1.3`. Сравнение идёт по **точному** K (без round-up в порог).
 
 ## Альтернатива

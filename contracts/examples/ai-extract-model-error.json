@@ -1,0 +1,33 @@
+{
+  "note": "Ollama requested but timeout/invalid → heuristic fields + fallback_reason.",
+  "input": {
+    "schema_version": "1",
+    "input_text": "печь полтора миллиона на три года",
+    "currency": "RUB",
+    "allowed_goal_codes": ["working_capital", "equipment", "other"]
+  },
+  "output": {
+    "schema_version": "1",
+    "goal_code": "equipment",
+    "goal_text": "печь",
+    "amount_rub": "1500000.00",
+    "amount_minor": 150000000,
+    "term_months": 36,
+    "evidence": {
+      "goal": "печь",
+      "amount": "полтора миллиона",
+      "term": "три года"
+    },
+    "missing_fields": [],
+    "ambiguities": [],
+    "clarifying_questions": [],
+    "needs_user_confirm": true,
+    "meta": {
+      "backend": "heuristic",
+      "model_id": "ru-heuristic-v2",
+      "used_llm": false,
+      "fallback_reason": "llm_unavailable_or_invalid",
+      "injection_detected": false
+    }
+  }
+}

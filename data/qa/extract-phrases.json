@@ -1,0 +1,128 @@
+{
+  "schema_version": "1",
+  "source": "docs/qa/ai-phrases.md",
+  "currency": "RUB",
+  "notes": "Expectations for amount_minor/term_months are authoritative for A01–A10 and D01/D04. goal_code marks are team-agreed where listed; Serge may refine independently.",
+  "phrases": [
+    {
+      "id": "A01",
+      "category": "ordinary",
+      "text": "Нужно полтора миллиона на три года, купить оборудование",
+      "amount_minor": 150000000,
+      "term_months": 36,
+      "goal_code": "equipment",
+      "forbidden_amounts_minor": [],
+      "expect_ambiguities_any_of": []
+    },
+    {
+      "id": "A02",
+      "category": "ordinary",
+      "text": "Прошу 500 000 рублей на 6 месяцев на пополнение оборотных средств",
+      "amount_minor": 50000000,
+      "term_months": 6,
+      "goal_code": "working_capital",
+      "forbidden_amounts_minor": [],
+      "expect_ambiguities_any_of": []
+    },
+    {
+      "id": "A03",
+      "category": "ordinary",
+      "text": "Нужны 2 000 000 рублей на 24 месяца, чтобы отремонтировать помещение",
+      "amount_minor": 200000000,
+      "term_months": 24,
+      "goal_code": "other",
+      "forbidden_amounts_minor": [],
+      "expect_ambiguities_any_of": []
+    },
+    {
+      "id": "A04",
+      "category": "ordinary",
+      "text": "Хочу 800 000 рублей на 12 месяцев на закупку товара",
+      "amount_minor": 80000000,
+      "term_months": 12,
+      "goal_code": "working_capital",
+      "forbidden_amounts_minor": [],
+      "expect_ambiguities_any_of": []
+    },
+    {
+      "id": "A05",
+      "category": "ordinary",
+      "text": "Нужно 3 000 000 рублей на 18 месяцев, купить автомобиль для доставки",
+      "amount_minor": 300000000,
+      "term_months": 18,
+      "goal_code": "equipment",
+      "forbidden_amounts_minor": [],
+      "expect_ambiguities_any_of": []
+    },
+    {
+      "id": "A06",
+      "category": "ordinary",
+      "text": "Нужно 1 200 000 рублей на 9 месяцев, чтобы оплатить аренду склада",
+      "amount_minor": 120000000,
+      "term_months": 9,
+      "goal_code": "working_capital",
+      "forbidden_amounts_minor": [],
+      "expect_ambiguities_any_of": []
+    },
+    {
+      "id": "A07",
+      "category": "ordinary",
+      "text": "Нужно 750 000 рублей на 12 месяцев на закупку сырья",
+      "amount_minor": 75000000,
+      "term_months": 12,
+      "goal_code": "working_capital",
+      "forbidden_amounts_minor": [],
+      "expect_ambiguities_any_of": []
+    },
+    {
+      "id": "A08",
+      "category": "ordinary",
+      "text": "Нужны 2 500 000 рублей на 36 месяцев на покупку станка",
+      "amount_minor": 250000000,
+      "term_months": 36,
+      "goal_code": "equipment",
+      "forbidden_amounts_minor": [],
+      "expect_ambiguities_any_of": []
+    },
+    {
+      "id": "A09",
+      "category": "ordinary",
+      "text": "Нужно 400 000 рублей на 3 месяца на выплату зарплаты",
+      "amount_minor": 40000000,
+      "term_months": 3,
+      "goal_code": "working_capital",
+      "forbidden_amounts_minor": [],
+      "expect_ambiguities_any_of": []
+    },
+    {
+      "id": "A10",
+      "category": "ordinary",
+      "text": "Нужен 1 000 000 рублей на 24 месяца, чтобы открыть вторую точку",
+      "amount_minor": 100000000,
+      "term_months": 24,
+      "goal_code": "other",
+      "forbidden_amounts_minor": [],
+      "expect_ambiguities_any_of": []
+    },
+    {
+      "id": "D01",
+      "category": "ambiguous",
+      "text": "Сначала думал два миллиона, но хватит семисот тысяч на год",
+      "amount_minor": 70000000,
+      "term_months": 12,
+      "goal_code": null,
+      "forbidden_amounts_minor": [200000000],
+      "expect_ambiguities_any_of": []
+    },
+    {
+      "id": "D04",
+      "category": "ambiguous",
+      "text": "От 500 тысяч до миллиона примерно на годик-полтора, на оборот",
+      "amount_minor": null,
+      "term_months": null,
+      "goal_code": "working_capital",
+      "forbidden_amounts_minor": [50000000, 100000000],
+      "expect_ambiguities_any_of": ["amount:range"]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+# Temporary Postgres for AI01 migration verification (Petr zone).
+# Not the product Compose — Evgeny owns the shared stack.
+services:
+  postgres-verify:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: synaptix
+      POSTGRES_PASSWORD: synaptix
+      POSTGRES_DB: synaptix_verify
+    ports:
+      - "54329:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U synaptix -d synaptix_verify"]
+      interval: 2s
+      timeout: 5s
+      retries: 15

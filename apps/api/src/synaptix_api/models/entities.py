@@ -11,6 +11,7 @@ from sqlalchemy import (
     Boolean,
     DateTime,
     Enum,
+    Float,
     ForeignKey,
     Integer,
     String,
@@ -94,6 +95,12 @@ class Product(Base):
     max_term_months: Mapped[int] = mapped_column(Integer, nullable=False)
     rules_version: Mapped[str] = mapped_column(String(64), nullable=False)
     active: Mapped[bool] = mapped_column(Boolean, default=True)
+    # Synced from data/products.json (single catalog source)
+    demo_rate_annual: Mapped[float | None] = mapped_column(Float, nullable=True)
+    product_version: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    allowed_goals: Mapped[list | None] = mapped_column(JSON, nullable=True)
+    required_fields: Mapped[list | None] = mapped_column(JSON, nullable=True)
+    fit_note: Mapped[str | None] = mapped_column(Text, nullable=True)
 
 
 class Application(Base):
@@ -133,9 +140,14 @@ class FinancialSnapshot(Base):
 
     id: Mapped[uuid.UUID] = mapped_column(Uuid, primary_key=True, default=_uuid)
     application_id: Mapped[uuid.UUID] = mapped_column(Uuid, ForeignKey("applications.id"), index=True)
+    # Monthly figures for the stated period (demo: one month). null ≠ 0.
     revenue_minor: Mapped[int | None] = mapped_column(BigInteger, nullable=True)
     expenses_minor: Mapped[int | None] = mapped_column(BigInteger, nullable=True)
+    # Stock of outstanding liabilities (not a monthly payment).
     liabilities_minor: Mapped[int | None] = mapped_column(BigInteger, nullable=True)
+    # Explicit monthly debt service; demo default 0 is a documented simplification (D10).
+    debt_service_monthly_minor: Mapped[int | None] = mapped_column(BigInteger, nullable=True)
+    period_label: Mapped[str | None] = mapped_column(String(64), nullable=True)
     captured_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
 
     application: Mapped[Application] = relationship(back_populates="snapshots")
@@ -193,6 +205,11 @@ class Decision(Base):
     explanation_client: Mapped[str | None] = mapped_column(Text, nullable=True)
     explanation_bank: Mapped[str | None] = mapped_column(Text, nullable=True)
     llm_meta: Mapped[dict] = mapped_column(JSON, default=dict)
+    financial_snapshot_id: Mapped[uuid.UUID | None] = mapped_column(
+        Uuid, ForeignKey("financial_snapshots.id"), nullable=True
+    )
+    product_code: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    application_version: Mapped[int | None] = mapped_column(Integer, nullable=True)
     actor_id: Mapped[uuid.UUID | None] = mapped_column(Uuid, ForeignKey("users.id"))
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
 

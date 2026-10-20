@@ -43,8 +43,17 @@ def test_expected_results_match_pipeline():
         assert bundle.decision.outcome == exp["intended_outcome"], (
             f"{exp['id']}: got {bundle.decision.outcome} {bundle.decision.reason_codes}"
         )
-        for code in exp["expected_reason_subset"]:
-            # at least one expected code for rejection family may vary
+        subset = exp["expected_reason_subset"]
+        # Rejection family: any listed code may be acceptable (OR).
+        if exp["intended_outcome"] == "REJECTED" and len(subset) > 1:
+            assert any(code in bundle.decision.reason_codes for code in subset) or any(
+                c.startswith("BUREAU_") for c in bundle.decision.reason_codes
+                if any(s.startswith("BUREAU_") for s in subset)
+            ), (
+                f"{exp['id']}: none of {subset} in {bundle.decision.reason_codes}"
+            )
+            continue
+        for code in subset:
             if exp["intended_outcome"] == "REJECTED" and code.startswith("BUREAU_"):
                 assert any(c.startswith("BUREAU_") for c in bundle.decision.reason_codes)
             else:

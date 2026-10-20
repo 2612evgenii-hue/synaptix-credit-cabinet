@@ -1,6 +1,6 @@
 {
-  "schema_version": "1",
-  "generator": "hand-authored-synthetic-v1",
+  "schema_version": "2",
+  "generator": "hand-authored-synthetic-v2",
   "seed": 20261020,
   "as_of_date": "2026-10-20",
   "timezone": "UTC",
@@ -8,7 +8,9 @@
   "sources": [
     "data/synthetic/scenarios.json",
     "data/products.json",
-    "data/expected-results.json"
+    "data/expected-results.json",
+    "data/qa/extract-phrases.json"
   ],
-  "notes": "Demo-only synthetic set for SYNAPTIX. Not a bank dataset."
+  "scenario_count": 17,
+  "notes": "Demo-only synthetic set for SYNAPTIX. Not a bank dataset. Catalog source of truth is products.json."
 }

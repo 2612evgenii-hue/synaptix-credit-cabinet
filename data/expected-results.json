@@ -1,11 +1,18 @@
 {
-  "schema_version": "1",
+  "schema_version": "2",
   "disclaimer": "Test oracles only — never feed into the live decision engine as answers.",
   "cases": [
     {
       "id": "approval",
       "scenario_key": "approval",
       "product_code": "working_capital",
+      "intended_outcome": "APPROVED",
+      "expected_reason_subset": ["K_PASS", "RISK_OK", "CHECKS_OK"]
+    },
+    {
+      "id": "approval_equipment",
+      "scenario_key": "approval_equipment",
+      "product_code": "equipment",
       "intended_outcome": "APPROVED",
       "expected_reason_subset": ["K_PASS", "RISK_OK", "CHECKS_OK"]
     },
@@ -17,11 +24,102 @@
       "expected_reason_subset": ["INCOMPLETE_FINANCIALS"]
     },
     {
+      "id": "clarification_fixed",
+      "scenario_key": "clarification_fixed",
+      "product_code": "working_capital",
+      "intended_outcome": "APPROVED",
+      "expected_reason_subset": ["K_PASS", "RISK_OK", "CHECKS_OK"]
+    },
+    {
       "id": "rejection",
       "scenario_key": "rejection",
       "product_code": "working_capital",
       "intended_outcome": "REJECTED",
       "expected_reason_subset": ["BUREAU_NEGATIVE", "BUREAU_OVERDUE"]
+    },
+    {
+      "id": "reject_registry",
+      "scenario_key": "reject_registry",
+      "product_code": "working_capital",
+      "intended_outcome": "REJECTED",
+      "expected_reason_subset": ["REGISTRY_NEGATIVE"]
+    },
+    {
+      "id": "alternative",
+      "scenario_key": "alternative",
+      "product_code": "working_capital",
+      "intended_outcome": "ALTERNATIVE",
+      "expected_reason_subset": ["ALTERNATIVE_AMOUNT"]
+    },
+    {
+      "id": "check_unavailable",
+      "scenario_key": "check_unavailable",
+      "product_code": "working_capital",
+      "intended_outcome": "CHECK_UNAVAILABLE",
+      "expected_reason_subset": ["CHECK_TECHNICAL_FAILURE"]
+    },
+    {
+      "id": "boundary_min_wc",
+      "scenario_key": "boundary_min_wc",
+      "product_code": "working_capital",
+      "intended_outcome": "APPROVED",
+      "expected_reason_subset": ["K_PASS"]
+    },
+    {
+      "id": "boundary_max_eq",
+      "scenario_key": "boundary_max_eq",
+      "product_code": "equipment",
+      "intended_outcome": "APPROVED",
+      "expected_reason_subset": ["K_PASS"]
+    },
+    {
+      "id": "out_of_bounds",
+      "scenario_key": "out_of_bounds",
+      "product_code": "working_capital",
+      "intended_outcome": "REJECTED",
+      "expected_reason_subset": ["PRODUCT_LIMIT"]
+    },
+    {
+      "id": "null_vs_zero",
+      "scenario_key": "null_vs_zero",
+      "product_code": "working_capital",
+      "intended_outcome": "NEEDS_INFO",
+      "expected_reason_subset": ["INCOMPLETE_FINANCIALS"]
+    },
+    {
+      "id": "negative_cashflow",
+      "scenario_key": "negative_cashflow",
+      "product_code": "working_capital",
+      "intended_outcome": "REJECTED",
+      "expected_reason_subset": ["COVERAGE_OR_RISK_FAIL", "RISK_FLOOR"]
+    },
+    {
+      "id": "high_load",
+      "scenario_key": "high_load",
+      "product_code": "working_capital",
+      "intended_outcome": "REJECTED",
+      "expected_reason_subset": ["COVERAGE_OR_RISK_FAIL", "RISK_FLOOR"]
+    },
+    {
+      "id": "isolation_peer_a",
+      "scenario_key": "isolation_peer_a",
+      "product_code": "working_capital",
+      "intended_outcome": "APPROVED",
+      "expected_reason_subset": ["K_PASS"]
+    },
+    {
+      "id": "isolation_peer_b",
+      "scenario_key": "isolation_peer_b",
+      "product_code": "working_capital",
+      "intended_outcome": "APPROVED",
+      "expected_reason_subset": ["K_PASS"]
+    },
+    {
+      "id": "reconsider",
+      "scenario_key": "reconsider",
+      "product_code": "working_capital",
+      "intended_outcome": "APPROVED",
+      "expected_reason_subset": ["K_PASS"]
     }
   ]
 }

@@ -8,15 +8,25 @@
   "output": {
     "schema_version": "1",
     "goal_code": "working_capital",
+    "goal_text": "закупка товара",
     "amount_rub": "1000000.00",
+    "amount_minor": 100000000,
     "term_months": null,
     "evidence": {
-      "goal": "закуп",
+      "goal": "закупка товара",
       "amount": "миллион",
       "term": null
     },
     "missing_fields": ["term_months"],
     "ambiguities": [],
-    "needs_user_confirm": true
+    "clarifying_questions": ["Укажите точный срок в месяцах."],
+    "needs_user_confirm": true,
+    "meta": {
+      "backend": "heuristic",
+      "model_id": "ru-heuristic-v2",
+      "used_llm": false,
+      "fallback_reason": null,
+      "injection_detected": false
+    }
   }
 }

@@ -4,7 +4,7 @@ from synaptix_api.analytics.pipeline import ProductLimits, run_analytics
 from synaptix_api.analytics.persist import store_check, store_decision, store_risk
 from synaptix_api.analytics.types import FinancialInput
 from synaptix_api.db.seed import seed_demo
-from synaptix_api.models import Application, CheckResult, Decision, RiskAssessment, User
+from synaptix_api.models import Application, CheckResult, Decision, FinancialSnapshot, RiskAssessment, User
 from synaptix_api.models.entities import ApplicationState, UserRole
 from synaptix_api.settings import get_settings
 
@@ -40,6 +40,16 @@ def test_persist_analytics_rows(db, monkeypatch):
     )
     db.add(app)
     db.flush()
+    snap = FinancialSnapshot(
+        application_id=app.id,
+        revenue_minor=900_000_00,
+        expenses_minor=500_000_00,
+        liabilities_minor=45_000_00,
+        debt_service_monthly_minor=0,
+        period_label="month",
+    )
+    db.add(snap)
+    db.flush()
 
     bundle = run_analytics(
         scenario_key="approval",
@@ -54,6 +64,7 @@ def test_persist_analytics_rows(db, monkeypatch):
         product=ProductLimits(
             min_amount_minor=equipment.min_amount_minor,
             max_amount_minor=equipment.max_amount_minor,
+            demo_rate_annual=equipment.demo_rate_annual or 0.16,
         ),
     )
     store_check(db, app.id, bundle.registry)
@@ -65,6 +76,9 @@ def test_persist_analytics_rows(db, monkeypatch):
         bundle.decision,
         actor_id=None,
         explanation=bundle.explanation,
+        financial_snapshot_id=snap.id,
+        product_code=equipment.code,
+        application_version=app.version,
     )
     db.commit()
 
@@ -74,6 +88,9 @@ def test_persist_analytics_rows(db, monkeypatch):
     assert row.outcome == "APPROVED"
     assert row.explanation_client
     assert row.llm_meta.get("backend") == "template"
+    assert row.financial_snapshot_id == snap.id
+    assert row.product_code == "equipment"
+    assert equipment.product_version == "equipment-demo-1"
 
 
 def test_seed_blocked_outside_demo(db, monkeypatch):
