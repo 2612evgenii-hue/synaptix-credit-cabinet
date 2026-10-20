@@ -3,8 +3,8 @@
   "files": [
     {
       "file": "README.md",
-      "bytes": 8550,
-      "sha256": "f9bde6836601f0a284d5938caee5430b8b6dd5a902be77064915cef12341a483"
+      "bytes": 8768,
+      "sha256": "90496ee0482b004d9c7852623f2b5c74b653d61999cd5a3342ad22b11f62fd81"
     },
     {
       "file": "browser-restoration.json",
@@ -43,8 +43,8 @@
     },
     {
       "file": "extended-measurements.json",
-      "bytes": 3006179,
-      "sha256": "2c5f088119d48daa9c30205441264f99a25e75fbe2b70f9b913064089709c8ba"
+      "bytes": 3006409,
+      "sha256": "879fecf8e8fc6fcb8bc98ca0cf4c8a7d9e7ed44019a17d30094cb04d2bd69862"
     },
     {
       "file": "future-links.json",
@@ -312,7 +312,7 @@
       "sha256": "08e0991c227f8af68992254c83d35aaa7cbfca95f5147659ce6d860cdafbd868"
     },
     {
-      "file": "screenshots/internships-mobile-profile.jpg",
+      "file": "screenshots/internships-mobile-initial.jpg",
       "bytes": 8024,
       "sha256": "b54861b8dbe93f75df3db7fdfd6361e9e502051a0ce3540df88eac2202697a68"
     },

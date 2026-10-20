@@ -1167,7 +1167,7 @@ SYNAPTIX не должен копировать эти интеграции ра
 | --- | --- | --- | --- |
 | `internships-desktop` | 1440 × 1000 | desktop document | H1: Styrene A LC Web, 80px / 72px, 900; H2: Styrene A LC Web, 40px / 36px, 700 |
 | `internships-mobile-ready` | 390 × 844 | desktop document narrowed; not a mobile-profile test | H1: Styrene A LC Web, 80px / 72px, 900; H2: Styrene A LC Web, 40px / 36px, 700 |
-| `internships-mobile-profile` | 390 × 844 | Android Chrome mobile document | H1: Styrene A LC Web, 48px / 43.2px, 900; H2: Styrene A LC Web, 30px / 27px, 700 |
+| `internships-mobile-profile` | 390 × 844 | Android Chrome mobile document; initial rendering, not a ready-state screenshot | H1: Styrene A LC Web, 48px / 43.2px, 900; H2: Styrene A LC Web, 30px / 27px, 700 |
 
 Образцы контейнеров из указанной записи; применять с учётом их роли и расположения:
 

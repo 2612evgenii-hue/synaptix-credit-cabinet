@@ -50781,7 +50781,9 @@
       "h": 844,
       "scrollWidth": 390,
       "w": 390
-    }
+    },
+    "test_mode": "Android Chrome mobile document; initial rendering, not a ready-state screenshot",
+    "observation_state": "Main artwork and text were not painted in the saved initial screenshot; mounted computed styles only."
   },
   {
     "key": "campus-mobile-profile",
