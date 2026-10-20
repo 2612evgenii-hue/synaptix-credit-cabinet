@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://synaptix.local/contracts/ai-extract.input.schema.json",
+  "title": "AIExtractInput",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "input_text", "currency", "allowed_goal_codes"],
+  "properties": {
+    "schema_version": { "const": "1" },
+    "input_text": { "type": "string", "minLength": 1, "maxLength": 4000 },
+    "currency": { "type": "string", "enum": ["RUB"] },
+    "allowed_goal_codes": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "enum": ["working_capital", "equipment", "other"] }
+    }
+  }
+}

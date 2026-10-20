@@ -1,6 +1,7 @@
 # Проект модели данных
 
-Статус: проект; DDL, миграции и движок БД пока не выбраны.
+Статус: реализация начата в `apps/api` (ветка/PR зоны данных). DDL — Alembic
+`20261020_0001`; движок — PostgreSQL 16 (ADR-0002).
 
 | Сущность | Основные поля | Ограничения |
 | --- | --- | --- |
@@ -12,7 +13,7 @@
 | Document | id, application_id, kind, storage_key, content_hash, synthetic | лимит/тип файла; доступ по владельцу |
 | CheckResult | id, application_id, source, mock_version, result, checked_at | без реальных внешних запросов |
 | RiskAssessment | id, application_id, score, factors, model_version | оценка риска, не решение |
-| Decision | id, application_id, outcome, reason_codes, offered_terms, rules_version, actor_id | версия входных данных и правил |
+| Decision | id, application_id, outcome, reason_codes, offered_terms, metrics, rules_version, explanation_client, explanation_bank, llm_meta, actor_id | решение + пост-hoc объяснение (LLM/template); LLM не вход в правила |
 | ApplicationEvent | id, application_id, actor_id, old_state, new_state, action, occurred_at, correlation_id | append-only на уровне приложения |
 | IdempotencyRecord | actor_id, route, key, request_hash, response, expires_at | уникальность actor+route+key |
 

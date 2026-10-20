@@ -1,6 +1,6 @@
 {
   "synthetic": true,
-  "status": "design-fixtures-not-a-working-seed",
+  "status": "seed-source-for-apps-api-demo",
   "currency": "RUB",
   "cases": [
     {"id": "approval", "company": "СИНТЕТИКА Альфа-Пример", "amount_minor": 50000000, "term_months": 12, "revenue_minor": 300000000, "expenses_minor": 150000000, "liabilities_minor": 10000000, "overdue_days": 0, "intended_outcome": "APPROVED"},

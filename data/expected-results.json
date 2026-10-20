@@ -1,0 +1,27 @@
+{
+  "schema_version": "1",
+  "disclaimer": "Test oracles only — never feed into the live decision engine as answers.",
+  "cases": [
+    {
+      "id": "approval",
+      "scenario_key": "approval",
+      "product_code": "working_capital",
+      "intended_outcome": "APPROVED",
+      "expected_reason_subset": ["K_PASS", "RISK_OK", "CHECKS_OK"]
+    },
+    {
+      "id": "clarification",
+      "scenario_key": "clarification",
+      "product_code": "working_capital",
+      "intended_outcome": "NEEDS_INFO",
+      "expected_reason_subset": ["INCOMPLETE_FINANCIALS"]
+    },
+    {
+      "id": "rejection",
+      "scenario_key": "rejection",
+      "product_code": "working_capital",
+      "intended_outcome": "REJECTED",
+      "expected_reason_subset": ["BUREAU_NEGATIVE", "BUREAU_OVERDUE"]
+    }
+  ]
+}

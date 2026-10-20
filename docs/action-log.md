@@ -15,6 +15,7 @@
 | 2026-10-20 | 2612evgenii-hue | Явно выбрана публичность для бесплатной защиты | Репозиторий переведён в public, PDF не загружался |
 | 2026-10-20 | 2612evgenii-hue, при помощи Codex | Созданы 12 Issues, приоритеты и 3 milestones | Задачи не назначались людям без согласования |
 | 2026-10-20 | GitHub Actions | Первый Repository CI успешен | repository-policy и secret-scan; ссылка в docs/verification.md |
+| 2026-10-20 | NamePantrer | Зона «данные и БД»; Issues #4/#6; ветка feat/4-persistence-seed | ORM, Alembic, seed, ADR-0002 |
 
 Первичная загрузка каркаса выполняется в пустой main до включения серверной защиты.
 После завершения bootstrap дальнейшие изменения проходят через PR и независимое ревью.

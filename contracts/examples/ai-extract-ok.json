@@ -1,0 +1,22 @@
+{
+  "input": {
+    "schema_version": "1",
+    "input_text": "Хочу купить печь для пекарни, нужно полтора миллиона на три года",
+    "currency": "RUB",
+    "allowed_goal_codes": ["working_capital", "equipment", "other"]
+  },
+  "output": {
+    "schema_version": "1",
+    "goal_code": "equipment",
+    "amount_rub": "1500000.00",
+    "term_months": 36,
+    "evidence": {
+      "goal": "печ",
+      "amount": "полтора миллиона",
+      "term": "три года"
+    },
+    "missing_fields": [],
+    "ambiguities": [],
+    "needs_user_confirm": true
+  }
+}

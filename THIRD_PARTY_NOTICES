@@ -38,14 +38,29 @@ Reference: Альфа_Хак_Умный_кредитный_кабинет.pdf
 Attribution: case prepared with АО «Альфа-Банк», published by Changellenge >>
 Source file not redistributed. Requirements paraphrased with page references.
 
+Application dependencies introduced in apps/api/requirements.txt (DB + analytics zone):
+- SQLAlchemy 2.0.36 — MIT — ORM
+- Alembic 1.14.0 — MIT — migrations
+- psycopg2-binary 2.9.10 — LGPL with exceptions — PostgreSQL driver
+- Pydantic / pydantic-settings — MIT — settings
+- passlib, bcrypt — BSD / Apache-2.0 — demo seed password hashing
+- pytest 8.3.4 — MIT — tests
+Exact pins: see apps/api/requirements.txt. HTTP framework is out of this zone.
+
 Planned simulated integrations (NOT IMPLEMENTED):
 - Credit bureau: deterministic local response, no real bureau access
 - Company registry / tax authority: deterministic local response
 - Signing and disbursement: local simulation; no real signature or money transfer
 
-LLM/models: none selected or included. If introduced, open weights required by
-case; record model revision, weights license, artifact checksums, resource needs
-and offline fallback. Hosted paid APIs must not be required by the review build.
+LLM/models (extract + explanations, optional):
+- Runtime protocol: Ollama-compatible local HTTP (`/api/chat`) on allowlisted hosts only.
+  Hosted paid APIs are blocked in code.
+- Primary candidate: Qwen3-4B-Instruct-2507 (Apache-2.0) via Ollama tag `qwen3:4b`
+  — see `ai/model-manifest.json` (pin revision/sha after local pull).
+- Fallback light demo: TinyLlama (Apache-2.0, `tinyllama`).
+- Default review build: `LLM_BACKEND=template` + heuristic extract (no model download).
+  Absence/failure of LLM must not change credit decisions; extracted fields need UI confirm.
+- Prompts: `ai/prompts/extract_v1.txt`. Eval: `ai/eval/`.
 
 Project source license: not selected by the team. No open-source license grant
 is implied by repository creation. Resolve submission/IP terms before publishing.

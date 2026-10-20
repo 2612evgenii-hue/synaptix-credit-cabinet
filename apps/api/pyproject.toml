@@ -1,0 +1,8 @@
+[project]
+name = "synaptix-api"
+version = "0.0.1"
+description = "SYNAPTIX credit cabinet API — persistence and process"
+requires-python = ">=3.12"
+
+[tool.setuptools.packages.find]
+where = ["src"]
