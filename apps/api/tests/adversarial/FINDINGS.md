@@ -1,0 +1,647 @@
+# Adversarial findings — DB / analytics zone
+
+Scope: `models`, `db`, `analytics`, `tests`, `data/synthetic/scenarios.json`.  
+No product fixes applied. Each finding has a failing pytest under `tests/adversarial/`.
+
+---
+
+## 1. Border coverage incorrectly APPROVED with reason `K_PASS`
+
+- **File:line:** `apps/api/src/synaptix_api/analytics/decision.py:168–226` (fall-through at `215–226`; gate at `168`)
+- **Attack:** Construct cashflow so `K_BORDER <= k < K_PASS` (e.g. k=1.1) and request amount = `product_min`. Then `max_principal_for_k` returns `alt < product_min`, the ALTERNATIVE branch is skipped, and the final `if k < K_BORDER or risk < 55` does **not** reject.
+- **Breaks:** Coverage gate `K_PASS=1.3` is bypassed. Outcome is `APPROVED` with reason_codes including `K_PASS` while `metrics.coverage_k < 1.3` — false banking approval and lying audit reasons.
+- **Test:** `test_adv_border_k_false_approve.py::test_adv_border_k_approves_with_fake_k_pass_reason`
+
+---
+
+## 2. `missing_data` checks treated as success path (can APPROVE + `CHECKS_OK`)
+
+- **File:line:** `apps/api/src/synaptix_api/analytics/decision.py:107–142` (only `unavailable` / `negative` handled; `missing_data` falls through)
+- **Attack:** Strong finances + registry `missing_data` (bureau ok), or bureau `missing_data` (registry ok). Risk only applies a modest score penalty; decision still reaches the approve branch and emits `CHECKS_OK`.
+- **Breaks:** External-check completeness invariant. Unknown / incomplete registry or bureau must not be narrated as checks OK or auto-approved. (Contrast: `unavailable` correctly maps to `CHECK_UNAVAILABLE`.)
+- **Tests:** `test_adv_missing_check_approves.py` (both cases)
+
+---
+
+## 3. Bureau `status=ok` ignores `overdue_days` (score + decision)
+
+- **File:line:**
+  - Risk: `apps/api/src/synaptix_api/analytics/risk.py:61–63` (`else` / ok branch records overdue but applies **no** penalty)
+  - Decision: `apps/api/src/synaptix_api/analytics/decision.py:126–142` (overdue inspected only when `bureau.status == "negative"`)
+- **Attack:** Payload `{status: ok via CheckOutcome.status, overdue_days: 90}`. Score stays 70 (same as clean). Decision APPROVES.
+- **Breaks:** Overdue obligations can be smuggled under an `ok` status; risk model and decision rules disagree with the numeric overdue field. Synthetic / mock inconsistency becomes a silent approve.
+- **Tests:** `test_adv_bureau_ok_ignores_overdue.py` (score + approve)
+
+---
+
+## 4. Mock checks are non-deterministic for identical inputs
+
+- **File:line:** `apps/api/src/synaptix_api/analytics/mocks.py:49` and `:78` (`checked_at: datetime.now(timezone.utc).isoformat()`)
+- **Attack:** Call `run_registry_check` / `run_bureau_check` twice with the same arguments a few ms apart; `payload` differs.
+- **Breaks:** Analytics/audit reproducibility and any idempotent persist-compare of check results. Same application snapshot cannot produce byte-stable check rows; “deterministic local simulators” claim in module docstring is false for persisted payloads.
+- **Tests:** `test_adv_nondeterministic_mocks.py` (registry + bureau)
+
+---
+
+## 5. Seed false idempotency — officer login alone skips catalog
+
+- **File:line:** `apps/api/src/synaptix_api/db/seed.py:27–28`
+- **Attack:** Insert only `bank.officer@demo.local`. Call `seed_demo`. Returns `{"seeded": False, "reason": "already_seeded"}` while `products` and `companies` remain empty.
+- **Breaks:** Demo bootstrap invariant (idempotent **full** seed). Partial / corrupted DB is treated as done; scenarios from `scenarios.json` never materialize.
+- **Test:** `test_adv_seed_false_idempotent.py::test_adv_seed_skips_when_only_officer_exists`
+
+---
+
+## 6. `term_months <= 0` misclassified as `NEEDS_INFO` / `K_UNAVAILABLE`
+
+- **File:line:** `apps/api/src/synaptix_api/analytics/decision.py:15–17` (`_annuity_minor` returns 0) → `:144–156` (`payment=0` → `coverage_ratio` None → `NEEDS_INFO`)
+- **Attack:** Valid revenue/expenses, `term_months=0` (or negative). No product-term validation exists either.
+- **Breaks:** Input validation vs incompleteness. Invalid term is framed as missing coverage info, not a hard reject / invalid application — wrong ops signal for bank workflow.
+- **Test:** `test_adv_term_and_liabilities_validation.py::test_adv_term_zero_must_not_be_needs_info_via_k_unavailable`
+
+---
+
+## 7. `liabilities_minor=None` still APPROVED
+
+- **File:line:** `apps/api/src/synaptix_api/analytics/decision.py:87–95` (completeness checks only revenue/expenses); risk only soft-penalizes at `risk.py:35–37`
+- **Attack:** Full revenue/expenses, `liabilities_minor=None`, clean checks. Score may stay ≥55; decision APPROVES.
+- **Breaks:** Documented “None is not zero / missing stays missing” financial completeness for decisioning. Liabilities are a load-bearing leverage input but are optional for approval.
+- **Test:** `test_adv_term_and_liabilities_validation.py::test_adv_liabilities_none_must_not_approve`
+
+---
+
+## Attacks attempted that did **not** yield a new failing invariant (for this pass)
+
+| Probe | Result |
+| --- | --- |
+| `scenarios.json` intended_outcome vs pipeline (seed product limits) | approval/clarification/rejection match intended |
+| Alternative offer `amount_minor > request` via decision path | Guard `alt < amount` holds |
+| Seed outside `APP_ENV=demo` | Correctly raises `RuntimeError` |
+| Revenue `None` treated as 0 | Correctly `NEEDS_INFO` / `INCOMPLETE_FINANCIALS` |
+| Bureau `unavailable` treated as reject | Correctly `CHECK_UNAVAILABLE` |
+| Decision persist omits `rules_version` | `store_decision` writes `decision.rules_version`; apply fills from settings |
+| Money float blowing k for demo-scale principals | Integers exact in float up to search cap; no repro at demo sizes |
+
+---
+
+## New test files
+
+- `apps/api/tests/adversarial/test_adv_border_k_false_approve.py`
+- `apps/api/tests/adversarial/test_adv_missing_check_approves.py`
+- `apps/api/tests/adversarial/test_adv_bureau_ok_ignores_overdue.py`
+- `apps/api/tests/adversarial/test_adv_nondeterministic_mocks.py`
+- `apps/api/tests/adversarial/test_adv_seed_false_idempotent.py`
+- `apps/api/tests/adversarial/test_adv_term_and_liabilities_validation.py`
+- `apps/api/tests/adversarial/FINDINGS.md` (this file)
+
+---
+
+## Cycle 2
+
+Prior cycle bugs treated as fixed (cycle-1 adversarial tests green before this pass).  
+Scope again: `models`, `db`, `analytics`. No product fixes applied.
+
+### 1. Seed count-based “complete” accepts rogue product catalog
+
+- **File:line:** `apps/api/src/synaptix_api/db/seed.py:21–28` (`product_count >= 2` without code check)
+- **Attack:** Insert officer + any two `Product` rows (e.g. `rogue_a` / `rogue_b`) + one company. `seed_demo` returns `already_seeded`; `working_capital` / `equipment` never created.
+- **Breaks:** Demo bootstrap after catalog corruption / partial wrong seed. Cycle 1 fixed officer-only skip; completeness is still quantity, not identity.
+- **Test:** `test_adv2_seed_rogue_catalog.py::test_adv2_seed_skips_when_rogue_products_satisfy_count`
+
+### 2. Negative expenses (and dual-negative legs) mint cashflow → APPROVE
+
+- **File:line:** `apps/api/src/synaptix_api/analytics/types.py:18–21` (`revenue - expenses` with no sign guard); decision never rejects negative money
+- **Attack:** `expenses_minor=-300_000_00` with modest revenue → `available=500_000_00` → `APPROVED`. Same with both revenue and expenses negative but expenses more negative.
+- **Breaks:** Money-as-kopecks invariant; fabricated coverage from invalid snapshots.
+- **Tests:** `test_adv2_negative_money.py` (both cases)
+
+### 3. `currency != RUB` ignored by decision rules
+
+- **File:line:** `FinancialInput.currency` in `types.py:16`; never read in `decision.py` / `risk.py`
+- **Attack:** Strong finances with `currency="USD"` → `APPROVED` under RUB annuity/K gates.
+- **Breaks:** OpenAPI currency enum `RUB` only; data-model “сумма … RUB”. Non-RUB amounts treated as kopecks.
+- **Test:** `test_adv2_currency_not_rub.py::test_adv2_non_rub_currency_must_not_approve_as_rub`
+
+### 4. Product term min/max never enforced (and `ProductLimits` omits terms)
+
+- **File:line:** `decision.py:114–122` (amount-only `PRODUCT_LIMIT`); `pipeline.py:14–17` (`ProductLimits` has no term fields)
+- **Attack:** `term_months=3` with equipment-like amount band (product min term 12) → `APPROVED`.
+- **Breaks:** Product entity `min_term_months` / `max_term_months` are dead for analytics. Cycle 1 noted the gap beside `term<=0`; still no gate for in-range invalid terms.
+- **Tests:** `test_adv2_product_term_bounds.py` (approve + structural)
+
+### 5. `DecisionResult` outcomes not representable as `ApplicationState`
+
+- **File:line:** `types.py:41` vs `entities.py:40–51`
+- **Attack:** Pipeline emits `ALTERNATIVE` or `CHECK_UNAVAILABLE`; neither exists on `ApplicationState` (nor OpenAPI application state enum).
+- **Breaks:** Enum consistency — cannot set `application.state = decision.outcome` for those paths without a separate mapping (none in analytics/db).
+- **Test:** `test_adv2_application_state_enum.py::test_adv2_decision_outcomes_must_map_to_application_state`
+
+### 6. `store_decision` nests `metrics` inside `offered_terms`
+
+- **File:line:** `apps/api/src/synaptix_api/analytics/persist.py:48`
+- **Attack:** Persist an `APPROVED` `DecisionResult`; stored JSON gains `"metrics": {...}` beside commercial keys. Overwrites `offered_terms["metrics"]` if present.
+- **Breaks:** Type-level separation (`DecisionResult.offered_terms` vs `.metrics`); commercial offer payload polluted; no first-class metrics column recovery.
+- **Test:** `test_adv2_persist_metrics_nesting.py::test_adv2_store_decision_must_not_nest_metrics_in_offered_terms`
+
+### 7. `max_principal_for_k` hard search cap at 50M RUB
+
+- **File:line:** `decision.py:54` (`hi = 50_000_000_00`)
+- **Attack:** Cashflow supports ≥60M RUB at `K_PASS` with `product_max=100M`; function still returns ≤50M.
+- **Breaks:** Alternative principal silently under-capped whenever affordable amount exceeds the hardcoded hi (independent of `product_max_minor` passed to rules).
+- **Test:** `test_adv2_max_principal_cap.py::test_adv2_max_principal_cap_below_affordable_and_product_max`
+
+---
+
+### Cycle 2 probes that did **not** yield a new failing invariant
+
+| Probe | Result |
+| --- | --- |
+| Negative / zero `amount_minor` | Correctly `REJECTED` / `INVALID_TERM_OR_AMOUNT` (cycle 1 fix) |
+| Expenses > revenue | Rejects with negative/zero k |
+| Product min==max amount equality | Approves when amount equals both bounds |
+| ALTERNATIVE `alt == request` / post-round `k_alt < K_PASS` | No repro across grid search |
+| Registry `inactive` / liquidating | Maps to `negative` → `REGISTRY_NEGATIVE` |
+| Seed repair when companies missing | Repairs correctly if product count incomplete |
+| Concurrent double-seed race | Not reliably reproduced in unit scope |
+| `coverage_ratio(..., existing_debt_payment_minor=)` | Helper works; rules never pass monthly debt (no FinancialInput field) — incomplete wiring, not a contradicted claim |
+| Risk score clip 0/100 | Clips as documented |
+| Bureau/registry `missing_data` / overdue-on-ok | Covered by cycle 1 fixes (still green) |
+
+### Cycle 2 test files
+
+- `test_adv2_seed_rogue_catalog.py`
+- `test_adv2_negative_money.py`
+- `test_adv2_currency_not_rub.py`
+- `test_adv2_product_term_bounds.py`
+- `test_adv2_application_state_enum.py`
+- `test_adv2_persist_metrics_nesting.py`
+- `test_adv2_max_principal_cap.py`
+
+---
+
+## Cycle 3
+
+Prior cycle bugs treated as fixed (cycles 1–2 adversarial tests green before this pass).  
+Scope again: `models`, `db`, `analytics`. No product fixes applied.
+
+### 1. Hard risk fail (`score <= 35`) still yields `ALTERNATIVE`
+
+- **File:line:** `apps/api/src/synaptix_api/analytics/decision.py:221–228` (`SCORE_REJECT_MAX` AND-ed with `k < K_BORDER` only); alt branch at `244–265` has no risk gate
+- **Attack:** Strong-enough cashflow for `K_BORDER <= k < K_PASS` (e.g. rev=`500_000_00`, amount=`5_000_000_00`, term=12) with forced `RiskResult(score=20)`. Combined reject does not fire; approve fails; `max_principal_for_k` returns a counter-offer.
+- **Breaks:** `SCORE_REJECT_MAX` is not a hard reject. Applicants in the reject score band still receive `ALTERNATIVE` credit offers.
+- **Test:** `test_adv3_risk_reject_still_alternative.py::test_adv3_low_risk_score_must_not_get_alternative`
+
+### 2. `store_check` clobbers `CheckOutcome.status` with payload entity status
+
+- **File:line:** `apps/api/src/synaptix_api/analytics/persist.py:18` (`result={"status": outcome.status, **outcome.payload}`)
+- **Attack:** Persist `run_registry_check("approval", …)` → stored `result["status"]` is `"active"` not `"ok"`. Same for `"inactive"` → `"liquidating"` not `"negative"`.
+- **Breaks:** Audit/check JSON loses the normalized check verdict; consumers reading `result.status` see registry entity state, not `CheckOutcome.status`.
+- **Test:** `test_adv3_store_check_status_clobber.py::test_adv3_store_check_must_keep_outcome_status`
+
+### 3. Seed “complete” with zero customer users
+
+- **File:line:** `apps/api/src/synaptix_api/db/seed.py:21–29` (`_seed_complete` ignores client logins)
+- **Attack:** Insert officer + `working_capital` + `equipment` + one company; no customers. `seed_demo` returns `already_seeded`; `client.approval@demo.local` etc. never created.
+- **Breaks:** Demo bootstrap after partial catalog restore. Cycle 1/2 fixed officer-only and rogue codes; clients are still optional for “complete”.
+- **Test:** `test_adv3_seed_incomplete_clients.py::test_adv3_seed_must_create_clients_when_catalog_present`
+
+### 4. Inactive canonical products satisfy seed completeness
+
+- **File:line:** `apps/api/src/synaptix_api/db/seed.py:26–29` (code presence only; `Product.active` ignored)
+- **Attack:** Officer + `working_capital`/`equipment` with `active=False` + company → `already_seeded`. Repair path never runs (rows exist by code).
+- **Breaks:** Soft-deleted / deactivated demo catalog blocks re-seed; no active products for the UI.
+- **Test:** `test_adv3_seed_inactive_products.py::test_adv3_seed_must_not_skip_when_demo_products_inactive`
+
+### 5. Negative `demo_rate_annual` can `APPROVE`
+
+- **File:line:** `apps/api/src/synaptix_api/analytics/decision.py:94–95, 207–242` (rate used in annuity/k with no sign check)
+- **Attack:** Clean finances + checks, `demo_rate_annual=-0.5` → `APPROVED` with `offered_terms.rate_annual=-0.5` and inflated `coverage_k`.
+- **Breaks:** Commercial offer integrity; negative interest is not a valid demo credit term.
+- **Test:** `test_adv3_negative_rate.py::test_adv3_negative_annual_rate_must_not_approve`
+
+---
+
+### Cycle 3 probes that did **not** yield a new failing invariant
+
+| Probe | Result |
+| --- | --- |
+| Cycle 1/2 regressions (border k approve, missing_data, overdue-on-ok, mocks clock, liabilities None, currency, neg money, term bounds, metrics nesting, 50M cap, app-state enum) | Still green after prior fixes |
+| `score <= 35` with `k >= K_PASS` | Fall-through `REJECTED` / `COVERAGE_OR_RISK_FAIL` (outcome OK; reason coarse) |
+| Annuity asymptote for term≫120 | Numerically stable toward `principal * r`; not a contradicted claim for demo terms |
+| Seed wrong limits but correct active codes | Same completeness-by-code class as finding 4; covered via inactive attack |
+| `force_bureau_unavailable` persist status | Payload has no `status` key — outcome status preserved |
+| Concurrent double-seed | Not reliably reproduced in unit scope |
+
+### Cycle 3 test files
+
+- `test_adv3_risk_reject_still_alternative.py`
+- `test_adv3_store_check_status_clobber.py`
+- `test_adv3_seed_incomplete_clients.py`
+- `test_adv3_seed_inactive_products.py`
+- `test_adv3_negative_rate.py`
+
+---
+
+## Cycle 4
+
+Prior cycle bugs treated as fixed (cycles 1–3 adversarial tests green before this pass).  
+Scope again: `models`, `db`, `analytics`. No product fixes applied.
+
+### 1. Rogue customer satisfies seed completeness — scenario logins never created
+
+- **File:line:** `apps/api/src/synaptix_api/db/seed.py:30–32` (`customers >= 1` without login/identity check)
+- **Attack:** Officer + active `working_capital`/`equipment` + one company + `client.rogue@demo.local`. `seed_demo` returns `already_seeded`; `client.approval@demo.local` / clarification / rejection never created.
+- **Breaks:** `_seed_complete` docstring claims “at least one customer per scenario company”; cycle 3 only required any customer count ≥ 1. Demo bootstrap after a stray customer row still skips scenario accounts.
+- **Test:** `test_adv4_seed_rogue_customer.py::test_adv4_seed_must_create_scenario_clients_not_any_customer`
+
+### 2. Corrupt canonical product limits never repaired
+
+- **File:line:** `apps/api/src/synaptix_api/db/seed.py:26–32` + early return at `40–41` (completeness ignores amount/term bounds; `_ensure_product` repair unreachable)
+- **Attack:** Officer + active `working_capital`/`equipment` with `min/max_amount_minor=1/2` and term `1/1` + scenario customer + company → `already_seeded`. Limits stay absurd; demo amounts from `scenarios.json` cannot pass `PRODUCT_LIMIT`.
+- **Breaks:** Cycle 3 fixed inactive codes; identity+active is still not “canonical bounds”. Repair path exists in `_ensure_product` but never runs when completeness short-circuits.
+- **Test:** `test_adv4_seed_corrupt_product_limits.py::test_adv4_seed_must_repair_corrupt_canonical_product_limits`
+
+### 3. Non-finite / extreme `demo_rate_annual` crashes decision
+
+- **File:line:** `apps/api/src/synaptix_api/analytics/decision.py:207–214` (only `demo_rate_annual < 0`); annuity at `15–22`
+- **Attack:** Clean finances + checks with `rate=nan`, `inf`, or `1e308`. `apply_decision_rules` raises `ValueError` / `OverflowError` instead of returning a `DecisionResult`.
+- **Breaks:** Cycle 3 closed negative rates with `INVALID_RATE`. Non-finite / overflow rates still abort the pipeline — no audit outcome, unlike every other validation branch.
+- **Test:** `test_adv4_non_finite_rate.py::test_adv4_non_finite_rate_must_not_crash`
+
+---
+
+### Cycle 4 probes that did **not** yield a new failing invariant
+
+| Probe | Result |
+| --- | --- |
+| Cycles 1–3 regressions (border k, missing_data, overdue-on-ok, mocks clock, liabilities None, currency, neg money, term bounds, metrics nesting, 50M cap, app-state enum, risk floor alt, store_check status, seed clients/inactive, neg rate) | Still green |
+| Mid-band risk (36–54) + border k → `ALTERNATIVE` | Gray zone by design after `RISK_FLOOR`; only ≤35 hard-blocks offers |
+| Strong k + mid risk + non-aligned amount | Falls through to `REJECTED` / `COVERAGE_OR_RISK_FAIL` (alt ≥ request) |
+| `demo_rate_annual=0` APPROVE | Allowed by `< 0` gate; zero-rate demo offer not contradicted |
+| ALTERNATIVE post-round `k_alt < K_PASS` | No repro on searched grid |
+| Registry ignores mismatched `registration_id` | Simulator keyed by scenario only — documented local mock behavior |
+| Inverted product min/max amount or term | Correctly `PRODUCT_LIMIT` |
+| Zero cashflow (rev==exp) | `REJECTED` / `COVERAGE_OR_RISK_FAIL` |
+| Concurrent double-seed | Not reliably reproduced in unit scope |
+
+### Cycle 4 test files
+
+- `test_adv4_seed_rogue_customer.py`
+- `test_adv4_seed_corrupt_product_limits.py`
+- `test_adv4_non_finite_rate.py`
+
+---
+
+## Cycle 5
+
+Prior cycle bugs treated as fixed (cycles 1–4 adversarial tests green before this pass).  
+Scope again: `models`, `db`, `analytics`. No product fixes applied.
+
+### 1. Unknown check status falls through to `APPROVED` + `CHECKS_OK`
+
+- **File:line:** `decision.py:171–207` (only `unavailable` / `missing_data` / `negative` / overdue handled); `risk.py:46–72` (else → `ok`); `mocks.py:70–76` (bureau `profile["status"]` passthrough, no allowlist)
+- **Attack:** `CheckOutcome(status="pending")` with strong finances, or monkeypatch `BUREAU["approval"]` to `status: pending`. Risk labels bureau `ok`; decision emits `CHECKS_OK` and `APPROVED`.
+- **Breaks:** Cycle 1 closed `missing_data`. Any non-canonical status is still treated as a successful check — false audit narrative and false approve. Mock profiles can smuggle the same hole without constructing `CheckOutcome` by hand.
+- **Tests:** `test_adv5_unknown_check_status.py` (constructed + mock passthrough)
+
+### 2. Malformed `overdue_days` crashes decision / risk
+
+- **File:line:** `decision.py:70–71` (`int(bureau.payload.get("overdue_days") or 0)`); `risk.py:53` (same)
+- **Attack:** Bureau `status=ok`, `payload={"overdue_days": "nope"}`. `apply_decision_rules` / `assess_risk` raise `ValueError` instead of a `DecisionResult` / scored `RiskResult`.
+- **Breaks:** Cycle 4 closed non-finite **rate** crashes. Corrupt overdue in persisted/replayed check JSON still aborts the pipeline — no audit outcome.
+- **Tests:** `test_adv5_malformed_overdue.py` (decision + risk)
+
+### 3. Extreme `term_months` OverflowError in annuity
+
+- **File:line:** `decision.py:17–24` (`(1 + r) ** term_months`); gate at `157–169` only checks product min/max
+- **Attack:** `term_months=100_000` with `product_max_term=100_000`, clean finances/checks, `rate=0.16`. Product bound passes; `_annuity_minor` raises `OverflowError`.
+- **Breaks:** Same crash class as cycle-4 rate, different input. No absolute term sanity cap before float power.
+- **Test:** `test_adv5_term_overflow.py::test_adv5_extreme_term_must_not_crash_annuity`
+
+### 4. Seed completeness ignores company `scenario_key` / name
+
+- **File:line:** `seed.py:51–57` (company presence by `synthetic_registration_id` only); create path `112–118` skips update when row exists
+- **Attack:** Officer + canonical products + scenario logins + companies with correct `SYN-{ID}` but `scenario_key="rogue"` / `synthetic_name="WRONG"`. `seed_demo` → `already_seeded`; company fields never repaired from `scenarios.json`.
+- **Breaks:** Cycle 4 required reg_id existence. Demo scenario wiring (mocks keyed by `scenario_key`) can stay corrupt after a partial restore.
+- **Test:** `test_adv5_seed_company_identity.py::test_adv5_seed_must_repair_company_scenario_identity`
+
+### 5. Seed completeness ignores customer role / company / password
+
+- **File:line:** `seed.py:52–54` (login string only); create path `121–131` skips when login exists
+- **Attack:** Scenario logins present as `UserRole.bank` on an orphan company with a non-demo password. `already_seeded`; role/company/password never repaired.
+- **Breaks:** Cycle 4 required login presence. Demo customer identity (role, company link, `DEMO_PASSWORD`) can remain wrong.
+- **Test:** `test_adv5_seed_customer_identity.py::test_adv5_seed_must_repair_scenario_customer_identity`
+
+---
+
+### Cycle 5 probes that did **not** yield a new failing invariant
+
+| Probe | Result |
+| --- | --- |
+| Cycles 1–4 regressions | Still green before new adv5 tests |
+| ALTERNATIVE post-round `k_alt < K_PASS` | No repro on searched grid |
+| `demo_rate_annual=0` APPROVE | Still allowed by `< 0` / `> 1` gate (not newly contradicted) |
+| Mid-band risk (36–54) + strong k | `REJECTED` / `COVERAGE_OR_RISK_FAIL` (no alt when alt ≥ request) |
+| Inverted product min/max amount | `PRODUCT_LIMIT` |
+| Empty-string / `None` overdue_days | Coerces to 0 via falsy `or 0` — no crash; not a false overdue reject |
+| Bool `overdue_days=True` | Rejects as overdue_days=1 |
+| `INVALID_RATE` metrics dict shrink | Loses risk_score keys — audit incompleteness only, not a wrong outcome |
+| Concurrent double-seed | Not reliably reproduced in unit scope |
+
+### Cycle 5 test files
+
+- `test_adv5_unknown_check_status.py`
+- `test_adv5_malformed_overdue.py`
+- `test_adv5_term_overflow.py`
+- `test_adv5_seed_company_identity.py`
+- `test_adv5_seed_customer_identity.py`
+
+---
+
+## Cycle 6
+
+Prior cycle bugs treated as fixed (cycles 1–5 adversarial tests green before this pass).  
+Scope again: `models`, `db`, `analytics`. No product fixes applied.
+
+### 1. Seed officer identity ignored — login string alone is “complete”
+
+- **File:line:** `seed.py:42–43` (officer existence only); create path `83–92` never updates an existing row
+- **Attack:** Insert `bank.officer@demo.local` as `UserRole.customer` with wrong password and a `company_id`, plus canonical products + scenario companies/clients. `seed_demo` → `already_seeded`; officer role/password/`company_id` never repaired.
+- **Breaks:** Cycle 5 closed the same hole for scenario *customers*. Bank demo login can remain a customer with a non-demo password after a partial restore.
+- **Test:** `test_adv6_seed_officer_identity.py::test_adv6_seed_must_repair_officer_identity`
+
+### 2. Non-integer `term_months` / `amount_minor` can `APPROVE` (or crash)
+
+- **File:line:** `decision.py:128–132`, `163–184` (numeric compares only; no `int` / non-bool guard); annuity at `17–24`
+- **Attack:**
+  - `term_months=12.5` inside product term band → `APPROVED` with fractional-term annuity
+  - `amount_minor=500_000_00.7` → `APPROVED` with float kopecks in `offered_terms`
+  - `amount_minor="50000000"` → `TypeError` in product-limit compare (pipeline crash, not a `DecisionResult`)
+- **Breaks:** Documented integer months and minor-unit money. Same crash class as cycle 4/5 (rate/overdue), new input surface. Fractional term bypasses the intent of integer product term bounds.
+- **Tests:** `test_adv6_non_integer_inputs.py` (fractional term, float amount, string amount crash)
+
+### 3. Negative / fractional `overdue_days` treated as clean bureau
+
+- **File:line:** `decision.py:74–82`, `222–239` (`int()` then only `overdue > 0`); `risk.py:53–66` same `> 0` gate
+- **Attack:** Bureau `status=ok` with `overdue_days=-5` → `APPROVED`. Or `overdue_days=0.9` → `int(0.9)==0` → `APPROVED` (fractional debt truncated to clean).
+- **Breaks:** Cycle 1 rejects `> 0`; cycle 5 maps non-int strings to `NEEDS_INFO`. Negative ints and truncating floats still narrate a clean check and approve.
+- **Tests:** `test_adv6_overdue_semantics.py` (negative + fractional truncate)
+
+---
+
+### Cycle 6 probes that did **not** yield a new failing invariant
+
+| Probe | Result |
+| --- | --- |
+| Cycles 1–5 regressions | Still green before new adv6 tests |
+| Wrong product `name` only (limits/active/rules OK) | `already_seeded` leaves display name wrong — display-only; not treated as load-bearing vs cycle-4 limits |
+| Risk labels unknown registry status as `ok` | Decision already `NEEDS_INFO` / `CHECKS_INCOMPLETE` (cycle 5); no false approve |
+| `bool` amount (`True`==1) with product min 1 | `K_UNAVAILABLE` (annuity rounds to 0) — no approve |
+| Mid-band risk + border k → `ALTERNATIVE` | By design after cycle-3 `RISK_FLOOR` |
+| `demo_rate_annual=0` APPROVE | Still allowed; not newly contradicted |
+| Concurrent double-seed | Not reliably reproduced in unit scope |
+
+### Cycle 6 test files
+
+- `test_adv6_seed_officer_identity.py`
+- `test_adv6_non_integer_inputs.py`
+- `test_adv6_overdue_semantics.py`
+
+---
+
+## Cycle 7
+
+Prior cycle bugs treated as fixed (cycles 1–6 adversarial tests green before this pass).  
+Scope again: `models`, `db`, `analytics`. No product fixes applied.
+
+### 1. Explicit bureau `negative` masked to `NEEDS_INFO` by malformed overdue
+
+- **File:line:** `decision.py:255–272` (malformed overdue returns before `status == "negative"` reject)
+- **Attack:** `CheckOutcome(status="negative", payload={"overdue_days": "nope"})` with otherwise strong finances. Baseline `overdue_days=0` correctly `REJECTED`; malformed overdue yields `NEEDS_INFO` / `MALFORMED_BUREAU_PAYLOAD`.
+- **Breaks:** Cycle 5 only closed crash-on-malformed for `status=ok`. An already-negative bureau verdict must stay a hard reject; corrupt payload must not soften credit denial into an info request.
+- **Test:** `test_adv7_negative_bureau_malformed.py::test_adv7_negative_bureau_must_reject_despite_malformed_overdue`
+
+### 2. Bureau mock profile missing `status` KeyErrors
+
+- **File:line:** `mocks.py:70` (`status = profile["status"]`); contrast registry `:40–41` (`.get("status")`)
+- **Attack:** Monkeypatch `BUREAU["adv7_broken"] = {"overdue_days": 0}` (no `status` key). `run_bureau_check` raises `KeyError` instead of a `CheckOutcome`.
+- **Breaks:** Cycle 5 covered unknown *values* of status. Incomplete profiles still abort the simulator; registry degrades safely on the same shape of hole.
+- **Test:** `test_adv7_bureau_mock_missing_status.py::test_adv7_bureau_profile_missing_status_must_not_crash`
+
+---
+
+### Cycle 7 probes that did **not** yield a new failing invariant
+
+| Probe | Result |
+| --- | --- |
+| Cycles 1–6 regressions (spot-checked decision/risk/seed surfaces) | Still green before new adv7 tests |
+| ALTERNATIVE post-round `k_alt < K_PASS` | No repro on searched grid |
+| Mid-band risk (36–54) + strong k → `COVERAGE_OR_RISK_FAIL` | Coarse reason; not a false approve |
+| `demo_rate_annual=0` / `1.0` APPROVE | Allowed by current gates; not newly contradicted |
+| Negative `obligations` in bureau payload | Ignored field; overdue is the scored signal |
+| Wrong officer/product *display name* only | Completeness ignores names; display-only (cycle 6 stance) |
+| String / non-int product limit args | TypeError possible from bad callers; ORM/`ProductLimits` stay ints — speculative vs finances surface |
+| Concurrent double-seed | Not reliably reproduced in unit scope |
+
+### Cycle 7 test files
+
+- `test_adv7_negative_bureau_malformed.py`
+- `test_adv7_bureau_mock_missing_status.py`
+
+---
+
+## Cycle 8
+
+Prior cycle bugs treated as fixed (cycles 1–7 adversarial tests green before this pass).  
+Scope again: `models`, `db`, `analytics`. No product fixes applied.
+
+### 1. Hard negative / overdue masked by peer check soft status
+
+- **File:line:** `decision.py:219–264` (unknown / `unavailable` / `missing_data` return before `REGISTRY_NEGATIVE` / `BUREAU_NEGATIVE` / overdue)
+- **Attack:**
+  - Bureau `status=negative` (or `ok` + `overdue_days=90`) with registry `unavailable` / `missing_data` / `pending`
+  - Registry `status=negative` with bureau `unavailable` / `missing_data` / `pending`
+  Baseline with peer `ok` correctly `REJECTED`; soft peer yields `CHECK_UNAVAILABLE` or `NEEDS_INFO`.
+- **Breaks:** Cycle 7 closed same-check masking (malformed overdue on an already-negative bureau). Cross-check soft status still rewrites a known credit denial into a technical-failure / info-request path — retryable instead of rejected.
+- **Tests:** `test_adv8_negative_masked_by_peer_soft.py` (parametrized hard-negative matrix + overdue×registry-unavailable)
+
+---
+
+### Cycle 8 probes that did **not** yield a new failing invariant
+
+| Probe | Result |
+| --- | --- |
+| Cycles 1–7 regressions (spot-checked) | Still green before new adv8 tests |
+| ALTERNATIVE post-round `k_alt < K_PASS` | No repro on expanded grid |
+| Mid-band risk (36–54) + border k → `ALTERNATIVE` | By design after `RISK_FLOOR` |
+| `demo_rate_annual=0` / `1.0` APPROVE | Allowed by current gates |
+| Coverage round-up at 4dp boundary (`1.29995`→`1.3`) | Consistent with intentional `round(..., 4)` then compare |
+| Seed wrong product / officer / client *display name* only | Completeness ignores names; display-only (cycle 6 stance) |
+| Non-int / out-of-range `RiskResult.score` crash | No in-package replay path; speculative vs finances surface |
+| Concurrent double-seed | Not reliably reproduced in unit scope |
+
+### Cycle 8 test files
+
+- `test_adv8_negative_masked_by_peer_soft.py`
+
+---
+
+## Cycle 9
+
+Prior cycle bugs treated as fixed (cycles 1–8 adversarial tests green before this pass).  
+Scope again: `models`, `db`, `analytics`. No product fixes applied.
+
+### 1. Registry mock collapses soft profile statuses to `negative` (false credit reject)
+
+- **File:line:** `apps/api/src/synaptix_api/analytics/mocks.py:39–41` (`status != "active"` → always `"negative"`)
+- **Attack:** Monkeypatch `REGISTRY["…"] = {"found": True, "status": "unavailable"}` (or `"missing_data"`). `run_registry_check` returns `CheckOutcome.status="negative"`; decision → `REJECTED` / `REGISTRY_NEGATIVE`. Constructed `CheckOutcome` with the same soft status correctly yields `CHECK_UNAVAILABLE` / `NEEDS_INFO`. Bureau profiles pass `unavailable` through (`bureau_down`).
+- **Breaks:** Module claim “Technical failure is never a credit rejection.” Decision/risk already handle registry `unavailable` / `missing_data`; the registry simulator cannot emit them from a profile and remaps them to a hard deny.
+- **Test:** `test_adv9_registry_mock_soft_as_negative.py` (parametrized unavailable + missing_data)
+
+### 2. Registry `found="false"` (string) treated as present → can `APPROVE`
+
+- **File:line:** `mocks.py:40` (`not profile.get("found")` truthiness)
+- **Attack:** `REGISTRY["…"] = {"found": "false", "status": "active"}`. Boolean `False` correctly → `negative`; string `"false"` is truthy → `ok` → strong finances `APPROVED` with `CHECKS_OK`.
+- **Breaks:** Company-not-found / absent registry hit can be smuggled as a clean check via loosely-typed mock profiles (same corruption class as cycle 5/7 bureau profile attacks).
+- **Test:** `test_adv9_registry_found_string_false.py::test_adv9_registry_found_string_false_must_not_approve`
+
+---
+
+### Cycle 9 probes that did **not** yield a new failing invariant
+
+| Probe | Result |
+| --- | --- |
+| Cycles 1–8 regressions (spot-checked decision/risk/seed) | Still green before new adv9 tests |
+| ALTERNATIVE post-round `k_alt < K_PASS` | No repro; flooring principal preserves k |
+| Handmade `RiskResult.score` out of range / non-int crash | No in-package path that bypasses `assess_risk` clip — same speculative class as cycle 8 |
+| Empty / unknown bureau status + `overdue_days>0` → `NEEDS_INFO` | Soft status on *same* check; overdue only load-bearing under `status=ok` (cycle 1/8 peer case already closed) |
+| Seed display-name-only drift (officer/product/client) | Completeness ignores names; display-only (cycles 6–8 stance) |
+| `demo_rate_annual=0` / `1.0` APPROVE | Allowed by current gates |
+| Concurrent double-seed | Not reliably reproduced in unit scope |
+
+### Cycle 9 test files
+
+- `test_adv9_registry_mock_soft_as_negative.py`
+- `test_adv9_registry_found_string_false.py`
+
+---
+
+## Cycle 10
+
+Prior cycle bugs treated as fixed (cycles 1–9 adversarial tests green before this pass).  
+Scope again: `models`, `db`, `analytics`. No product fixes applied.
+
+### 1. Registry mock collapses unknown profile statuses to `negative` (false credit reject)
+
+- **File:line:** `apps/api/src/synaptix_api/analytics/mocks.py:57–62` (only `unavailable` / `missing_data` pass through; else `profile_status != "active"` → `negative`)
+- **Attack:** Monkeypatch `REGISTRY["…"] = {"found": True, "status": "pending"}` (also `"error"`, `""`, `None`). `run_registry_check` returns `CheckOutcome.status="negative"` → decision `REJECTED` / `REGISTRY_NEGATIVE`. Constructed `CheckOutcome(status="pending")` correctly → `NEEDS_INFO` / `CHECKS_INCOMPLETE` (cycle 5).
+- **Breaks:** Cycle 9 only allowlisted soft statuses `unavailable` / `missing_data`. Decision already treats any other non-canonical status as incomplete; the registry simulator still remaps those profiles into a hard credit denial — same “technical failure is never a credit rejection” hole, new status surface.
+- **Test:** `test_adv10_registry_mock_unknown_as_negative.py` (parametrized pending / error / empty / None)
+
+### 2. Registry profile missing `status` key → `negative` (bureau → `missing_data`)
+
+- **File:line:** `mocks.py:57–62` (`profile.get("status")` is `None` → not soft → `!= "active"` → `negative`); contrast bureau `:95–101` (missing key → `missing_data`)
+- **Attack:** `REGISTRY["…"] = {"found": True}` (no `status`). Registry → `negative` / `REGISTRY_NEGATIVE`. Same shape on `BUREAU` → `missing_data` / would be `NEEDS_INFO`.
+- **Breaks:** Cycle 7 closed bureau incomplete-profile crash by degrading to `missing_data`. Registry still invents a credit-negative verdict from an incomplete profile.
+- **Test:** `test_adv10_registry_mock_missing_status.py::test_adv10_registry_profile_missing_status_must_not_become_negative`
+
+---
+
+### Cycle 10 probes that did **not** yield a new failing invariant
+
+| Probe | Result |
+| --- | --- |
+| Cycles 1–9 regressions (spot-checked decision/risk/seed/mocks) | Still green before new adv10 tests |
+| ALTERNATIVE post-round `k_alt < K_PASS` | No repro on expanded grid |
+| Bureau case-variant `status="Negative"` / `"OK"+overdue` → `NEEDS_INFO` | Unknown-status soft path (cycle 5); not a false approve; canonical lowercase negatives still reject |
+| Non-int / bool `product_*` limit args | Still speculative vs finances surface (cycles 7–8 stance); ORM/`ProductLimits` callers stay ints |
+| Seed display-name-only drift (officer/product) | Completeness ignores names; display-only (cycles 6–9 stance) |
+| Risk labels unknown registry status as `ok` | Decision already `NEEDS_INFO` when status reaches it; no false approve |
+| `demo_rate_annual=0` / `1.0` APPROVE | Allowed by current gates |
+| Concurrent double-seed | Not reliably reproduced in unit scope |
+
+### Cycle 10 test files
+
+- `test_adv10_registry_mock_unknown_as_negative.py`
+- `test_adv10_registry_mock_missing_status.py`
+
+---
+
+## Cycle 11
+
+Prior cycle bugs treated as fixed (cycles 1–10 adversarial tests green before this pass).  
+Scope again: `models`, `db`, `analytics`. No product fixes applied.
+
+### 1. Registry soft / active profiles without `found` key collapse to `negative`
+
+- **File:line:** `apps/api/src/synaptix_api/analytics/mocks.py:61–64` (`"status" in profile` then `not _registry_found(profile.get("found"))` with `None` → `False` → `negative` before soft-status allowlist)
+- **Attack:**
+  - `REGISTRY["…"] = {"status": "unavailable"}` (no `found`) → `CheckOutcome.status="negative"` → `REJECTED` / `REGISTRY_NEGATIVE`
+  - Same for `"missing_data"`; `"active"` without `found` also → `negative`
+  - Baseline `{"found": True, "status": "unavailable"}` correctly → `unavailable` / `CHECK_UNAVAILABLE` (cycle 9)
+- **Breaks:** Cycles 9–10 closed soft/unknown/missing-`status` remaps when `found: True` (or status key absent entirely). Omitting the presence flag still short-circuits to a hard credit denial — incomplete profiles invent `REGISTRY_NEGATIVE` instead of degrading like bureau / constructed soft outcomes. Contradicts “Technical failure is never a credit rejection.”
+- **Tests:** `test_adv11_registry_soft_without_found.py` (soft parametrized + active-without-found)
+
+---
+
+### Cycle 11 probes that did **not** yield a new failing invariant
+
+| Probe | Result |
+| --- | --- |
+| Cycles 1–10 regressions (spot-checked decision/risk/seed/mocks/persist) | Still green before new adv11 tests |
+| ALTERNATIVE post-floor `k_alt < K_PASS` | No repro across 5.8k alt examples |
+| Border k at `product_min` | Correctly `REJECTED` / `COVERAGE_OR_RISK_FAIL` when `k < K_PASS` |
+| Mid-band risk (36–54) + strong k → `COVERAGE_OR_RISK_FAIL`; border k → `ALTERNATIVE` | By design after `RISK_FLOOR` |
+| Risk labels unknown registry/bureau status as `ok` | Decision already `NEEDS_INFO`; no false approve |
+| Bureau case-variant / unknown + overdue → soft path | Not a false approve (cycles 5/10 stance) |
+| Case-variant adverse registry (`Liquidating` / `BANKRUPT`) → `NEEDS_INFO` | Soft miss; status-string casing nit (cycle 10 stance) |
+| Seed display-name-only drift; duplicate orphan `scenario_key` | Completeness ignores names / extras; display-only |
+| `demo_rate_annual=0` / `1.0` APPROVE | Allowed by current gates |
+| Zero-annuity only for absurd `amount < term` at rate 0 | Not demo-scale load-bearing |
+| Handmade `RiskResult.score` out of range | No in-package path past `assess_risk` clip — speculative |
+| Concurrent double-seed | Not reliably reproduced in unit scope |
+
+### Cycle 11 test files
+
+- `test_adv11_registry_soft_without_found.py`
+
+---
+
+## Cycle 12
+
+Prior cycle bugs treated as fixed (cycles 1–11 adversarial tests green before this pass).  
+Scope again: `models`, `db`, `analytics`. No product fixes applied.
+
+### 1. Unparseable `password_hash` crashes seed before identity repair
+
+- **File:line:** `apps/api/src/synaptix_api/db/seed.py:46` (`verify_password` in `_officer_identity_ok`); `:76` (same for scenario customers in `_seed_complete`); early return path at `90–91` never reached on throw
+- **Attack:** Full demo seed, then set `bank.officer@demo.local` or `client.approval@demo.local` `password_hash` to `""` or `"not-a-valid-hash"`. `seed_demo` raises `passlib.exc.UnknownHashError` instead of repairing to `DEMO_PASSWORD`.
+- **Breaks:** Cycles 5–6 only closed *wrong-but-valid* bcrypt (verify → `False` → repair). Corrupt / empty hash columns abort bootstrap; `_seed_complete` cannot return `False`, so the create/repair branches never run. Demo login recovery after partial DB restore fails hard.
+- **Test:** `test_adv12_seed_corrupt_password_hash.py` (officer + customer × empty/garbage)
+
+### Cycle 12 probes that did **not** yield a new failing invariant
+
+| Probe | Result |
+| --- | --- |
+| Cycles 1–11 regressions (spot-checked decision/risk/seed/mocks/persist) | Still green before new adv12 tests |
+| Registry dead-company case variants (`LIQUIDATING`) → `NEEDS_INFO` | Soft miss; not APPROVE of dead company (cycle 10–11 stance; no new allowlist filing) |
+| Registry adverse without `found` → `missing_data` | Softens to `NEEDS_INFO`, not false APPROVE |
+| ALTERNATIVE post-floor `k_alt < K_PASS` | No repro (~66k alt examples) |
+| Handmade `RiskResult.score` None / float | No in-package path past `assess_risk` clip — speculative |
+| Seed duplicate orphan `scenario_key` / display-name drift | Completeness by reg_id; extras ignored (prior stance) |
+| `demo_rate_annual=0` / `1.0` APPROVE | Allowed by current gates |
+| Concurrent double-seed | Not reliably reproduced in unit scope |
+
+### Cycle 12 test files
+
+- `test_adv12_seed_corrupt_password_hash.py`
+
+---
+
+## Cycle 13
+
+Cycle 13: NO NEW FINDINGS
+
+Prior cycles 1–12 treated as fixed; suite green at 78 passed. Serious probing of
+seed/persist/decision/risk/money and registry edges found no new load-bearing bugs
+beyond speculative nits already scoped out in cycles 10–12.
