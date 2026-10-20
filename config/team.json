@@ -3,9 +3,21 @@
   "repository": "2612evgenii-hue/synaptix-credit-cabinet",
   "visibility": "public",
   "members": [
-    {"login": "2612evgenii-hue", "role": "owner", "area": "coordination, repository administration"},
-    {"login": "NamePantrer", "role": "write", "area": "to be agreed"},
-    {"login": "SergeEvdokimov", "role": "write", "area": "to be agreed"}
+    {
+      "login": "2612evgenii-hue",
+      "role": "owner",
+      "area": "coordination, repository administration, integration"
+    },
+    {
+      "login": "NamePantrer",
+      "role": "write",
+      "area": "backend data model, PostgreSQL, migrations, synthetic seed, risk analytics storage (Issues #4, #6)"
+    },
+    {
+      "login": "SergeEvdokimov",
+      "role": "write",
+      "area": "to be agreed"
+    }
   ],
   "jury_login": "alfa-hack-2026",
   "deadline": null

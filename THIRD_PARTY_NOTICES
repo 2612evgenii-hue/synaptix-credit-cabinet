@@ -38,6 +38,17 @@ Reference: Альфа_Хак_Умный_кредитный_кабинет.pdf
 Attribution: case prepared with АО «Альфа-Банк», published by Changellenge >>
 Source file not redistributed. Requirements paraphrased with page references.
 
+Application dependencies introduced in apps/api/requirements.txt (MVP persistence):
+- FastAPI 0.115.6 — MIT — HTTP API framework
+- Uvicorn 0.34.0 — BSD-3-Clause — ASGI server
+- SQLAlchemy 2.0.36 — MIT — ORM
+- Alembic 1.14.0 — MIT — migrations
+- psycopg2-binary 2.9.10 — LGPL with exceptions — PostgreSQL driver
+- Pydantic / pydantic-settings — MIT — settings and validation
+- python-jose, passlib, bcrypt — MIT / BSD / Apache-2.0 — demo auth hashing
+- httpx — BSD-3-Clause — optional HTTP client
+Exact pins: see apps/api/requirements.txt. PostgreSQL 16 Alpine image planned for Compose.
+
 Planned simulated integrations (NOT IMPLEMENTED):
 - Credit bureau: deterministic local response, no real bureau access
 - Company registry / tax authority: deterministic local response
