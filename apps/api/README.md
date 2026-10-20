@@ -37,8 +37,10 @@ docker compose -f docker-compose.postgres-verify.yml up -d
 set DATABASE_URL=postgresql+psycopg2://synaptix:synaptix@127.0.0.1:54329/synaptix_verify
 set APP_ENV=demo
 python scripts/verify_postgres_ai01.py --write-log
-docker compose -f docker-compose.postgres-verify.yml down -v
 ```
+
+Данные в volume `synaptix_pg_data`. Остановка без сброса: `docker compose -f docker-compose.postgres-verify.yml down`.  
+Сброс БД: `... down -v` (флаг `-v` удаляет volume).
 
 Демо-пароль seed: `demo1234`. Handoff: `docs/handoff-p0-ai-data.md`.
 

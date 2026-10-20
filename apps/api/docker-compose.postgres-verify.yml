@@ -1,5 +1,9 @@
-# Temporary Postgres for AI01 migration verification (Petr zone).
+# Temporary Postgres for AI01 / local DB inspection (Petr zone).
 # Not the product Compose — Evgeny owns the shared stack.
+#
+# Data persists in the named volume `synaptix_pg_data`.
+# Stop without wipe:  docker compose -f docker-compose.postgres-verify.yml down
+# Wipe data:          docker compose -f docker-compose.postgres-verify.yml down -v
 services:
   postgres-verify:
     image: postgres:16-alpine
@@ -9,8 +13,13 @@ services:
       POSTGRES_DB: synaptix_verify
     ports:
       - "54329:5432"
+    volumes:
+      - synaptix_pg_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U synaptix -d synaptix_verify"]
       interval: 2s
       timeout: 5s
       retries: 15
+
+volumes:
+  synaptix_pg_data:
