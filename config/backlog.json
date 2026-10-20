@@ -1,0 +1,169 @@
+{
+  "milestones": [
+    "M0 · Repository",
+    "M1 · Working MVP",
+    "M2 · Verification and submission"
+  ],
+  "labels": [
+    {
+      "name": "priority:P0",
+      "color": "B60205",
+      "description": "Required before submission"
+    },
+    {
+      "name": "priority:P1",
+      "color": "D93F0B",
+      "description": "After critical path"
+    },
+    {
+      "name": "security",
+      "color": "D73A4A",
+      "description": "Access and protection"
+    },
+    {
+      "name": "documentation",
+      "color": "0075CA",
+      "description": "Requirements and documentation"
+    },
+    {
+      "name": "architecture",
+      "color": "5319E7",
+      "description": "Architecture and contracts"
+    },
+    {
+      "name": "backend",
+      "color": "1D76DB",
+      "description": "API and business process"
+    },
+    {
+      "name": "frontend",
+      "color": "0E8A16",
+      "description": "Web interface"
+    },
+    {
+      "name": "infrastructure",
+      "color": "006B75",
+      "description": "Docker and environment"
+    },
+    {
+      "name": "testing",
+      "color": "FBCA04",
+      "description": "Verification"
+    },
+    {
+      "name": "release",
+      "color": "C5DEF5",
+      "description": "Version freeze and submission"
+    }
+  ],
+  "issues": [
+    {
+      "title": "P0: Activate server-side repository protection",
+      "labels": [
+        "priority:P0",
+        "security"
+      ],
+      "milestone": "M0 · Repository",
+      "body": "## Scope\n\nApply and verify main/tag protection; resolve tariff limitation without exposing source. Accepted collaborators must be checked. REQ-01/02.\n\n## Acceptance\n\nRead-only GitHub audit has no protection gaps. A harmless direct main update is rejected; ordinary reviewed PR is mergeable.\n\nOwner and reviewer: agree within the team; no automatic assignment.\n"
+    },
+    {
+      "title": "P0: Confirm deadline, full rules and news-feed wording",
+      "labels": [
+        "priority:P0",
+        "documentation"
+      ],
+      "milestone": "M0 · Repository",
+      "body": "## Scope\n\nREQ-02/23. Obtain official deadline with timezone, full regulations/IP terms and explanation of the news-feed sentence on page 7.\n\n## Acceptance\n\nRecord sources and timestamp; update config/team.json and requirements. Do not invent organiser answers.\n\nOwner and reviewer: agree within the team; no automatic assignment.\n"
+    },
+    {
+      "title": "P0: Agree MVP scope, stack and responsibilities",
+      "labels": [
+        "priority:P0",
+        "architecture"
+      ],
+      "milestone": "M1 · Working MVP",
+      "body": "## Scope\n\nREQ-15/18/21/23. Validate customer/bank needs, agree three work areas; choose runtime/framework/DB without mandatory paid services.\n\n## Acceptance\n\nADR with versions, licenses and resource requirements; explicit hypotheses vs actual research evidence; assign issues by agreement.\n\nOwner and reviewer: agree within the team; no automatic assignment.\n"
+    },
+    {
+      "title": "P0: Implement persistence, migrations and synthetic seed",
+      "labels": [
+        "priority:P0",
+        "backend"
+      ],
+      "milestone": "M1 · Working MVP",
+      "body": "## Scope\n\nREQ-05/07/12/17. Implement model, migrations and idempotent demo seed; separate customer/bank accounts.\n\n## Acceptance\n\nMigrations + seed work on clean DB; all data fictional; restart preserves state; locks committed.\n\nOwner and reviewer: agree within the team; no automatic assignment.\n"
+    },
+    {
+      "title": "P0: Implement API, access checks and application lifecycle",
+      "labels": [
+        "priority:P0",
+        "backend"
+      ],
+      "milestone": "M1 · Working MVP",
+      "body": "## Scope\n\nREQ-10/11/15/19. Implement draft, submit, clarification, state transitions, ownership, bank role, transactional events and concurrency guards.\n\n## Acceptance\n\nOpenAPI matches server; invalid transition and cross-customer access rejected; duplicate requests safe; audit persists.\n\nOwner and reviewer: agree within the team; no automatic assignment.\n"
+    },
+    {
+      "title": "P0: Implement local checks, risk and credit decision",
+      "labels": [
+        "priority:P0",
+        "backend"
+      ],
+      "milestone": "M1 · Working MVP",
+      "body": "## Scope\n\nREQ-15/16/18/22. Local registry/bureau mocks; risk score separate from product decision. Approval, clarification, rejection and alternative conditions.\n\n## Acceptance\n\nDeterministic synthetic scenarios with reasons, rules versions and timeout case; no paid/bank external connections.\n\nOwner and reviewer: agree within the team; no automatic assignment.\n"
+    },
+    {
+      "title": "P0: Implement customer and bank web flows",
+      "labels": [
+        "priority:P0",
+        "frontend"
+      ],
+      "milestone": "M1 · Working MVP",
+      "body": "## Scope\n\nREQ-14/15/19/21. Product choice, saved form, status/next action, in-product clarification, bank decision, terms acceptance and simulated signing/disbursement.\n\n## Acceptance\n\nInteractive browser flow backed by stored API data; client cannot set score/role; no SMS/email required.\n\nOwner and reviewer: agree within the team; no automatic assignment.\n"
+    },
+    {
+      "title": "P1: Implement contextual events and news feed",
+      "labels": [
+        "priority:P1",
+        "frontend"
+      ],
+      "milestone": "M1 · Working MVP",
+      "body": "## Scope\n\nPage 7 asks to show news-feed changes by customer. Clarification pending; design a small context-sensitive feed with transparent synthetic sources.\n\n## Acceptance\n\nTwo customers see relevant content and application events; isolation verified; update scope when organiser clarifies.\n\nOwner and reviewer: agree within the team; no automatic assignment.\n"
+    },
+    {
+      "title": "P0: Provide one-command Docker startup",
+      "labels": [
+        "priority:P0",
+        "infrastructure"
+      ],
+      "milestone": "M2 · Verification and submission",
+      "body": "## Scope\n\nREQ-04/05/06/18. Dockerfiles, Compose, volumes, healthchecks, migrations/seed, exact versions and env guide.\n\n## Acceptance\n\nA second participant launches clean clone with docker compose up --build on documented PC resources; no paid keys.\n\nOwner and reviewer: agree within the team; no automatic assignment.\n"
+    },
+    {
+      "title": "P0: Automate end-to-end and security acceptance",
+      "labels": [
+        "priority:P0",
+        "testing"
+      ],
+      "milestone": "M2 · Verification and submission",
+      "body": "## Scope\n\nREQ-13/14/15. Automate main, clarification, rejection, alternative offer, concurrency, RBAC and restart cases from test-scenarios.\n\n## Acceptance\n\nCI/application test command plus dated clean-PC report with exact SHA. Tooling CI alone is insufficient.\n\nOwner and reviewer: agree within the team; no automatic assignment.\n"
+    },
+    {
+      "title": "P0: Complete submission evidence and dependency notices",
+      "labels": [
+        "priority:P0",
+        "documentation"
+      ],
+      "milestone": "M2 · Verification and submission",
+      "body": "## Scope\n\nREQ-06/08/09/10/11/12/13/22. Match README, architecture, data/states, API/collection, runbook and licenses to actual implementation.\n\n## Acceptance\n\nUpdate deliverables with real evidence paths; independent review; all statements match implementation.\n\nOwner and reviewer: agree within the team; no automatic assignment.\n"
+    },
+    {
+      "title": "P0: Verify jury access and freeze deadline version",
+      "labels": [
+        "priority:P0",
+        "release"
+      ],
+      "milestone": "M2 · Verification and submission",
+      "body": "## Scope\n\nREQ-02/03. Administrator chooses appropriate jury access; invite and verify acceptance. Personal collaborator write vs organisation Read must be considered.\n\n## Acceptance\n\nAccepted alfa-hack-2026 access confirmed, final CI/E2E, backup, immutable full SHA/tag, manifest and submission receipt before official deadline.\n\nOwner and reviewer: agree within the team; no automatic assignment.\n"
+    }
+  ]
+}

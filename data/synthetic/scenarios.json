@@ -1,0 +1,10 @@
+{
+  "synthetic": true,
+  "status": "design-fixtures-not-a-working-seed",
+  "currency": "RUB",
+  "cases": [
+    {"id": "approval", "company": "СИНТЕТИКА Альфа-Пример", "amount_minor": 50000000, "term_months": 12, "revenue_minor": 300000000, "expenses_minor": 150000000, "liabilities_minor": 10000000, "overdue_days": 0, "intended_outcome": "APPROVED"},
+    {"id": "clarification", "company": "СИНТЕТИКА Бета-Пример", "amount_minor": 30000000, "term_months": 6, "revenue_minor": null, "intended_outcome": "NEEDS_INFO"},
+    {"id": "rejection", "company": "СИНТЕТИКА Гамма-Пример", "amount_minor": 90000000, "term_months": 12, "revenue_minor": 60000000, "expenses_minor": 55000000, "liabilities_minor": 150000000, "overdue_days": 90, "intended_outcome": "REJECTED"}
+  ]
+}

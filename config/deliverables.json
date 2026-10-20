@@ -1,0 +1,14 @@
+{
+  "items": [
+    {"id": "docker", "status": "pending", "paths": ["compose.yaml", "apps/web/Dockerfile", "apps/api/Dockerfile"]},
+    {"id": "runtime-locks", "status": "pending", "paths": []},
+    {"id": "seed-and-demo-accounts", "status": "pending", "paths": []},
+    {"id": "working-openapi-and-collection", "status": "pending", "paths": ["packages/contracts/openapi.json", "docs/api/postman_collection.json"]},
+    {"id": "e2e-and-clean-pc-report", "status": "pending", "paths": []},
+    {"id": "architecture-states-data-model", "status": "draft", "paths": ["docs/architecture.md", "docs/state-machine.md", "docs/data-model.md"]},
+    {"id": "readme-runbook", "status": "draft", "paths": ["README.md", "docs/runbook.md"]},
+    {"id": "notices-and-licenses", "status": "draft", "paths": ["THIRD_PARTY_NOTICES"]},
+    {"id": "requirements-reviewed", "status": "pending", "paths": ["docs/requirements.md"]},
+    {"id": "jury-access-verified", "status": "pending", "paths": []}
+  ]
+}

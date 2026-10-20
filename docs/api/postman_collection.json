@@ -1,0 +1,186 @@
+{
+  "info": {
+    "name": "SYNAPTIX — DRAFT design requests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "No server or demo accounts implemented. This is not a passing E2E suite. Use a separate bank session for bank-only operations."
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8000/api/v1"
+    },
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "customerLogin",
+      "value": ""
+    },
+    {
+      "key": "demoPassword",
+      "value": ""
+    },
+    {
+      "key": "productId",
+      "value": ""
+    },
+    {
+      "key": "applicationId",
+      "value": ""
+    },
+    {
+      "key": "applicationVersion",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Demo session (accounts not implemented)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "{{$guid}}"
+          }
+        ],
+        "url": "{{baseUrl}}/auth/demo-session",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"login\": \"{{customerLogin}}\",\n  \"password\": \"{{demoPassword}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "if (pm.response.code === 200) { pm.collectionVariables.set(\"token\", pm.response.json().accessToken); }"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Products",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": "{{baseUrl}}/products"
+      }
+    },
+    {
+      "name": "3. Create application",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "{{$guid}}"
+          }
+        ],
+        "url": "{{baseUrl}}/applications",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"productId\": \"{{productId}}\",\n  \"amountMinor\": 50000000,\n  \"termMonths\": 12,\n  \"purpose\": \"Синтетический пример: оборотные средства\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "if (pm.response.code === 201) { const a=pm.response.json(); pm.collectionVariables.set(\"applicationId\", a.id); pm.collectionVariables.set(\"applicationVersion\", String(a.version)); }"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Read application",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": "{{baseUrl}}/applications/{{applicationId}}"
+      }
+    },
+    {
+      "name": "5. Submit",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Idempotency-Key",
+            "value": "{{$guid}}"
+          }
+        ],
+        "url": "{{baseUrl}}/applications/{{applicationId}}/submit",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"version\": {{applicationVersion}}\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "6. Events",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}"
+          }
+        ],
+        "url": "{{baseUrl}}/applications/{{applicationId}}/events"
+      }
+    }
+  ]
+}

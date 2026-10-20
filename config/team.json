@@ -1,0 +1,11 @@
+{
+  "team": "SYNAPTIX",
+  "repository": "2612evgenii-hue/synaptix-credit-cabinet",
+  "members": [
+    {"login": "2612evgenii-hue", "role": "owner", "area": "coordination, repository administration"},
+    {"login": "NamePantrer", "role": "write", "area": "to be agreed"},
+    {"login": "SergeEvdokimov", "role": "write", "area": "to be agreed"}
+  ],
+  "jury_login": "alfa-hack-2026",
+  "deadline": null
+}

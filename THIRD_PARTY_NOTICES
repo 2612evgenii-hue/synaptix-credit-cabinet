@@ -1,0 +1,51 @@
+SYNAPTIX — Third-party notices
+Updated: 2026-10-20
+
+This inventory describes the repository scaffold, not a completed application.
+Add every runtime/build dependency, image, model, dataset and external service
+when introduced, including exact version, source, license and purpose.
+Do not treat this file as a blanket license grant for the team's code.
+
+Component: Python 3.12.12 (repository tooling / CI)
+Source: https://www.python.org/
+License: PSF License Agreement
+Distribution: tool runtime; no vendored source
+
+Component: actions/checkout v4
+Pinned revision: 11d5960a326750d5838078e36cf38b85af677262
+Source: https://github.com/actions/checkout
+License: MIT
+Purpose: CI checkout
+
+Component: actions/setup-python v5
+Pinned revision: a26af69be951a213d495a4c3e4e4022e16d87065
+Source: https://github.com/actions/setup-python
+License: MIT
+Purpose: CI tool runtime
+
+Component: Gitleaks 8.30.1
+Source: https://github.com/gitleaks/gitleaks
+License: MIT
+Purpose: development / CI secret detection, not application dependency
+Linux x64 archive SHA256:
+551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb
+
+Dataset: data/synthetic/scenarios.json
+Source: authored for SYNAPTIX; all entities and figures are fictional
+Purpose: proposed demonstration cases; not a bank dataset or validated model
+
+Reference: Альфа_Хак_Умный_кредитный_кабинет.pdf
+Attribution: case prepared with АО «Альфа-Банк», published by Changellenge >>
+Source file not redistributed. Requirements paraphrased with page references.
+
+Planned simulated integrations (NOT IMPLEMENTED):
+- Credit bureau: deterministic local response, no real bureau access
+- Company registry / tax authority: deterministic local response
+- Signing and disbursement: local simulation; no real signature or money transfer
+
+LLM/models: none selected or included. If introduced, open weights required by
+case; record model revision, weights license, artifact checksums, resource needs
+and offline fallback. Hosted paid APIs must not be required by the review build.
+
+Project source license: not selected by the team. No open-source license grant
+is implied by repository creation. Resolve submission/IP terms before publishing.
