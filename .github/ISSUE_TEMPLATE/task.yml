@@ -1,0 +1,22 @@
+name: Задача
+description: Реализация с проверяемым результатом
+title: "[Task] "
+body:
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Результат и связь с требованием
+      description: Укажите REQ-ID из docs/requirements.md, если применимо.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Критерии приёмки
+      description: Что должно работать и как это проверить.
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Зависимости и границы

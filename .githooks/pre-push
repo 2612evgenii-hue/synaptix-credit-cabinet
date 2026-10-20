@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+while read -r local_ref local_sha remote_ref remote_sha; do
+  if [ "$remote_ref" = refs/heads/main ] || [ "$remote_ref" = refs/heads/master ]; then
+    echo 'Push to main/master is blocked locally. Push a working branch and open a PR.' >&2
+    exit 1
+  fi
+done
+python3 scripts/repo_checks.py
+python3 -m unittest discover -s tests/governance
