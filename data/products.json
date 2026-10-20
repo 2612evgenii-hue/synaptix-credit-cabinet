@@ -1,0 +1,34 @@
+{
+  "schema_version": "1",
+  "rules_version": "demo-rules-v1",
+  "currency": "RUB",
+  "disclaimer": "All rates and limits are synthetic demo values, not Alfa-Bank policy.",
+  "products": [
+    {
+      "code": "working_capital",
+      "version": "working_capital-demo-1",
+      "name": "Оборотные средства (демо)",
+      "allowed_goals": ["working_capital", "other"],
+      "min_amount_minor": 30000000,
+      "max_amount_minor": 500000000,
+      "min_term_months": 6,
+      "max_term_months": 36,
+      "demo_rate_annual": 0.16,
+      "required_fields": ["revenue_minor", "expenses_minor", "liabilities_minor"],
+      "fit_note": "Подходит для пополнения оборота при сроке 6–36 мес и сумме в лимитах."
+    },
+    {
+      "code": "equipment",
+      "version": "equipment-demo-1",
+      "name": "Оборудование (демо)",
+      "allowed_goals": ["equipment", "other"],
+      "min_amount_minor": 50000000,
+      "max_amount_minor": 1000000000,
+      "min_term_months": 12,
+      "max_term_months": 60,
+      "demo_rate_annual": 0.16,
+      "required_fields": ["revenue_minor", "expenses_minor", "liabilities_minor"],
+      "fit_note": "Подходит для покупки оборудования при сроке 12–60 мес и сумме в лимитах."
+    }
+  ]
+}

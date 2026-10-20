@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://synaptix.local/contracts/decision.schema.json",
+  "title": "CreditDecisionResult",
+  "type": "object",
+  "required": ["schema_version", "outcome", "reason_codes", "rules_version"],
+  "properties": {
+    "schema_version": { "const": "1" },
+    "outcome": {
+      "type": "string",
+      "enum": ["APPROVED", "REJECTED", "NEEDS_INFO", "ALTERNATIVE", "CHECK_UNAVAILABLE"]
+    },
+    "reason_codes": { "type": "array", "items": { "type": "string" } },
+    "offered_terms": { "type": "object" },
+    "metrics": { "type": "object" },
+    "rules_version": { "type": "string" },
+    "required_fields": { "type": "array", "items": { "type": "string" } },
+    "message": { "type": "string" }
+  }
+}

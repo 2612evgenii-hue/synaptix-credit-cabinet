@@ -15,7 +15,7 @@ class Settings(BaseSettings):
     # llm_backend: template | ollama  (local Ollama-compatible runtime only)
     llm_backend: str = "template"
     llm_base_url: str = "http://127.0.0.1:11434"
-    llm_model: str = "tinyllama"  # open-weight; pull locally via ollama pull tinyllama
+    llm_model: str = "qwen3:4b"  # open-weight candidate; see ai/model-manifest.json
     llm_timeout_seconds: float = 8.0
 
 

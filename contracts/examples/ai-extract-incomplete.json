@@ -1,0 +1,22 @@
+{
+  "input": {
+    "schema_version": "1",
+    "input_text": "На закупку товара нужен миллион",
+    "currency": "RUB",
+    "allowed_goal_codes": ["working_capital", "equipment", "other"]
+  },
+  "output": {
+    "schema_version": "1",
+    "goal_code": "working_capital",
+    "amount_rub": "1000000.00",
+    "term_months": null,
+    "evidence": {
+      "goal": "закуп",
+      "amount": "миллион",
+      "term": null
+    },
+    "missing_fields": ["term_months"],
+    "ambiguities": [],
+    "needs_user_confirm": true
+  }
+}

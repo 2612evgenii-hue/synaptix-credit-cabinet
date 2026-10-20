@@ -11,7 +11,10 @@
 | --- | --- |
 | `src/synaptix_api/models` | ORM по `docs/data-model.md` |
 | `src/synaptix_api/db` | session, seed, passwords |
-| `src/synaptix_api/analytics` | mocks, risk, decision, pipeline, persist |
+| `src/synaptix_api/analytics` | mocks, risk, decision, extract, explain, pipeline, persist |
+| `../../contracts` | JSON Schema extract/checks/decision |
+| `../../data/products.json` | каталог демо-продуктов |
+| `../../ai/` | prompts, model-manifest, eval |
 | `alembic/` | миграция `20261020_0001` |
 | `tests/` | юнит/интеграция БД и аналитики |
 
@@ -39,9 +42,10 @@ python -c "from synaptix_api.db.session import SessionLocal; from synaptix_api.d
 
 - `assess_risk` → score 0..100 + factors; отсутствие полей **не** подменяется нулём.
 - `apply_decision_rules` → APPROVED / REJECTED / NEEDS_INFO / ALTERNATIVE / CHECK_UNAVAILABLE.
+- `extract_application_fields` → цель/сумма/срок из текста (P10); всегда
+  `needs_user_confirm=true`. Default — heuristic; Ollama опционален.
 - `explain_decision` → текст для клиента/банка **после** решения (REQ-20).
-  По умолчанию `LLM_BACKEND=template`. Опционально локальный Ollama
-  (`LLM_BACKEND=ollama`, open-weight модель, напр. `tinyllama`). Сбой LLM
-  не ломает кредитный путь и не меняет outcome.
+  По умолчанию `LLM_BACKEND=template`. Опционально Ollama + `qwen3:4b`
+  (см. `ai/model-manifest.json`). Сбой LLM не ломает кредитный путь.
 - `unavailable` мока ≠ кредитный отказ.
 - ADR-0002: PostgreSQL + SQLAlchemy.

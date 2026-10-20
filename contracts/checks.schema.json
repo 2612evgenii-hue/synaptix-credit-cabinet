@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://synaptix.local/contracts/checks.schema.json",
+  "title": "LocalCheckOutcome",
+  "type": "object",
+  "required": ["source", "status", "mock_version", "payload"],
+  "properties": {
+    "source": { "type": "string", "enum": ["company_registry", "credit_bureau"] },
+    "status": {
+      "type": "string",
+      "enum": ["ok", "negative", "unavailable", "missing_data"]
+    },
+    "mock_version": { "type": "string" },
+    "payload": { "type": "object" }
+  }
+}

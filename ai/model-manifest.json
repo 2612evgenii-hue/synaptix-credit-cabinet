@@ -1,0 +1,33 @@
+{
+  "schema_version": "1",
+  "purpose": "Optional local open-weight runtime for field extraction and post-decision narration (REQ-20).",
+  "primary_candidate": {
+    "name": "Qwen3-4B-Instruct-2507",
+    "license": "Apache-2.0",
+    "source": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507",
+    "runtime": "Ollama (compatible tag to be pinned after local pull)",
+    "suggested_ollama_tag": "qwen3:4b",
+    "note": "Confirm exact quantized revision + sha256 after first successful local pull; do not treat tag alone as checksum."
+  },
+  "fallback_demo": {
+    "name": "TinyLlama (optional light demo)",
+    "license": "Apache-2.0",
+    "suggested_ollama_tag": "tinyllama",
+    "note": "Smaller CPU-friendly option for smoke tests; prefer Qwen3 for Russian extract quality."
+  },
+  "review_build_default": {
+    "llm_backend": "template",
+    "extract_backend": "heuristic",
+    "reason": "No model download required for CI / jury offline path; credit rules never depend on LLM."
+  },
+  "env": {
+    "LLM_BACKEND": "template | ollama",
+    "LLM_BASE_URL": "http://127.0.0.1:11434",
+    "LLM_MODEL": "qwen3:4b",
+    "LLM_TIMEOUT_SECONDS": "8"
+  },
+  "measurements": {
+    "status": "pending_on_team_hardware",
+    "record": ["os", "cpu", "ram_gb", "gpu", "cold_start_s", "p50_s", "p95_s", "peak_rss_mb"]
+  }
+}

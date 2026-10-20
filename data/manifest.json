@@ -1,0 +1,14 @@
+{
+  "schema_version": "1",
+  "generator": "hand-authored-synthetic-v1",
+  "seed": 20261020,
+  "as_of_date": "2026-10-20",
+  "timezone": "UTC",
+  "synthetic": true,
+  "sources": [
+    "data/synthetic/scenarios.json",
+    "data/products.json",
+    "data/expected-results.json"
+  ],
+  "notes": "Demo-only synthetic set for SYNAPTIX. Not a bank dataset."
+}
