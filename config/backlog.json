@@ -64,7 +64,7 @@
         "security"
       ],
       "milestone": "M0 · Repository",
-      "body": "## Scope\n\nApply and verify main/tag protection; resolve tariff limitation without exposing source. Accepted collaborators must be checked. REQ-01/02.\n\n## Acceptance\n\nRead-only GitHub audit has no protection gaps. A harmless direct main update is rejected; ordinary reviewed PR is mergeable.\n\nOwner and reviewer: agree within the team; no automatic assignment.\n"
+      "body": "## Scope\n\nApply and verify main/tag protection. Owner explicitly chose public visibility on 2026-10-20 after private protection returned HTTP 403. Check accepted collaborator access separately. REQ-01/02.\n\n## Acceptance\n\nGitHub API confirms main protection and both tag rulesets. Harmless direct main update is rejected. Local hooks and both CI checks work. Independent approving review remains required; never self-approve.\n"
     },
     {
       "title": "P0: Confirm deadline, full rules and news-feed wording",
@@ -163,7 +163,7 @@
         "release"
       ],
       "milestone": "M2 · Verification and submission",
-      "body": "## Scope\n\nREQ-02/03. Administrator chooses appropriate jury access; invite and verify acceptance. Personal collaborator write vs organisation Read must be considered.\n\n## Acceptance\n\nAccepted alfa-hack-2026 access confirmed, final CI/E2E, backup, immutable full SHA/tag, manifest and submission receipt before official deadline.\n\nOwner and reviewer: agree within the team; no automatic assignment.\n"
+      "body": "## Scope\n\nREQ-02/03. Repository is public by owner choice; verify unauthenticated read access to exact submission URL. If visibility changes to private, verify accepted alfa-hack-2026 access and consider personal write versus organisation Read.\n\n## Acceptance\n\nFinal CI/E2E and clean-PC evidence, backup, full SHA/tag, manifest and submission receipt before official deadline. Deadline is currently unknown.\n"
     }
   ]
 }

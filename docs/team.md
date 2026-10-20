@@ -19,7 +19,7 @@
 
 ## Onboarding
 
-1. Принять приглашение в private repo; проверить видимость и возможность PR.
+1. Принять приглашение с правом write; проверить возможность PR. Репозиторий public.
 2. Включить 2FA и сохранить recovery codes отдельно от Git.
 3. Проверить `git config user.name` и `git config user.email`; не использовать
    чужой адрес. GitHub noreply допустим.

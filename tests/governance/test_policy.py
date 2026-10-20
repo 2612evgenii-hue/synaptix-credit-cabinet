@@ -11,7 +11,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from repo_checks import valid_title, valid_branch, team_errors
 from freeze import valid_tag, parse_deadline
 from submission_check import readiness_errors, EXPECTED
-from github_audit import protection_gaps, tag_gaps
+from github_audit import protection_gaps, tag_gaps, tag_creation_gaps, sanitize
 
 
 class CommitAndBranchPolicy(unittest.TestCase):
@@ -22,7 +22,7 @@ class CommitAndBranchPolicy(unittest.TestCase):
             self.assertFalse(valid_title(title), title)
 
     def test_branch_requires_issue_or_agent_prefix(self):
-        for branch in ("feat/12-draft", "hotfix/1-rbac", "codex/repository-setup"):
+        for branch in ("feat/12-draft", "hotfix/1-rbac", "codex/repository-setup", "dependabot/github_actions/actions/checkout-5"):
             self.assertTrue(valid_branch(branch))
         for branch in ("main", "feat/topic", "feat/0-topic", "codex/../../main", "fix/12-", "feat/12-Topic"):
             self.assertFalse(valid_branch(branch))
@@ -105,6 +105,23 @@ class ServerProtectionAudit(unittest.TestCase):
         rule["enforcement"] = "active"
         rule["bypass_actors"] = [{"actor_type": "RepositoryRole", "actor_id": 5}]
         self.assertTrue(tag_gaps([rule]))
+
+
+class TagCreationAudit(unittest.TestCase):
+    def test_export_removes_nested_github_credentials(self):
+        raw = {"visibility": "public", "temp_clone_token": "test-only-value",
+               "nested": [{"access_token": "another-test-value", "password": "example"}]}
+        safe = sanitize(raw)
+        self.assertEqual(safe["visibility"], "public")
+        self.assertNotIn("test-only-value", json.dumps(safe))
+        self.assertNotIn("another-test-value", json.dumps(safe))
+        self.assertNotIn('"example"', json.dumps(safe))
+
+    def test_tag_creation_exception_cannot_allow_all_writers(self):
+        rule = json.loads((ROOT / "config/github/tag-creation-ruleset.json").read_text())
+        self.assertEqual(tag_creation_gaps([rule]), [])
+        rule["bypass_actors"][0]["actor_id"] = 4
+        self.assertTrue(tag_creation_gaps([rule]))
 
 
 if __name__ == "__main__":

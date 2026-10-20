@@ -26,7 +26,8 @@ def valid_title(title):
 
 
 def valid_branch(branch):
-    return BRANCH.fullmatch(branch) is not None
+    return (BRANCH.fullmatch(branch) is not None
+            or re.fullmatch(r"dependabot/github_actions/[a-zA-Z0-9_./-]+", branch) is not None)
 
 
 def team_errors(team):

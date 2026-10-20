@@ -1,6 +1,7 @@
 {
   "team": "SYNAPTIX",
   "repository": "2612evgenii-hue/synaptix-credit-cabinet",
+  "visibility": "public",
   "members": [
     {"login": "2612evgenii-hue", "role": "owner", "area": "coordination, repository administration"},
     {"login": "NamePantrer", "role": "write", "area": "to be agreed"},
