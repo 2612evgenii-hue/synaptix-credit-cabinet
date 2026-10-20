@@ -1,0 +1,607 @@
+[
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/99860.9480c020.css",
+    "bytes": 397,
+    "media": [],
+    "fonts": [],
+    "motions": [],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/32353.67dbfb77.css",
+    "bytes": 10945,
+    "media": [],
+    "fonts": [],
+    "motions": [
+      "animation-timing-function:ease-in-out",
+      "animation-timing-function:ease-in-out",
+      "animation-duration:.5s",
+      "animation-name:gQsBuN",
+      "transition:background-color .2s ease"
+    ],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/18571.38fc30bd.css",
+    "bytes": 64,
+    "media": [],
+    "fonts": [],
+    "motions": [],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/26290.e79b4417.css",
+    "bytes": 5622,
+    "media": [],
+    "fonts": [],
+    "motions": [
+      "transition:.5s grid-template-rows,.5s opacity",
+      "transition:opacity 300ms ease-out,z-index 300ms ease-out",
+      "transition:width 300ms,opacity 300ms",
+      "animation:y5qQXQ 400ms forwards",
+      "transition:300ms opacity",
+      "transition-delay:.3s",
+      "transition-duration:.2s",
+      "transition-property:opacity",
+      "animation:dWJvPX 400ms ease-in-out 400ms forwards"
+    ],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/21749.1d679f17.css",
+    "bytes": 9326,
+    "media": [],
+    "fonts": [],
+    "motions": [
+      "transition:background-color .2s ease"
+    ],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/15730.81e8494f.css",
+    "bytes": 27,
+    "media": [],
+    "fonts": [],
+    "motions": [],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/6061.5fdffe4b.css",
+    "bytes": 5431,
+    "media": [],
+    "fonts": [],
+    "motions": [
+      "animation:linear",
+      "animation-fill-mode:forwards",
+      "animation-name:cnPR4l",
+      "transition:transform .2s linear,width .2s linear",
+      "transition:transform .2s linear,width .2s linear",
+      "transition:min-width .5s ease",
+      "transition:transform .2s linear",
+      "transition:transform .2s linear,width .2s linear",
+      "transition:transform .2s linear,width .2s linear",
+      "transition:min-width .5s ease",
+      "transition:transform .2s linear"
+    ],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/83444.fe051d9a.css",
+    "bytes": 4681,
+    "media": [],
+    "fonts": [],
+    "motions": [],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/96201.b6b51cd9.css",
+    "bytes": 105,
+    "media": [],
+    "fonts": [],
+    "motions": [],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/89190.6a7546a4.css",
+    "bytes": 750,
+    "media": [],
+    "fonts": [],
+    "motions": [],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/94196.abe131a5.css",
+    "bytes": 21,
+    "media": [],
+    "fonts": [],
+    "motions": [],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/59101.58fe16ba.css",
+    "bytes": 210,
+    "media": [],
+    "fonts": [],
+    "motions": [],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/84549.d98837c5.css",
+    "bytes": 138,
+    "media": [],
+    "fonts": [],
+    "motions": [],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/937.5c164ec1.css",
+    "bytes": 37,
+    "media": [],
+    "fonts": [],
+    "motions": [],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/3576.29c115c6.css",
+    "bytes": 207,
+    "media": [],
+    "fonts": [],
+    "motions": [],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/90563.401f84f4.css",
+    "bytes": 2560,
+    "media": [],
+    "fonts": [],
+    "motions": [],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/34888.315b4d4a.css",
+    "bytes": 3384,
+    "media": [],
+    "fonts": [],
+    "motions": [
+      "transition:transform .5s",
+      "transition:transform .5s",
+      "transition:transform .5s",
+      "transition:transform .5s"
+    ],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/15477.8dcd7cfa.css",
+    "bytes": 879,
+    "media": [],
+    "fonts": [],
+    "motions": [],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/63254.d5ca5ae7.css",
+    "bytes": 1043,
+    "media": [],
+    "fonts": [],
+    "motions": [
+      "transition:transform 150ms ease-in-out,opacity 150ms ease-in-out",
+      "transition:transform 150ms ease-in-out,opacity 150ms ease-in-out",
+      "transition:opacity 150ms ease-out,z-index 150ms ease-out"
+    ],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/17104.745ab5b7.css",
+    "bytes": 19,
+    "media": [],
+    "fonts": [],
+    "motions": [],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/60027.760f4646.css",
+    "bytes": 96,
+    "media": [],
+    "fonts": [],
+    "motions": [],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/16858.f548c95e.css",
+    "bytes": 27,
+    "media": [],
+    "fonts": [],
+    "motions": [],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/38151.d012dcf9.css",
+    "bytes": 1240,
+    "media": [],
+    "fonts": [],
+    "motions": [],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/93045.d77a09e5.css",
+    "bytes": 1892,
+    "media": [],
+    "fonts": [],
+    "motions": [
+      "transition:background-color .2s"
+    ],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/59947.ada65983.css",
+    "bytes": 2680,
+    "media": [],
+    "fonts": [],
+    "motions": [
+      "transition-duration:80ms",
+      "animation-fill-mode:forwards",
+      "animation-name:h3wYD5",
+      "animation-timing-function:linear"
+    ],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/68928.faab6e3f.css",
+    "bytes": 571,
+    "media": [],
+    "fonts": [],
+    "motions": [],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/66672.ab730e39.css",
+    "bytes": 24360,
+    "media": [],
+    "fonts": [],
+    "motions": [
+      "transition:transform",
+      "animation-duration:.25s",
+      "animation-fill-mode:forwards",
+      "animation-name:cfG44S",
+      "animation-duration:.25s",
+      "animation-fill-mode:forwards",
+      "animation-name:efG44S"
+    ],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/86293.7cce7846.css",
+    "bytes": 553,
+    "media": [],
+    "fonts": [],
+    "motions": [
+      "transition:color 50ms ease-in-out"
+    ],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/70843.0fd1b06f.css",
+    "bytes": 7262,
+    "media": [],
+    "fonts": [],
+    "motions": [
+      "transition:border-color .3s",
+      "transition:opacity .3s,border-bottom-color .3s"
+    ],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/14232.60fa374d.css",
+    "bytes": 1535,
+    "media": [],
+    "fonts": [],
+    "motions": [],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/41082.12c3b163.css",
+    "bytes": 62,
+    "media": [],
+    "fonts": [],
+    "motions": [],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/15623.35448d1f.css",
+    "bytes": 7011,
+    "media": [],
+    "fonts": [
+      "@font-face{font-family:Alfa Interface Sans;font-style:normal;font-weight:400;src:url(https://alfabank.servicecdn.ru/media/fonts/alfa-interface-sans_regular.woff2)format(\"woff2\")}",
+      "@font-face{font-family:Alfa Interface Sans;font-style:normal;font-weight:500;src:url(https://alfabank.servicecdn.ru/media/fonts/alfa-interface-sans_medium.woff2)format(\"woff2\")}",
+      "@font-face{font-family:Alfa Interface Sans;font-style:normal;font-weight:700;src:url(https://alfabank.servicecdn.ru/media/fonts/alfa-interface-sans_bold.woff2)format(\"woff2\")}"
+    ],
+    "motions": [],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/25771.05d60826.css",
+    "bytes": 112,
+    "media": [],
+    "fonts": [],
+    "motions": [],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/2222.00a25e5d.css",
+    "bytes": 176,
+    "media": [],
+    "fonts": [],
+    "motions": [],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/dep-alfa-site.194cb1ee.css",
+    "bytes": 291661,
+    "media": [],
+    "fonts": [],
+    "motions": [],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/63122.20d233b7.css",
+    "bytes": 1307,
+    "media": [],
+    "fonts": [],
+    "motions": [],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/5538.ad50ca82.css",
+    "bytes": 264,
+    "media": [],
+    "fonts": [],
+    "motions": [],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/7656.ed9c035f.css",
+    "bytes": 1499,
+    "media": [],
+    "fonts": [],
+    "motions": [
+      "animation:cj3dJ8 var(--animationDuration) infinite linear"
+    ],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/73853.25979c15.css",
+    "bytes": 215,
+    "media": [],
+    "fonts": [],
+    "motions": [],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/peer-alfa-site.99167940.css",
+    "bytes": 776434,
+    "media": [
+      "@media screen and (-ms-high-contrast:active),(-ms-high-contrast:none)",
+      "@media (hover:hover)",
+      "@media (display-mode:standalone)",
+      "@media (hover:none)",
+      "@media (max-width:374px)",
+      "@media (hover)",
+      "@media screen and (min-width:600px)",
+      "@media (min-width:600px)"
+    ],
+    "fonts": [],
+    "motions": [
+      "transition:background .2s ease,border .2s ease,color .2s ease,transform .12s ease",
+      "transition:none",
+      "animation-name:loader__blink_19o1e",
+      "animation-duration:950ms",
+      "animation-iteration-count:infinite",
+      "animation-timing-function:ease-in-out",
+      "animation-delay:0ms",
+      "animation-delay:150ms",
+      "animation-delay:300ms",
+      "transition:max-height 2s ease-in-out",
+      "transition:max-height 1s cubic-bezier(0,1,0,1)",
+      "transition:opacity .2s ease",
+      "transition:transform .15s ease-in-out,opacity .2s ease",
+      "transition:background .2s ease,border .2s ease,color .2s ease",
+      "animation:spinner__spin_animation_1mxbp .8s infinite linear",
+      "transition:background .2s ease,border .2s ease,color .2s ease",
+      "animation:spinner__spin_animation_1mxbp .8s infinite linear",
+      "transition:background .2s ease,border .2s ease,color .2s ease",
+      "animation:spinner__spin_animation_1rkq4 .8s infinite linear",
+      "transition:background-color .2s ease,border .2s ease,color .2s ease",
+      "transition:background .2s ease,border .2s ease,color .2s ease",
+      "animation:spinner__spin_animation_1rkq4 .8s infinite linear",
+      "transition:background .2s ease,border .2s ease,color .2s ease",
+      "animation:spinner__spin_animation_1f45d .8s infinite linear",
+      "animation:code-input__shake_ueri4 .15s linear 0s 3",
+      "transition:background-color 999999s ease-in-out 0s",
+      "transition:background-color 999999s ease-in-out 0s",
+      "transition:border .2s ease,color .2s ease",
+      "transition:color .2s ease",
+      "animation-name:skeleton__background_k8rz4",
+      "animation-duration:.5s",
+      "animation-iteration-count:infinite",
+      "animation-direction:alternate",
+      "animation-timing-function:ease-in-out",
+      "animation-play-state:running",
+      "animation-name:skeleton__background-inverted_1akqx",
+      "animation:spinner__spin_animation_1rkq4 .8s infinite linear",
+      "transition:background .2s ease,border .2s ease,color .2s ease",
+      "animation:spinner__spin_animation_1rkq4 .8s infinite linear",
+      "transition:background .2s ease,border .2s ease,color .2s ease",
+      "animation:spinner__spin_animation_1mxbp .8s infinite linear",
+      "transition:background .2s ease,border .2s ease,color .2s ease",
+      "animation:spinner__spin_animation_1mxbp .8s infinite linear",
+      "transition-property:opacity,transform",
+      "transition-timing-function:ease-in-out",
+      "transition-duration:150ms",
+      "transition-property:opacity,transform",
+      "transition-timing-function:ease-in-out",
+      "transition-duration:150ms",
+      "transition:background-color .2s ease,border .2s ease,color .2s ease",
+      "transition:width .1s linear",
+      "transition:opacity .2s linear",
+      "transition:height .1s linear",
+      "transition:opacity .2s linear",
+      "transition:background .2s ease,border .2s ease,color .2s ease",
+      "animation:spinner__spin_animation_1mxbp .8s infinite linear",
+      "transition:border-radius .3s ease",
+      "transition:transform .3s ease",
+      "transition:none",
+      "transition:transform .5s cubic-bezier(.09,.91,.18,.99)",
+      "transition:transform .3s ease",
+      "animation:spinner__spin_animation_1n0lp .8s infinite linear",
+      "transition:background-color .2s ease,border .2s ease,color .2s ease",
+      "transition:background .2s ease,border .2s ease,color .2s ease",
+      "animation-name:skeleton__opacity-animation-default_1kvr6",
+      "animation-duration:.5s",
+      "animation-iteration-count:infinite",
+      "animation-direction:alternate",
+      "animation-timing-function:ease-in-out",
+      "animation-play-state:running",
+      "transition:opacity 200ms ease-in",
+      "transition:opacity 200ms ease-out",
+      "animation-name:skeleton__opacity-animation-inverted_1je4m",
+      "transition:background-color 200ms ease-in",
+      "transition:background-color 200ms ease-out",
+      "transition:transform .3s ease-in-out",
+      "transition:background .3s ease-in-out",
+      "transition:opacity .2s ease-in-out .3s",
+      "transition:transform .25s ease-in-out .1s",
+      "transition:transform .25s ease-in-out .1s",
+      "transition:background .25s ease-in-out .1s",
+      "transition:opacity .12s ease-in-out",
+      "transition:box-shadow .2s ease,background .2s ease",
+      "transition:box-shadow .2s ease,background .2s ease",
+      "transition:fill .2s ease",
+      "transition:background .2s ease,border .2s ease,color .2s ease",
+      "animation:spinner__spin_animation_1m91g .8s infinite linear",
+      "animation-name:skeleton__background_k8rz4",
+      "animation-duration:.5s",
+      "animation-iteration-count:infinite",
+      "animation-direction:alternate",
+      "animation-timing-function:ease-in-out",
+      "animation-play-state:running",
+      "animation-name:skeleton__background-inverted_1akqx",
+      "transition:background .2s ease,border .2s ease,color .2s ease",
+      "transition:background-color 200ms ease-in",
+      "transition:background-color 200ms ease-out",
+      "transition:background .2s ease,border .2s ease,color .2s ease",
+      "animation:spinner__spin_animation_1mxbp .8s infinite linear",
+      "transition:background .2s ease,border .2s ease,color .2s ease",
+      "animation:spinner__spin_animation_1mxbp .8s infinite linear",
+      "transition:background .2s ease,border .2s ease,color .2s ease",
+      "animation:spinner__spin_animation_1mxbp .8s infinite linear",
+      "transition:background .2s ease,border .2s ease,color .2s ease",
+      "animation:spinner__spin_animation_1mxbp .8s infinite linear",
+      "transition:background .2s ease,border .2s ease,color .2s ease",
+      "transition:background-color .2s ease",
+      "transition:color .2s ease,border-color .2s ease",
+      "transition:color .2s ease,border-color .2s ease",
+      "transition:transform .2s ease",
+      "transition:border-color .2s ease,background-color .2s ease,color .2s ease",
+      "transition:background-color .2s ease",
+      "transition:background-color .2s ease",
+      "transition:color .2s ease,border-color .2s ease",
+      "transition:.2s",
+      "transition:transform .4s ease",
+      "transition:transform .4s ease",
+      "transition:background .2s ease,box-shadow .2s ease",
+      "transition:transform .2s ease,border .2s ease",
+      "transition-duration:200ms"
+    ],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.ru/",
+    "bytes": 75593,
+    "media": [
+      "@media (hover:hover) "
+    ],
+    "fonts": [
+      "@font-face{font-family:Alfa Interface Sans;font-style:normal;font-weight:400;src:url(https://alfabank.servicecdn.ru/media/fonts/alfa-interface-sans_regular.woff2)format(\"woff2\")}",
+      "@font-face{font-family:Alfa Interface Sans;font-style:normal;font-weight:500;src:url(https://alfabank.servicecdn.ru/media/fonts/alfa-interface-sans_medium.woff2)format(\"woff2\")}",
+      "@font-face{font-family:Alfa Interface Sans;font-style:normal;font-weight:700;src:url(https://alfabank.servicecdn.ru/media/fonts/alfa-interface-sans_bold.woff2)format(\"woff2\")}"
+    ],
+    "motions": [
+      "animation-timing-function:ease-in-out",
+      "animation-timing-function:ease-in-out",
+      "animation-timing-function:ease-in-out",
+      "animation-timing-function:ease-in-out",
+      "transition:background-color .1s linear",
+      "transition:.5s grid-template-rows,.5s opacity",
+      "transition:opacity 300ms ease-out,z-index 300ms ease-out",
+      "transition:300ms opacity",
+      "transition-delay:.3s",
+      "transition-duration:.2s",
+      "transition-property:opacity",
+      "animation-duration:.5s",
+      "animation-name:gQsBuN",
+      "transition:transform .5s",
+      "transition:transform .5s",
+      "transition:transform .5s",
+      "transition:transform 150ms ease-in-out,opacity 150ms ease-in-out",
+      "transition:transform 150ms ease-in-out,opacity 150ms ease-in-out",
+      "transition:opacity 150ms ease-out,z-index 150ms ease-out",
+      "transition:transform .2s linear,width .2s linear",
+      "transition:min-width .5s ease",
+      "transition:transform .2s linear",
+      "transition:transform .2s linear,width .2s linear",
+      "transition:transform .2s linear",
+      "animation:cj3dJ8 var(--animationDuration) infinite linear",
+      "transition:color 50ms ease-in-out",
+      "transition:background-color .2s ease",
+      "transition:background-color .2s",
+      "animation-duration:2s",
+      "animation-iteration-count:infinite",
+      "animation-name:b2981j",
+      "animation-timing-function:linear",
+      "animation-name:skeleton__opacity-animation-default_1kvr6",
+      "animation-duration:.5s",
+      "animation-iteration-count:infinite",
+      "animation-direction:alternate",
+      "animation-timing-function:ease-in-out",
+      "animation-play-state:running",
+      "transition:background .2s ease,border .2s ease,color .2s ease",
+      "transition:transform .2s ease",
+      "transition:border-color .2s ease,background-color .2s ease,color .2s ease",
+      "transition:.2s",
+      "transition:opacity .2s ease",
+      "transition:background-color .2s ease,border .2s ease,color .2s ease",
+      "transition:none",
+      "transition:none",
+      "transition:none",
+      "transition:.2s ease",
+      "transition:background .2s ease,box-shadow .2s ease",
+      "transition:transform .2s ease,border .2s ease",
+      "transition-duration:200ms",
+      "transition-property:color,transform",
+      "transition-timing-function:cubic-bezier(.25,.1,.25,1)",
+      "transition:opacity .2s ease,color .2s ease",
+      "transition:opacity .2s ease,color .2s ease",
+      "transition:opacity .2s ease,color .2s ease",
+      "transition:background-color 999999s ease-in-out 0s",
+      "transition:background-color 999999s ease-in-out 0s",
+      "animation:input__onautofillstart_eu28c 999999s forwards",
+      "animation:input__onautofillcancel_eu28c 999999s",
+      "transition:background-color .2s ease,border-color .2s ease",
+      "transition:transform .2s ease"
+    ],
+    "tokens": []
+  },
+  {
+    "url": "https://alfabank.servicecdn.ru/assr/6528.636d836b.css",
+    "bytes": 3208,
+    "media": [],
+    "fonts": [],
+    "motions": [
+      "animation-duration:2s",
+      "animation-iteration-count:infinite",
+      "animation-name:b2981j",
+      "animation-timing-function:linear"
+    ],
+    "tokens": []
+  }
+]

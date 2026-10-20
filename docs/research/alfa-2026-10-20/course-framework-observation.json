@@ -1,0 +1,8 @@
+{
+  "url": "https://kurs.alfabank.ru/",
+  "source": "DOM attribute observed in Chrome DevTools",
+  "attribute": "ng-version",
+  "value": "20.3.16",
+  "ngServerContext": "ssr",
+  "date": "2026-10-20"
+}

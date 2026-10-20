@@ -56,6 +56,7 @@
 | Фиксация версии и передача жюри | [Сдача](docs/submission.md) |
 | История результата и журнал действий | [CHANGELOG](CHANGELOG.md), [Журнал](docs/action-log.md) |
 | Сторонние компоненты и имитации | [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES) |
+| Визуальные системы Альфа-Банка и инструкции для интерфейса | [Исследование дизайна](docs/alfa-design-guide.md) |
 
 ## Структура
 

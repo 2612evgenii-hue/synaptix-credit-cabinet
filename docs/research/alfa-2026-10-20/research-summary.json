@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-20",
+  "valid_observations": 119,
+  "distinct_measured_urls": 76,
+  "sitemap_unique_original_urls": 1413,
+  "sitemap_unique_normalized_urls": 1412,
+  "coverage_catalog_urls": 1500,
+  "viewports": [
+    "1024x768",
+    "1200x701",
+    "1280x900",
+    "1440x1000",
+    "1512x805",
+    "1512x861",
+    "1920x1080",
+    "360x800",
+    "390x844",
+    "428x926",
+    "600x960",
+    "768x1024"
+  ],
+  "screenshots": 60,
+  "token_source_files": 34,
+  "token_definitions": 4847,
+  "bank_css_stylesheets": 42,
+  "scope": "Public sampled interfaces and explicit demo; no claim of all 1413 pages or authenticated product states",
+  "sampling": "Computed samples include mounted offscreen nodes; bounded headings/controls/panels. No complete CSS inventory for every route."
+}

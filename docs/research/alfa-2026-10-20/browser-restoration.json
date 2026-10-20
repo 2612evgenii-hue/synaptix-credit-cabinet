@@ -1,0 +1,103 @@
+{
+  "temporaryUserAgentsCleared": true,
+  "deviceEmulationDisabled": true,
+  "devtoolsClosed": true,
+  "states": [
+    {
+      "name": "main",
+      "url": "https://alfabank.ru/",
+      "viewport": {
+        "h": 701,
+        "w": 1200
+      }
+    },
+    {
+      "name": "career",
+      "url": "https://job.alfabank.ru/",
+      "viewport": {
+        "h": 805,
+        "w": 1512
+      }
+    },
+    {
+      "name": "digital",
+      "url": "https://digital.alfabank.ru/",
+      "viewport": {
+        "h": 805,
+        "w": 1512
+      }
+    },
+    {
+      "name": "course",
+      "url": "https://kurs.alfabank.ru/",
+      "viewport": {
+        "h": 805,
+        "w": 1512
+      }
+    },
+    {
+      "name": "developers",
+      "url": "https://developers.alfabank.ru/",
+      "viewport": {
+        "h": 805,
+        "w": 1512
+      }
+    },
+    {
+      "name": "leasing",
+      "url": "https://alfaleasing.ru/",
+      "viewport": {
+        "h": 861,
+        "w": 1512
+      }
+    },
+    {
+      "name": "affiliates",
+      "url": "https://alfapartners.alfabank.ru/",
+      "viewport": {
+        "h": 861,
+        "w": 1512
+      }
+    },
+    {
+      "name": "mortgage",
+      "url": "https://ipoteka.alfabank.ru/predecision/contacts",
+      "viewport": {
+        "h": 861,
+        "w": 1512
+      }
+    },
+    {
+      "name": "alfa-id",
+      "url": "https://id.alfabank.ru/oidc/login/redirect",
+      "viewport": {
+        "h": 861,
+        "w": 1512
+      }
+    },
+    {
+      "name": "partner-demo",
+      "url": "https://partner.alfabank.ru/redesign/activity",
+      "viewport": {
+        "h": 805,
+        "w": 1512
+      }
+    },
+    {
+      "name": "investment-form",
+      "url": "https://alfabank.ru/make-money/investments/anketa/terminal/",
+      "viewport": {
+        "h": 805,
+        "w": 1512
+      }
+    },
+    {
+      "name": "research-tab",
+      "url": "https://alfabank.ru/",
+      "viewport": {
+        "h": 805,
+        "w": 1512
+      }
+    }
+  ]
+}

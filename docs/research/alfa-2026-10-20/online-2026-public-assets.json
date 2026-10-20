@@ -1,0 +1,1319 @@
+{
+  "backgrounds": [],
+  "images": [
+    {
+      "alt": "Alfa Digital",
+      "h": 48,
+      "src": "https://digital.alfabank.ru/images/alfa-digital.svg",
+      "w": 216
+    },
+    {
+      "alt": "",
+      "h": 730,
+      "src": "https://static.tildacdn.com/tild3337-3431-4338-b035-643539666337/B0_Color_Sand.png",
+      "w": 730
+    },
+    {
+      "alt": "",
+      "h": 823,
+      "src": "https://static.tildacdn.com/tild6634-6536-4362-a633-386164633831/0_Back_5.png",
+      "w": 823
+    },
+    {
+      "alt": "",
+      "h": 868,
+      "src": "https://static.tildacdn.com/tild3266-3537-4537-b365-386563623961/B0_Color_Red.png",
+      "w": 868
+    },
+    {
+      "alt": "",
+      "h": 559,
+      "src": "https://static.tildacdn.com/tild3165-3132-4966-b930-653337333133/0_Number_60.svg",
+      "w": 1416
+    },
+    {
+      "alt": "",
+      "h": 181,
+      "src": "https://static.tildacdn.com/tild6433-6631-4237-b536-333235313166/Digital_Retail_Diges.svg",
+      "w": 200
+    },
+    {
+      "alt": "",
+      "h": 770,
+      "src": "https://thb.tildacdn.com/tild3138-6164-4834-b039-353937353365/-/resize/20x/noroot.png",
+      "w": 700
+    },
+    {
+      "alt": "",
+      "h": 776,
+      "src": "https://thb.tildacdn.com/tild3330-3766-4432-b661-383563623164/-/resize/20x/list2_1.png",
+      "w": 817
+    },
+    {
+      "alt": "",
+      "h": 299,
+      "src": "https://thb.tildacdn.com/tild6632-3362-4162-b933-396434656538/-/resize/20x/noroot.png",
+      "w": 665
+    },
+    {
+      "alt": "",
+      "h": 696,
+      "src": "https://thb.tildacdn.com/tild6330-3635-4764-b333-306131633932/-/resize/20x/20250707_0117_3D_Glo.png",
+      "w": 696
+    },
+    {
+      "alt": "",
+      "h": 148,
+      "src": "https://thb.tildacdn.com/tild6561-3734-4335-a139-613831393739/-/resize/20x/Gold_pink_coin_cycle.png",
+      "w": 156
+    },
+    {
+      "alt": "",
+      "h": 124,
+      "src": "https://thb.tildacdn.com/tild3762-6466-4430-a534-356666306464/-/resize/20x/noroot.png",
+      "w": 99
+    },
+    {
+      "alt": "",
+      "h": 216,
+      "src": "https://thb.tildacdn.com/tild3534-6464-4432-b536-663266663865/-/resize/20x/photo.png",
+      "w": 227
+    },
+    {
+      "alt": "",
+      "h": 235,
+      "src": "https://static.tildacdn.com/tild3964-6530-4634-b563-363664346538/Digest1.svg",
+      "w": 261
+    },
+    {
+      "alt": "",
+      "h": 801,
+      "src": "https://thb.tildacdn.com/tild3261-6665-4363-b663-663963316363/-/resize/20x/generated_8png_Upsca.png",
+      "w": 890
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild6537-3737-4032-b038-333562336431/Web.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 523,
+      "src": "https://thb.tildacdn.com/tild3031-6263-4337-a565-636637306266/-/resize/20x/icon_1.png",
+      "w": 436
+    },
+    {
+      "alt": "",
+      "h": 378,
+      "src": "https://thb.tildacdn.com/tild3233-3431-4532-b337-383439386534/-/resize/20x/___1.png",
+      "w": 291
+    },
+    {
+      "alt": "",
+      "h": 607,
+      "src": "https://thb.tildacdn.com/tild3036-3735-4565-b966-616131646337/-/resize/20x/Mask_group.png",
+      "w": 1104
+    },
+    {
+      "alt": "",
+      "h": 173,
+      "src": "https://thb.tildacdn.com/tild3466-3162-4234-a264-356165303963/-/resize/20x/_1.png",
+      "w": 266
+    },
+    {
+      "alt": "",
+      "h": 236,
+      "src": "https://thb.tildacdn.com/tild3534-6464-4432-b536-663266663865/-/resize/20x/photo.png",
+      "w": 248
+    },
+    {
+      "alt": "",
+      "h": 627,
+      "src": "https://thb.tildacdn.com/tild3937-6135-4563-a462-656466623666/-/resize/20x/noroot.png",
+      "w": 597
+    },
+    {
+      "alt": "",
+      "h": 506,
+      "src": "https://thb.tildacdn.com/tild3230-3064-4661-b963-373861386234/-/resize/20x/PicherDay_Sheet_Glas.png",
+      "w": 674
+    },
+    {
+      "alt": "",
+      "h": 391,
+      "src": "https://thb.tildacdn.com/tild3364-3030-4338-b539-303636373266/-/resize/20x/alfa_calendar3_00001.png",
+      "w": 412
+    },
+    {
+      "alt": "",
+      "h": 623,
+      "src": "https://thb.tildacdn.com/tild3736-6437-4562-a665-356638316135/-/resize/20x/Mockup.png",
+      "w": 304
+    },
+    {
+      "alt": "",
+      "h": 27,
+      "src": "https://thb.tildacdn.com/tild3262-6366-4633-b030-393234386636/-/resize/20x/photo.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild3439-3030-4030-b961-316562313936/iOs.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild6533-3130-4365-b039-366161343830/Android.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild6537-3737-4032-b038-333562336431/Web.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 199,
+      "src": "https://thb.tildacdn.com/tild3263-6566-4066-a465-356232663335/-/resize/20x/photo.png",
+      "w": 153
+    },
+    {
+      "alt": "",
+      "h": 597,
+      "src": "https://thb.tildacdn.com/tild3833-6130-4237-b039-396466366262/-/resize/20x/mmb_14.png",
+      "w": 746
+    },
+    {
+      "alt": "",
+      "h": 206,
+      "src": "https://thb.tildacdn.com/tild6432-3638-4063-a235-653366353332/-/resize/20x/rf_1.png",
+      "w": 242
+    },
+    {
+      "alt": "",
+      "h": 177,
+      "src": "https://thb.tildacdn.com/tild6463-3933-4436-a663-303966623530/-/resize/20x/3-1_7.png",
+      "w": 177
+    },
+    {
+      "alt": "",
+      "h": 121,
+      "src": "https://thb.tildacdn.com/tild3464-6138-4136-b233-633836363436/-/resize/20x/5-1.png",
+      "w": 121
+    },
+    {
+      "alt": "",
+      "h": 623,
+      "src": "https://thb.tildacdn.com/tild3736-6437-4562-a665-356638316135/-/resize/20x/Mockup.png",
+      "w": 304
+    },
+    {
+      "alt": "",
+      "h": 27,
+      "src": "https://thb.tildacdn.com/tild3262-6366-4633-b030-393234386636/-/resize/20x/photo.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild3439-3030-4030-b961-316562313936/iOs.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild6533-3130-4365-b039-366161343830/Android.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild6537-3737-4032-b038-333562336431/Web.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 169,
+      "src": "https://thb.tildacdn.com/tild6664-6638-4535-b239-323462333031/-/resize/20x/ChatGPT_Image_29__20.png",
+      "w": 169
+    },
+    {
+      "alt": "",
+      "h": 590,
+      "src": "https://thb.tildacdn.com/tild3065-3938-4864-a665-346234336537/-/resize/20x/noroot.png",
+      "w": 656
+    },
+    {
+      "alt": "",
+      "h": 415,
+      "src": "https://thb.tildacdn.com/tild6562-3834-4238-a631-653962336634/-/resize/20x/image_277.png",
+      "w": 415
+    },
+    {
+      "alt": "",
+      "h": 96,
+      "src": "https://thb.tildacdn.com/tild3563-3934-4466-b961-386264643661/-/resize/20x/2_2_9.png",
+      "w": 137
+    },
+    {
+      "alt": "",
+      "h": 122,
+      "src": "https://thb.tildacdn.com/tild3765-3166-4336-b635-326136313066/-/resize/20x/2_2_8.png",
+      "w": 128
+    },
+    {
+      "alt": "",
+      "h": 78,
+      "src": "https://thb.tildacdn.com/tild3832-6231-4932-b037-653962643235/-/resize/20x/2_2_4.png",
+      "w": 71
+    },
+    {
+      "alt": "",
+      "h": 203,
+      "src": "https://thb.tildacdn.com/tild3265-3634-4161-b936-613565343133/-/resize/20x/_1_1.png",
+      "w": 214
+    },
+    {
+      "alt": "",
+      "h": 623,
+      "src": "https://thb.tildacdn.com/tild3736-6437-4562-a665-356638316135/-/resize/20x/Mockup.png",
+      "w": 304
+    },
+    {
+      "alt": "",
+      "h": 581,
+      "src": "https://thb.tildacdn.com/tild6566-3133-4364-a165-343661313261/-/resize/20x/Group_2136140211.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 111,
+      "src": "https://static.tildacdn.com/tild6635-3163-4565-b537-323166653562/SDUIWidget.svg",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 27,
+      "src": "https://thb.tildacdn.com/tild3262-6366-4633-b030-393234386636/-/resize/20x/photo.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild3439-3030-4030-b961-316562313936/iOs.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild6533-3130-4365-b039-366161343830/Android.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild6537-3737-4032-b038-333562336431/Web.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 588,
+      "src": "https://thb.tildacdn.com/tild3231-6465-4638-b937-653934666239/-/resize/20x/2.png",
+      "w": 588
+    },
+    {
+      "alt": "",
+      "h": 366,
+      "src": "https://thb.tildacdn.com/tild6537-3663-4463-a231-333737623833/-/resize/20x/OK_sign_2.png",
+      "w": 430
+    },
+    {
+      "alt": "",
+      "h": 290,
+      "src": "https://thb.tildacdn.com/tild3830-3535-4765-a465-323663646638/-/resize/20x/Group_2131328330.png",
+      "w": 264
+    },
+    {
+      "alt": "",
+      "h": 623,
+      "src": "https://thb.tildacdn.com/tild3736-6437-4562-a665-356638316135/-/resize/20x/Mockup.png",
+      "w": 304
+    },
+    {
+      "alt": "",
+      "h": 27,
+      "src": "https://thb.tildacdn.com/tild3262-6366-4633-b030-393234386636/-/resize/20x/photo.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 102,
+      "src": "https://thb.tildacdn.com/tild3539-6334-4661-b332-376534663061/-/resize/20x/photo.png",
+      "w": 102
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild3439-3030-4030-b961-316562313936/iOs.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild6533-3130-4365-b039-366161343830/Android.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild6537-3737-4032-b038-333562336431/Web.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 479,
+      "src": "https://thb.tildacdn.com/tild6530-6438-4963-b862-383738323662/-/resize/20x/Mask_group.png",
+      "w": 252
+    },
+    {
+      "alt": "",
+      "h": 202,
+      "src": "https://thb.tildacdn.com/tild6439-6563-4438-b933-303466646337/-/resize/20x/OK_hand_yellow.png",
+      "w": 130
+    },
+    {
+      "alt": "",
+      "h": 623,
+      "src": "https://thb.tildacdn.com/tild3736-6437-4562-a665-356638316135/-/resize/20x/Mockup.png",
+      "w": 304
+    },
+    {
+      "alt": "",
+      "h": 27,
+      "src": "https://thb.tildacdn.com/tild3262-6366-4633-b030-393234386636/-/resize/20x/photo.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild3439-3030-4030-b961-316562313936/iOs.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild6533-3130-4365-b039-366161343830/Android.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 130,
+      "src": "https://thb.tildacdn.com/tild3465-6630-4438-b232-363434633133/-/resize/20x/Group_2131327829.png",
+      "w": 130
+    },
+    {
+      "alt": "",
+      "h": 173,
+      "src": "https://thb.tildacdn.com/tild3031-3766-4564-a136-303933363966/-/resize/20x/Emoji_3_Operation_Pe.png",
+      "w": 173
+    },
+    {
+      "alt": "",
+      "h": 438,
+      "src": "https://thb.tildacdn.com/tild3034-6664-4264-a530-646636333339/-/resize/20x/A_KIDS_Card_Unicorn_.png",
+      "w": 438
+    },
+    {
+      "alt": "",
+      "h": 430,
+      "src": "https://thb.tildacdn.com/tild3330-6532-4537-b633-613864373836/-/resize/20x/1100_0056.png",
+      "w": 344
+    },
+    {
+      "alt": "",
+      "h": 219,
+      "src": "https://thb.tildacdn.com/tild3165-3962-4438-b263-353031376531/-/resize/20x/heart0088__1.png",
+      "w": 219
+    },
+    {
+      "alt": "",
+      "h": 160,
+      "src": "https://thb.tildacdn.com/tild3733-6365-4162-b863-613366653533/-/resize/20x/pr0161.png",
+      "w": 160
+    },
+    {
+      "alt": "",
+      "h": 93,
+      "src": "https://thb.tildacdn.com/tild3333-3636-4534-b337-353631366430/-/resize/20x/Mask_group1.png",
+      "w": 98
+    },
+    {
+      "alt": "",
+      "h": 56,
+      "src": "https://thb.tildacdn.com/tild3438-3236-4834-a130-393839666334/-/resize/20x/Mask_group2.png",
+      "w": 56
+    },
+    {
+      "alt": "",
+      "h": 623,
+      "src": "https://thb.tildacdn.com/tild3736-6437-4562-a665-356638316135/-/resize/20x/Mockup.png",
+      "w": 304
+    },
+    {
+      "alt": "",
+      "h": 594,
+      "src": "https://thb.tildacdn.com/tild3062-3732-4661-b362-363931343337/-/resize/20x/_.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 81,
+      "src": "https://thb.tildacdn.com/tild3530-6137-4762-a464-376365616461/-/resize/20x/_StackView-4.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 54,
+      "src": "https://thb.tildacdn.com/tild3062-3935-4266-a632-396236383039/-/resize/20x/_StackView-3.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 54,
+      "src": "https://thb.tildacdn.com/tild3561-6239-4565-b133-613637633936/-/resize/20x/_StackView-2.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 68,
+      "src": "https://thb.tildacdn.com/tild3965-6664-4731-a135-346438316264/-/resize/20x/_StackView-1.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 594,
+      "src": "https://thb.tildacdn.com/tild6166-3630-4934-b233-656432643463/-/resize/20x/Group_2131327944.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 81,
+      "src": "https://thb.tildacdn.com/tild3064-3638-4163-a263-356161353131/-/resize/20x/_StackView.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 27,
+      "src": "https://thb.tildacdn.com/tild3262-6366-4633-b030-393234386636/-/resize/20x/photo.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild3439-3030-4030-b961-316562313936/iOs.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild6533-3130-4365-b039-366161343830/Android.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild6537-3737-4032-b038-333562336431/Web.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 494,
+      "src": "https://thb.tildacdn.com/tild6537-6434-4731-b430-653663666536/-/resize/20x/6788766666_1_1.png",
+      "w": 658
+    },
+    {
+      "alt": "",
+      "h": 208,
+      "src": "https://thb.tildacdn.com/tild3562-3637-4065-a465-373864366235/-/resize/20x/Group_2131329394_1-P.png",
+      "w": 231
+    },
+    {
+      "alt": "",
+      "h": 469,
+      "src": "https://thb.tildacdn.com/tild3132-3939-4265-a537-306537663332/-/resize/20x/Firefly_Orange_shopp.png",
+      "w": 375
+    },
+    {
+      "alt": "",
+      "h": 176,
+      "src": "https://thb.tildacdn.com/tild3863-3666-4362-b239-346637323338/-/resize/20x/karta-TSUM_1.png",
+      "w": 271
+    },
+    {
+      "alt": "",
+      "h": 176,
+      "src": "https://thb.tildacdn.com/tild3464-6566-4438-a337-653334626439/-/resize/20x/loyalty-orange2x6608.png",
+      "w": 271
+    },
+    {
+      "alt": "",
+      "h": 252,
+      "src": "https://thb.tildacdn.com/tild3237-3533-4032-b438-656663346438/-/resize/20x/telegram-cloud-docum.png",
+      "w": 252
+    },
+    {
+      "alt": "",
+      "h": 623,
+      "src": "https://thb.tildacdn.com/tild3736-6437-4562-a665-356638316135/-/resize/20x/Mockup.png",
+      "w": 304
+    },
+    {
+      "alt": "",
+      "h": 27,
+      "src": "https://thb.tildacdn.com/tild3262-6366-4633-b030-393234386636/-/resize/20x/photo.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild3439-3030-4030-b961-316562313936/iOs.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild6533-3130-4365-b039-366161343830/Android.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild6537-3737-4032-b038-333562336431/Web.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 80,
+      "src": "https://thb.tildacdn.com/tild6536-3366-4262-b131-313530313232/-/resize/20x/pearl_2_1.png",
+      "w": 80
+    },
+    {
+      "alt": "",
+      "h": 357,
+      "src": "https://thb.tildacdn.com/tild3938-6233-4637-a534-316534393465/-/resize/20x/__________1.png",
+      "w": 310
+    },
+    {
+      "alt": "",
+      "h": 314,
+      "src": "https://thb.tildacdn.com/tild3030-6337-4937-b932-336535656637/-/resize/20x/ImageSource.png",
+      "w": 393
+    },
+    {
+      "alt": "",
+      "h": 201,
+      "src": "https://thb.tildacdn.com/tild3866-3338-4466-b035-323632623764/-/resize/20x/Mask_group.png",
+      "w": 191
+    },
+    {
+      "alt": "",
+      "h": 215,
+      "src": "https://thb.tildacdn.com/tild3837-6231-4366-a331-386632613164/-/resize/20x/Group_2131329593.png",
+      "w": 195
+    },
+    {
+      "alt": "",
+      "h": 623,
+      "src": "https://thb.tildacdn.com/tild3736-6437-4562-a665-356638316135/-/resize/20x/Mockup.png",
+      "w": 304
+    },
+    {
+      "alt": "",
+      "h": 27,
+      "src": "https://thb.tildacdn.com/tild3262-6366-4633-b030-393234386636/-/resize/20x/photo.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild3439-3030-4030-b961-316562313936/iOs.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild6533-3130-4365-b039-366161343830/Android.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 196,
+      "src": "https://thb.tildacdn.com/tild3134-3738-4632-b161-326463643133/-/resize/20x/Ticket_002_2.png",
+      "w": 178
+    },
+    {
+      "alt": "",
+      "h": 557,
+      "src": "https://thb.tildacdn.com/tild3335-3937-4261-b730-333438623534/-/resize/20x/photo.png",
+      "w": 530
+    },
+    {
+      "alt": "",
+      "h": 174,
+      "src": "https://thb.tildacdn.com/tild3635-3465-4931-a537-383937653165/-/resize/20x/2_2_5.png",
+      "w": 139
+    },
+    {
+      "alt": "",
+      "h": 282,
+      "src": "https://thb.tildacdn.com/tild6137-3434-4366-b766-353862653337/-/resize/20x/piggie-3_1.png",
+      "w": 282
+    },
+    {
+      "alt": "",
+      "h": 623,
+      "src": "https://thb.tildacdn.com/tild3736-6437-4562-a665-356638316135/-/resize/20x/Mockup.png",
+      "w": 304
+    },
+    {
+      "alt": "",
+      "h": 27,
+      "src": "https://thb.tildacdn.com/tild3262-6366-4633-b030-393234386636/-/resize/20x/photo.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 87,
+      "src": "https://thb.tildacdn.com/tild6631-3839-4166-b563-663931303465/-/resize/20x/2_2_4.png",
+      "w": 92
+    },
+    {
+      "alt": "",
+      "h": 128,
+      "src": "https://thb.tildacdn.com/tild3032-6262-4163-a334-653964616337/-/resize/20x/2_2_6.png",
+      "w": 151
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild3439-3030-4030-b961-316562313936/iOs.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild6533-3130-4365-b039-366161343830/Android.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild6537-3737-4032-b038-333562336431/Web.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 642,
+      "src": "https://thb.tildacdn.com/tild3536-3363-4134-b232-363239323335/-/resize/20x/_2.png",
+      "w": 611
+    },
+    {
+      "alt": "",
+      "h": 686,
+      "src": "https://thb.tildacdn.com/tild6134-3536-4338-a434-653066383135/-/resize/20x/_3.png",
+      "w": 686
+    },
+    {
+      "alt": "",
+      "h": 438,
+      "src": "https://thb.tildacdn.com/tild3430-3436-4761-b039-393761613335/-/resize/20x/nondfl_wn04_1.png",
+      "w": 365
+    },
+    {
+      "alt": "",
+      "h": 177,
+      "src": "https://thb.tildacdn.com/tild3235-3761-4438-a462-326264316633/-/resize/20x/Percent_Big.png",
+      "w": 186
+    },
+    {
+      "alt": "",
+      "h": 623,
+      "src": "https://thb.tildacdn.com/tild3736-6437-4562-a665-356638316135/-/resize/20x/Mockup.png",
+      "w": 304
+    },
+    {
+      "alt": "",
+      "h": 27,
+      "src": "https://thb.tildacdn.com/tild3262-6366-4633-b030-393234386636/-/resize/20x/photo.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild3439-3030-4030-b961-316562313936/iOs.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild6533-3130-4365-b039-366161343830/Android.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild6537-3737-4032-b038-333562336431/Web.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 112,
+      "src": "https://thb.tildacdn.com/tild3137-3331-4566-a362-633462343231/-/resize/20x/3660bfde-1808-444c-a.png",
+      "w": 107
+    },
+    {
+      "alt": "",
+      "h": 132,
+      "src": "https://thb.tildacdn.com/tild3635-3438-4861-a130-323861663463/-/resize/20x/3660bfde-1808-444c-a.png",
+      "w": 132
+    },
+    {
+      "alt": "",
+      "h": 391,
+      "src": "https://thb.tildacdn.com/tild3035-3530-4539-b865-356430313063/-/resize/20x/Big_Arrow_CC_1.png",
+      "w": 652
+    },
+    {
+      "alt": "",
+      "h": 345,
+      "src": "https://thb.tildacdn.com/tild6233-3366-4235-a231-313030303638/-/resize/20x/Group_2136140210.png",
+      "w": 460
+    },
+    {
+      "alt": "",
+      "h": 623,
+      "src": "https://thb.tildacdn.com/tild3736-6437-4562-a665-356638316135/-/resize/20x/Mockup.png",
+      "w": 304
+    },
+    {
+      "alt": "",
+      "h": 27,
+      "src": "https://thb.tildacdn.com/tild3262-6366-4633-b030-393234386636/-/resize/20x/photo.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild3439-3030-4030-b961-316562313936/iOs.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild6533-3130-4365-b039-366161343830/Android.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 99,
+      "src": "https://thb.tildacdn.com/tild6532-3932-4265-b430-386362643966/-/resize/20x/Rubl_Big.png",
+      "w": 110
+    },
+    {
+      "alt": "",
+      "h": 166,
+      "src": "https://thb.tildacdn.com/tild6635-3063-4064-a465-373566623366/-/resize/20x/photo.png",
+      "w": 166
+    },
+    {
+      "alt": "",
+      "h": 421,
+      "src": "https://thb.tildacdn.com/tild3831-3166-4638-b033-353363616130/-/resize/20x/Money_23_3.png",
+      "w": 337
+    },
+    {
+      "alt": "",
+      "h": 294,
+      "src": "https://thb.tildacdn.com/tild3331-6239-4166-b734-306164336433/-/resize/20x/petrkatsur_3D_model_.png",
+      "w": 294
+    },
+    {
+      "alt": "",
+      "h": 421,
+      "src": "https://thb.tildacdn.com/tild3831-3166-4638-b033-353363616130/-/resize/20x/Money_23_3.png",
+      "w": 337
+    },
+    {
+      "alt": "",
+      "h": 250,
+      "src": "https://thb.tildacdn.com/tild6632-3362-4638-b934-666337656363/-/resize/20x/Clock_2.png",
+      "w": 208
+    },
+    {
+      "alt": "",
+      "h": 623,
+      "src": "https://thb.tildacdn.com/tild3736-6437-4562-a665-356638316135/-/resize/20x/Mockup.png",
+      "w": 304
+    },
+    {
+      "alt": "",
+      "h": 27,
+      "src": "https://thb.tildacdn.com/tild3262-6366-4633-b030-393234386636/-/resize/20x/photo.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild3439-3030-4030-b961-316562313936/iOs.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild6533-3130-4365-b039-366161343830/Android.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild6537-3737-4032-b038-333562336431/Web.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 135,
+      "src": "https://thb.tildacdn.com/tild6161-3636-4262-b335-336235376266/-/resize/20x/image_1631.png",
+      "w": 159
+    },
+    {
+      "alt": "",
+      "h": 105,
+      "src": "https://thb.tildacdn.com/tild6437-3735-4831-b661-343030646335/-/resize/20x/image_1632.png",
+      "w": 117
+    },
+    {
+      "alt": "",
+      "h": 715,
+      "src": "https://thb.tildacdn.com/tild3036-6436-4565-a561-643264663630/-/resize/20x/3_1_1.png",
+      "w": 715
+    },
+    {
+      "alt": "",
+      "h": 386,
+      "src": "https://thb.tildacdn.com/tild6435-3663-4337-b238-343461356634/-/resize/20x/02_3_copy_2.png",
+      "w": 276
+    },
+    {
+      "alt": "",
+      "h": 110,
+      "src": "https://thb.tildacdn.com/tild6230-6662-4662-b761-343438333132/-/resize/20x/_coserj0014_1.png",
+      "w": 200
+    },
+    {
+      "alt": "",
+      "h": 623,
+      "src": "https://thb.tildacdn.com/tild3736-6437-4562-a665-356638316135/-/resize/20x/Mockup.png",
+      "w": 304
+    },
+    {
+      "alt": "",
+      "h": 27,
+      "src": "https://thb.tildacdn.com/tild3262-6366-4633-b030-393234386636/-/resize/20x/photo.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild3439-3030-4030-b961-316562313936/iOs.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild6533-3130-4365-b039-366161343830/Android.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 75,
+      "src": "https://thb.tildacdn.com/tild3930-3531-4336-b334-306264616165/-/resize/20x/pearl_1.png",
+      "w": 75
+    },
+    {
+      "alt": "",
+      "h": 103,
+      "src": "https://thb.tildacdn.com/tild3536-6661-4266-b131-396232346237/-/resize/20x/1.png",
+      "w": 129
+    },
+    {
+      "alt": "",
+      "h": 84,
+      "src": "https://thb.tildacdn.com/tild6532-6262-4932-b065-623033646261/-/resize/20x/2.png",
+      "w": 112
+    },
+    {
+      "alt": "",
+      "h": 167,
+      "src": "https://thb.tildacdn.com/tild3036-6432-4665-b637-386362306463/-/resize/20x/Group_2131328341.png",
+      "w": 167
+    },
+    {
+      "alt": "",
+      "h": 151,
+      "src": "https://thb.tildacdn.com/tild3433-6532-4165-b235-303562643762/-/resize/20x/Mask_group1.png",
+      "w": 377
+    },
+    {
+      "alt": "",
+      "h": 168,
+      "src": "https://thb.tildacdn.com/tild6533-6430-4138-a633-646164663032/-/resize/20x/Mask_group2.png",
+      "w": 240
+    },
+    {
+      "alt": "",
+      "h": 388,
+      "src": "https://thb.tildacdn.com/tild6130-6434-4564-b963-386534613565/-/resize/20x/photo.png",
+      "w": 323
+    },
+    {
+      "alt": "",
+      "h": 89,
+      "src": "https://thb.tildacdn.com/tild6237-6536-4662-a163-623137643331/-/resize/20x/Purple_coin_cycle_20.png",
+      "w": 105
+    },
+    {
+      "alt": "",
+      "h": 82,
+      "src": "https://thb.tildacdn.com/tild6537-3633-4230-b531-326233656363/-/resize/20x/Purple_coin_cycle_20.png",
+      "w": 63
+    },
+    {
+      "alt": "",
+      "h": 623,
+      "src": "https://thb.tildacdn.com/tild3736-6437-4562-a665-356638316135/-/resize/20x/Mockup.png",
+      "w": 304
+    },
+    {
+      "alt": "",
+      "h": 27,
+      "src": "https://thb.tildacdn.com/tild3262-6366-4633-b030-393234386636/-/resize/20x/photo.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild6136-6432-4661-b965-366638366338/Mobile_black.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild3436-3465-4963-a166-643038633366/Web_black.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 588,
+      "src": "https://thb.tildacdn.com/tild3231-6465-4638-b937-653934666239/-/resize/20x/2.png",
+      "w": 588
+    },
+    {
+      "alt": "",
+      "h": 329,
+      "src": "https://thb.tildacdn.com/tild3262-6466-4138-b036-623732373831/-/resize/20x/20250707_0117_3D_Glo.png",
+      "w": 329
+    },
+    {
+      "alt": "",
+      "h": 469,
+      "src": "https://thb.tildacdn.com/tild6539-3430-4030-b538-656639653337/-/resize/20x/magnifics_upscale-mh.png",
+      "w": 469
+    },
+    {
+      "alt": "",
+      "h": 108,
+      "src": "https://thb.tildacdn.com/tild6561-3734-4335-a139-613831393739/-/resize/20x/Gold_pink_coin_cycle.png",
+      "w": 114
+    },
+    {
+      "alt": "",
+      "h": 73,
+      "src": "https://thb.tildacdn.com/tild3431-3964-4332-b832-373762393439/-/resize/20x/Gold_pink_coin_cycle.png",
+      "w": 58
+    },
+    {
+      "alt": "",
+      "h": 623,
+      "src": "https://thb.tildacdn.com/tild3736-6437-4562-a665-356638316135/-/resize/20x/Mockup.png",
+      "w": 304
+    },
+    {
+      "alt": "",
+      "h": 27,
+      "src": "https://thb.tildacdn.com/tild3262-6366-4633-b030-393234386636/-/resize/20x/photo.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild6136-6432-4661-b965-366638366338/Mobile_black.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild3436-3465-4963-a166-643038633366/Web_black.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 118,
+      "src": "https://thb.tildacdn.com/tild3366-3365-4636-a631-303537326537/-/resize/20x/noroot.png",
+      "w": 107
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild6330-3238-4134-b433-313039396437/iOs.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild3163-3234-4861-b638-383165663838/Android.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 728,
+      "src": "https://thb.tildacdn.com/tild6362-6231-4432-b233-333661323136/-/resize/20x/Group_1571.png",
+      "w": 607
+    },
+    {
+      "alt": "",
+      "h": 623,
+      "src": "https://thb.tildacdn.com/tild3736-6437-4562-a665-356638316135/-/resize/20x/Mockup.png",
+      "w": 304
+    },
+    {
+      "alt": "",
+      "h": 594,
+      "src": "https://thb.tildacdn.com/tild3937-3739-4062-b961-316661653365/-/resize/20x/3.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 594,
+      "src": "https://thb.tildacdn.com/tild3932-6137-4235-a539-363664363939/-/resize/20x/2.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 135,
+      "src": "https://thb.tildacdn.com/tild3533-6534-4238-b366-393263346133/-/resize/20x/2-1.png",
+      "w": 246
+    },
+    {
+      "alt": "",
+      "h": 594,
+      "src": "https://thb.tildacdn.com/tild3734-6461-4635-a534-646366623263/-/resize/20x/1.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 27,
+      "src": "https://thb.tildacdn.com/tild3262-6366-4633-b030-393234386636/-/resize/20x/photo.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 195,
+      "src": "https://thb.tildacdn.com/tild3937-3335-4735-a131-306535396632/-/resize/20x/arrow_1_3.png",
+      "w": 300
+    },
+    {
+      "alt": "",
+      "h": 78,
+      "src": "https://thb.tildacdn.com/tild3736-3264-4533-b331-663138616438/-/resize/20x/15.png",
+      "w": 87
+    },
+    {
+      "alt": "",
+      "h": 94,
+      "src": "https://thb.tildacdn.com/tild3666-6536-4338-b861-623333316433/-/resize/20x/16.png",
+      "w": 94
+    },
+    {
+      "alt": "",
+      "h": 77,
+      "src": "https://thb.tildacdn.com/tild3165-6339-4034-a531-666534616133/-/resize/20x/17.png",
+      "w": 77
+    },
+    {
+      "alt": "",
+      "h": 539,
+      "src": "https://thb.tildacdn.com/tild3830-6333-4539-b031-373733633432/-/resize/20x/noroot.png",
+      "w": 634
+    },
+    {
+      "alt": "",
+      "h": 287,
+      "src": "https://thb.tildacdn.com/tild6464-6136-4665-a233-356130623439/-/resize/20x/Icon2_3_000.png",
+      "w": 287
+    },
+    {
+      "alt": "",
+      "h": 441,
+      "src": "https://thb.tildacdn.com/tild3136-6332-4766-b933-323435303239/-/resize/20x/Icon2_3_00000.png",
+      "w": 441
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild6330-3238-4134-b433-313039396437/iOs.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild3163-3234-4861-b638-383165663838/Android.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild3439-3932-4739-b763-616162656131/Web.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 623,
+      "src": "https://thb.tildacdn.com/tild3736-6437-4562-a665-356638316135/-/resize/20x/Mockup.png",
+      "w": 304
+    },
+    {
+      "alt": "",
+      "h": 27,
+      "src": "https://thb.tildacdn.com/tild3262-6366-4633-b030-393234386636/-/resize/20x/photo.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 558,
+      "src": "https://thb.tildacdn.com/tild3833-6130-4237-b039-396466366262/-/resize/20x/mmb_14.png",
+      "w": 697
+    },
+    {
+      "alt": "",
+      "h": 258,
+      "src": "https://thb.tildacdn.com/tild6239-6361-4639-a133-366163376539/-/resize/20x/Group_2131328342.png",
+      "w": 397
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild6330-3238-4134-b433-313039396437/iOs.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild3163-3234-4861-b638-383165663838/Android.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild3439-3932-4739-b763-616162656131/Web.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 623,
+      "src": "https://thb.tildacdn.com/tild3736-6437-4562-a665-356638316135/-/resize/20x/Mockup.png",
+      "w": 304
+    },
+    {
+      "alt": "",
+      "h": 27,
+      "src": "https://thb.tildacdn.com/tild3262-6366-4633-b030-393234386636/-/resize/20x/photo.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 178,
+      "src": "https://thb.tildacdn.com/tild3338-6262-4466-a162-316563636530/-/resize/20x/Mask_group.png",
+      "w": 223
+    },
+    {
+      "alt": "",
+      "h": 716,
+      "src": "https://thb.tildacdn.com/tild3130-3738-4232-b534-633761616439/-/resize/20x/a_club_1__1.png",
+      "w": 377
+    },
+    {
+      "alt": "",
+      "h": 314,
+      "src": "https://thb.tildacdn.com/tild6661-3966-4132-b433-393863393238/-/resize/20x/Portfel.png",
+      "w": 369
+    },
+    {
+      "alt": "",
+      "h": 32,
+      "src": "https://static.tildacdn.com/tild3163-3234-4861-b638-383165663838/Android.svg",
+      "w": 32
+    },
+    {
+      "alt": "",
+      "h": 623,
+      "src": "https://thb.tildacdn.com/tild3736-6437-4562-a665-356638316135/-/resize/20x/Mockup.png",
+      "w": 304
+    },
+    {
+      "alt": "",
+      "h": 27,
+      "src": "https://thb.tildacdn.com/tild3132-6139-4162-a366-353736346333/-/resize/20x/photo.png",
+      "w": 270
+    },
+    {
+      "alt": "",
+      "h": 68,
+      "src": "https://thb.tildacdn.com/tild3534-3464-4235-a363-633934623938/-/resize/20x/1_AllProducts_2_2.png",
+      "w": 72
+    },
+    {
+      "alt": "",
+      "h": 146,
+      "src": "https://thb.tildacdn.com/tild3139-3963-4838-b935-616361363161/-/resize/20x/noroot.png",
+      "w": 146
+    },
+    {
+      "alt": "",
+      "h": 865,
+      "src": "https://thb.tildacdn.com/tild3330-3766-4432-b661-383563623164/-/resize/20x/list2_1.png",
+      "w": 910
+    },
+    {
+      "alt": "",
+      "h": 95,
+      "src": "https://static.tildacdn.com/tild3236-3434-4164-b962-363339396466/Vector_9.svg",
+      "w": 49
+    },
+    {
+      "alt": "",
+      "h": 95,
+      "src": "https://static.tildacdn.com/tild3633-3633-4066-b863-633737316335/Group_80.svg",
+      "w": 77
+    },
+    {
+      "alt": "Альфа-Банк",
+      "h": 48,
+      "src": "https://digital.alfabank.ru/images/a.svg",
+      "w": 35
+    }
+  ]
+}
