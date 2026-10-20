@@ -1,0 +1,18 @@
+[
+  {
+    "url": "https://alfabank.ru/alfafuture/ichoosealfa/vacancies/",
+    "reason": "Error: Error: Playwright selector deadline exceeded\nlocator.waitFor(visible) timed out for selector internal:role=heading >> nth=0\nLocator diagnostics: {\"kind\":\"no_matche"
+  },
+  {
+    "url": "https://alfabank.ru/alfafuture/courses/",
+    "reason": "Error: Error: Playwright selector deadline exceeded\nlocator.waitFor(visible) timed out for selector internal:role=heading >> nth=0\nLocator diagnostics: {\"kind\":\"no_matche"
+  },
+  {
+    "url": "https://alfabank.ru/alfafuture/partnerform/",
+    "reason": "Error: Error: Playwright selector deadline exceeded\nlocator.waitFor(visible) timed out for selector internal:role=heading >> nth=0\nLocator diagnostics: {\"kind\":\"no_matche"
+  },
+  {
+    "url": "https://alfabank.ru/alfafuture/job/",
+    "reason": "Error: Error: Timed out after 3000ms waiting for selector internal:role=heading >> nth=0: Playwright selector deadline exceeded\nlocator.waitFor(visible) timed out for sel"
+  }
+]

@@ -38,6 +38,25 @@ Reference: Альфа_Хак_Умный_кредитный_кабинет.pdf
 Attribution: case prepared with АО «Альфа-Банк», published by Changellenge >>
 Source file not redistributed. Requirements paraphrased with page references.
 
+Research references: docs/alfa-design-guide.md and docs/research/alfa-2026-10-20/
+Sources: public Alfa-Bank ecosystem pages, official product-overview images,
+https://github.com/core-ds/core-components and https://github.com/core-ds/ui-primitives
+Purpose: visual research, measured style reference and proposed SYNAPTIX guidance.
+Screenshots reproduce public promotional interfaces or the bank's explicitly
+labelled demo. They do not contain the user's mortgage phone or personal forms.
+Bank names, marks, photographs and illustrations remain with their respective
+rights holders; the research does not grant a license for product redistribution.
+Core Components source is MIT-licensed; token definitions are recorded with
+source paths and blob hashes. No font binaries or bank runtime packages are
+vendored or added as application dependencies. Verify asset-specific rights
+before incorporating fonts, icons or imagery into the implementation.
+
+Supplementary design observations: 12 user-provided mobile banking images.
+Only design observations, approximate raster geometry and flat color samples
+are recorded. Original images, account identifiers, financial values and
+conversation contents are not redistributed or transcribed. These observations
+do not establish the application's implementation stack or source CSS values.
+
 Planned simulated integrations (NOT IMPLEMENTED):
 - Credit bureau: deterministic local response, no real bureau access
 - Company registry / tax authority: deterministic local response

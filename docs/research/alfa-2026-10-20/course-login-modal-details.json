@@ -1,0 +1,17 @@
+{
+  "background": "rgb(242, 243, 245)",
+  "font": "Times",
+  "padding": "0px",
+  "radius": "24px",
+  "rect": {
+    "bottom": 829.5,
+    "height": 635,
+    "left": 148,
+    "right": 620,
+    "top": 194.5,
+    "width": 472,
+    "x": 148,
+    "y": 194.5
+  },
+  "shadow": "rgba(0, 0, 0, 0.08) 0px 32px 40px 0px, rgba(0, 0, 0, 0.08) 0px 24px 32px 0px, rgba(0, 0, 0, 0.08) 0px 20px 24px 0px, rgba(0, 0, 0, 0.04) 0px 12px 16px 0px, rgba(0, 0, 0, 0.04) 0px 4px 8px 0px, rgba(0, 0, 0, 0.04) 0px 0px 1px 0px"
+}

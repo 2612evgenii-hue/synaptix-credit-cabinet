@@ -1,0 +1,22 @@
+[
+  {
+    "key": "child-card-desktop",
+    "url": "https://alfabank.ru/everyday/debit-cards/childcard/",
+    "reason": "transient incomplete document; replaced by child-card-desktop-ready"
+  },
+  {
+    "key": "techradar-desktop",
+    "url": "https://digital.alfabank.ru/techradar",
+    "reason": "upstream connection error, not design evidence"
+  },
+  {
+    "key": "partner-demo-contracts-desktop",
+    "url": "https://partner.alfabank.ru/redesign/agreement/",
+    "reason": "transient empty document; replaced by partner-demo-contracts-ready"
+  },
+  {
+    "key": "hackathon-mobile",
+    "url": "https://alfabank.ru/alfafuture/event/hack/",
+    "reason": "transient incomplete document; replaced by hackathon-mobile-ready"
+  }
+]

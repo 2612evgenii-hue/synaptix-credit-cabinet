@@ -1,0 +1,435 @@
+{
+  "date": "2026-10-20",
+  "files": [
+    {
+      "file": "README.md",
+      "bytes": 9373,
+      "sha256": "eeda2b022ba08056bfd569f1d268c27bb85f5a1d550033d4a1bfb4e650d6e2f3"
+    },
+    {
+      "file": "browser-restoration.json",
+      "bytes": 1966,
+      "sha256": "069e7e499e41bc8df6883b23deefcb51b7edfd0dbff05a8a4ed89a0d8bd91b90"
+    },
+    {
+      "file": "build_index.py",
+      "bytes": 9306,
+      "sha256": "e62ca903a4b37074a4b4c1c4c056c41e0a22f9b2deab2169152cf9a420ad9e80"
+    },
+    {
+      "file": "contact-sheet.jpg",
+      "bytes": 397134,
+      "sha256": "712401454329dbd9a9e53917e4d97313d86311c0acf05876ce494c4fc88747ab"
+    },
+    {
+      "file": "course-framework-observation.json",
+      "bytes": 201,
+      "sha256": "ed71cb0d068a55996476db0ebead5eeaf9ea97205d3ad5a1f84318f256681280"
+    },
+    {
+      "file": "course-login-modal-details.json",
+      "bytes": 501,
+      "sha256": "4f9143f9c1a82ede1dc4d17dd2ca3aecc88fc39ab9c642ca6f63bc4400a0a839"
+    },
+    {
+      "file": "coverage.csv",
+      "bytes": 218688,
+      "sha256": "2b5520c4acdd1592d30a331391a5270de80f8ef83ac31477dc256575be535027"
+    },
+    {
+      "file": "diagnostics.json",
+      "bytes": 729,
+      "sha256": "008d9013eab9ac123bd2e613066e8372668915e5e5f3174c20fadff15f34bff7"
+    },
+    {
+      "file": "extended-measurements.json",
+      "bytes": 3006409,
+      "sha256": "879fecf8e8fc6fcb8bc98ca0cf4c8a7d9e7ed44019a17d30094cb04d2bd69862"
+    },
+    {
+      "file": "future-links.json",
+      "bytes": 5648,
+      "sha256": "d68de45e1b396141119c1e6f415cff0fbcdfed4e26cc8cfef051042fb790b3b1"
+    },
+    {
+      "file": "home-css-details.json",
+      "bytes": 60132,
+      "sha256": "4dc3e11740232d244a26740120171fcb427729aac9359f1c28a279ae6742c0bb"
+    },
+    {
+      "file": "home-css-summary.json",
+      "bytes": 20133,
+      "sha256": "fc393ef918a6c969446b7468a0153cd203791b40d53f1ec2b690f355e2dd4618"
+    },
+    {
+      "file": "home-links.json",
+      "bytes": 47499,
+      "sha256": "cc05e83beec590f3bef013d8365599ae230bf7ccbaf1ff9014e03aafad97549e"
+    },
+    {
+      "file": "measurements.json",
+      "bytes": 6429305,
+      "sha256": "bbfa6e7b2048f75f7242398cc469baa28e6259788d4fbdbd1e20b8071b074e36"
+    },
+    {
+      "file": "mobile-image-observations.json",
+      "bytes": 7438,
+      "sha256": "697133bb12f13b315c7ddb6949264eca0729ad8aeef487940e52e400646b9456"
+    },
+    {
+      "file": "mortgage-field-states.json",
+      "bytes": 11768,
+      "sha256": "cca9db0fb3bb5b133fdfd930830ef5c358d4aef30d6669e77db08239495f4c70"
+    },
+    {
+      "file": "navigation-map.json",
+      "bytes": 4102,
+      "sha256": "15089ff7d19291f20dca819fc540e0ff417e5b8a9304dff1d7a6a320c2260f89"
+    },
+    {
+      "file": "official-design-tokens.json",
+      "bytes": 593424,
+      "sha256": "709bb1685d77b1331b39fab046062af27af2b97bf1a0de0e96e8426432b8be63"
+    },
+    {
+      "file": "online-2026-public-assets.json",
+      "bytes": 35427,
+      "sha256": "0f5381dbca1eb0671c77927d3aadd63cc190c3f117c645022b8084c73e05a3dc"
+    },
+    {
+      "file": "online-official-images.json",
+      "bytes": 10906,
+      "sha256": "a99f6aea4686918f2d0a393d482e3142a8939b032f4cfb28abb9ca048f1944ea"
+    },
+    {
+      "file": "partner-table-styles.json",
+      "bytes": 23401,
+      "sha256": "6c8680f231cd7171438e0955f8aaa3574a8b4dba6bc01b9c18d2446070e979f1"
+    },
+    {
+      "file": "public-source-metadata.json",
+      "bytes": 5629,
+      "sha256": "aa5bc2d99c2b8e382a1190046ea8dcad4601254ca6d868e8cd412c7f50071f68"
+    },
+    {
+      "file": "research-summary.json",
+      "bytes": 875,
+      "sha256": "85055a8001f6e96d1fba6f3777c6e0b1755129b5c0cb3b1920620db1d0e8a65b"
+    },
+    {
+      "file": "scan-failures.json",
+      "bytes": 1033,
+      "sha256": "a85154e4c02630dbb0d491a6068ef26994a7623b887bbfc546b30b3acbded560"
+    },
+    {
+      "file": "screenshots/a-club-desktop.jpg",
+      "bytes": 47168,
+      "sha256": "1e497bcfdce3a0ecb9a17a90c899a0fe051268d0aba1b71dabb5052dcfc5cc9f"
+    },
+    {
+      "file": "screenshots/a-club-mobile-profile.jpg",
+      "bytes": 25622,
+      "sha256": "ee4a4865c6aaff4ffe73b5cf5ae8e530968e5275d0ba10efbdf0fb085de91fa2"
+    },
+    {
+      "file": "screenshots/affiliates-desktop.jpg",
+      "bytes": 96524,
+      "sha256": "a6204c5169729ba5c5ab38c6a13538f935057754167b0715d06cd66953477663"
+    },
+    {
+      "file": "screenshots/affiliates-mobile-390.jpg",
+      "bytes": 36996,
+      "sha256": "ed6ba8af989f2e0924a0495fb3fcfb4b2c6954f7509c33dec458040c32d02782"
+    },
+    {
+      "file": "screenshots/business-credit-desktop.jpg",
+      "bytes": 97836,
+      "sha256": "358a4c86d7007ca715cfdb5eb4a42fe5e0e00c20b7f2983bf115631dcfb53c1d"
+    },
+    {
+      "file": "screenshots/business-credit-mobile-profile.jpg",
+      "bytes": 36388,
+      "sha256": "a9b0c41591e5e511beadb68c2ef7423081a015d069587d3e4653553305d3c2bb"
+    },
+    {
+      "file": "screenshots/business-online-overview-desktop.jpg",
+      "bytes": 105136,
+      "sha256": "0ab15fcb3f4dbb8a35971c72b85397cf66cf632fe1380bd64e41849242aeaf67"
+    },
+    {
+      "file": "screenshots/campus-desktop.jpg",
+      "bytes": 119180,
+      "sha256": "6f4f057d6518563e5eb0206cbd968f21bc3dee782dfc70aeb9fcc7a12720bf75"
+    },
+    {
+      "file": "screenshots/campus-mobile-profile.jpg",
+      "bytes": 27125,
+      "sha256": "e11ed1ab7fc4fe975b9af24ce42a935d6aa50cefc141fd07462b76c05b32121c"
+    },
+    {
+      "file": "screenshots/career-1440.jpg",
+      "bytes": 91264,
+      "sha256": "5f5495f0101e88fd35b660fc00dbf21dda2a8c1e752b172c2e04bb0cba9ad1ea"
+    },
+    {
+      "file": "screenshots/career-mobile-390.jpg",
+      "bytes": 35380,
+      "sha256": "a8b813212f908c17bed59f58e65145ed83811fae436c64745319fa8813d9edfc"
+    },
+    {
+      "file": "screenshots/cash-loan-desktop.jpg",
+      "bytes": 89345,
+      "sha256": "733e634027b77500a700d641c0e38ad0272a1e9de99d28e6a61392ad3a146536"
+    },
+    {
+      "file": "screenshots/cash-loan-mobile-profile.jpg",
+      "bytes": 32072,
+      "sha256": "5fd8f169828dc56c34495838346c1a1ef29592b059fd27f1960db1bd7405ff60"
+    },
+    {
+      "file": "screenshots/child-card-desktop-ready.jpg",
+      "bytes": 140714,
+      "sha256": "6d23aad9196702ef2ef67a9e8be0fced09ddd52fe120eb08548154aee17d4c92"
+    },
+    {
+      "file": "screenshots/corporate-desktop.jpg",
+      "bytes": 96663,
+      "sha256": "44c17c8e2ada563cad9be5722ea8f5bfeb6bcf303410795f23c75187176277e1"
+    },
+    {
+      "file": "screenshots/corporate-mobile-profile.jpg",
+      "bytes": 32676,
+      "sha256": "14ced1eba6528824dea81799cfb58d0333d4ef4ce7eac0d2b9e47305bd0362a0"
+    },
+    {
+      "file": "screenshots/course-desktop.jpg",
+      "bytes": 101664,
+      "sha256": "92caad9f9d191b9508fa3315886a1359bee92b90a4c6ac796691303ef9d9f180"
+    },
+    {
+      "file": "screenshots/course-login-modal.jpg",
+      "bytes": 38914,
+      "sha256": "ee579c03bbce007d32747c3e3cebfdb1df699c4bdbf4ce5efb92025befbbaadd"
+    },
+    {
+      "file": "screenshots/course-mobile-390.jpg",
+      "bytes": 48154,
+      "sha256": "eb9649473c8ec1506a1bd466be768e81361e9906d52f1ff66ea7925d44b1bb47"
+    },
+    {
+      "file": "screenshots/course-tablet-768.jpg",
+      "bytes": 63765,
+      "sha256": "eb6f6ddf14f168de1180525b370224fa83d7b8216d7d49516aeffcd84abacb43"
+    },
+    {
+      "file": "screenshots/debit-card-desktop.jpg",
+      "bytes": 88536,
+      "sha256": "c46b29e66512b5c684dfef46d147a29959ff3f7b182c4c5c4d972e281307ce97"
+    },
+    {
+      "file": "screenshots/deposit-desktop.jpg",
+      "bytes": 89863,
+      "sha256": "1cf107ec0e74b9f887092993fa7a1af37df4d0b58f3a46322d905a3e971b5d68"
+    },
+    {
+      "file": "screenshots/deposit-mobile-profile.jpg",
+      "bytes": 37410,
+      "sha256": "37d5af52a22acff5b36171d47e513fc02e9eeea4fb1060b4a9f7e9dff5a2cce1"
+    },
+    {
+      "file": "screenshots/developers-desktop.jpg",
+      "bytes": 65624,
+      "sha256": "83a0beadee6fd23b9129d5057b9ae101b23e14812b995401bdf72ec5eb56718a"
+    },
+    {
+      "file": "screenshots/developers-documentation-desktop.jpg",
+      "bytes": 144468,
+      "sha256": "5f5855491b1c24ef4104fd7460d6c4c9b51f45271460c902c8c224fd02416a2f"
+    },
+    {
+      "file": "screenshots/developers-light-desktop.jpg",
+      "bytes": 70590,
+      "sha256": "8caeb729bde743510a38a5a169ebcc68bcebbde3cd09bd1b3bf457e69f0c49a5"
+    },
+    {
+      "file": "screenshots/developers-mobile-390.jpg",
+      "bytes": 31624,
+      "sha256": "f13399c67a8c39c3d4edce094fc22a0fbbf2057c14d409c3a3efbdd37ed4fdbc"
+    },
+    {
+      "file": "screenshots/developers-tablet-768.jpg",
+      "bytes": 47333,
+      "sha256": "23789cff6b5653e6d2fe233e0fea12ff102904b945004e3179e9688e8c0c6aee"
+    },
+    {
+      "file": "screenshots/digital-1440.jpg",
+      "bytes": 79622,
+      "sha256": "fe834ff6aa8466ef1201372e171ea866856a46dbc33b68397329d518de2b4655"
+    },
+    {
+      "file": "screenshots/digital-mobile-profile.jpg",
+      "bytes": 38237,
+      "sha256": "af1fcb62721ed9b75ba7058e5f769f14f229dd01bc0d0a6367542d282e97d210"
+    },
+    {
+      "file": "screenshots/future-desktop.jpg",
+      "bytes": 128047,
+      "sha256": "137e9ef69056429a3aedbe26e280f7da4bd9866132ddd6e1914740916c4ff774"
+    },
+    {
+      "file": "screenshots/future-mobile.jpg",
+      "bytes": 61508,
+      "sha256": "4b72aa7b116d06cfb95d1c22349fdbe1c3fdaff44cae0c430b38d2f827ee4439"
+    },
+    {
+      "file": "screenshots/hackathon-desktop-ready.jpg",
+      "bytes": 101505,
+      "sha256": "490fb83b9a9483e822754d428a9be4880581c10250f6b3e08bd1abeef42d48e5"
+    },
+    {
+      "file": "screenshots/hackathon-desktop.jpg",
+      "bytes": 81386,
+      "sha256": "b1cd0d7641def6cfe43aa59093f7845c9777c94dd687f681812317ad0ce6ec16"
+    },
+    {
+      "file": "screenshots/hackathon-mobile-ready.jpg",
+      "bytes": 43485,
+      "sha256": "dd49e436545abd8444784c5ecb88392d17dd22b9893b8a36f19880ff213f0b2c"
+    },
+    {
+      "file": "screenshots/home-desktop-1920.jpg",
+      "bytes": 135278,
+      "sha256": "7dc491da858a875cdfe26e0cb6adcc7f222bdcfb3a45c600efc7a12ca79106eb"
+    },
+    {
+      "file": "screenshots/home-desktop.jpg",
+      "bytes": 92619,
+      "sha256": "5162051f962d309e50e80f19810393ce45a9b6fd98d2c32b18d9015da2d80c05"
+    },
+    {
+      "file": "screenshots/home-mobile-390.jpg",
+      "bytes": 38360,
+      "sha256": "55d680fb6ad354f11af0b729a666b85aa7676948ae9fa42e89a49f55da7be7aa"
+    },
+    {
+      "file": "screenshots/internships-desktop.jpg",
+      "bytes": 130626,
+      "sha256": "08e0991c227f8af68992254c83d35aaa7cbfca95f5147659ce6d860cdafbd868"
+    },
+    {
+      "file": "screenshots/internships-mobile-initial.jpg",
+      "bytes": 8024,
+      "sha256": "b54861b8dbe93f75df3db7fdfd6361e9e502051a0ce3540df88eac2202697a68"
+    },
+    {
+      "file": "screenshots/investments-desktop.jpg",
+      "bytes": 100697,
+      "sha256": "ec8600896fb21b624ce0f6f2c3b3bdb1ed46917d445f07c80a535c2685379270"
+    },
+    {
+      "file": "screenshots/leasing-desktop.jpg",
+      "bytes": 134848,
+      "sha256": "0b8e3c59283ef1463cc0ae774751c61bf3778e968ce500feb30556e0e2845d2c"
+    },
+    {
+      "file": "screenshots/leasing-mobile-390.jpg",
+      "bytes": 22714,
+      "sha256": "bddcf23795b26f77ab1e74a0cedefc0a7efc1a8c901d9ac1b39713f982fd710e"
+    },
+    {
+      "file": "screenshots/mortgage-landing-desktop.jpg",
+      "bytes": 89462,
+      "sha256": "c07d9136aeb51001fda043fee7f58df3ab707f241cbcbf401227bc9e46aa3bf5"
+    },
+    {
+      "file": "screenshots/online-2026-device-interfaces.jpg",
+      "bytes": 103593,
+      "sha256": "d0ba67c785f88f26e828e22a6654d773c79622cff97db19082401053e819532e"
+    },
+    {
+      "file": "screenshots/online-2026-devices.jpg",
+      "bytes": 91766,
+      "sha256": "0f320fb12bdf6f6c149c74bc892567882e4dfef556b810ddbe9ad46c5226b7d8"
+    },
+    {
+      "file": "screenshots/online-2026-official-overview.jpg",
+      "bytes": 107053,
+      "sha256": "fb2231fb1d36b7467f1f78a6937d9a0936cbfbba854b59aefccd1e24f49f0aa2"
+    },
+    {
+      "file": "screenshots/online-desktop-official-overview.jpg",
+      "bytes": 94814,
+      "sha256": "c1e175febbab94209dec8586e36636622507afc5695eb28bfd301e7f9d4259c1"
+    },
+    {
+      "file": "screenshots/only-desktop.jpg",
+      "bytes": 87498,
+      "sha256": "954d6560ef9db5cd9fc608a3484a2d6377b52d01b31d15d331d0e797f3c0d4b8"
+    },
+    {
+      "file": "screenshots/only-mobile-profile.jpg",
+      "bytes": 37811,
+      "sha256": "de0b3222c3c6e6e95128bcf440c3d4c8d27a8e276ccffc262e3b650c861a9b0d"
+    },
+    {
+      "file": "screenshots/partner-demo-dashboard-desktop.jpg",
+      "bytes": 46712,
+      "sha256": "d9bd06c79d575777fbfa3a4bfdb6ca0a09165e5f6803b4fe6b63dcb4c49270c4"
+    },
+    {
+      "file": "screenshots/partner-demo-mobile-loading.jpg",
+      "bytes": 23957,
+      "sha256": "3880cfcfee735c34ab7fe7168022de9fc600d90087c4bd1c26d842955d70d423"
+    },
+    {
+      "file": "screenshots/selfemployed-desktop.jpg",
+      "bytes": 65419,
+      "sha256": "4a0cc999bca8ce7183676a134d19f79c3420c3d159198ed93fa39ded0a91c55f"
+    },
+    {
+      "file": "screenshots/sme-desktop.jpg",
+      "bytes": 108929,
+      "sha256": "3357bc7a0a92f9e05ce9fea3b2b0d7686e6e09b455d710cffd06a7b70b11d83c"
+    },
+    {
+      "file": "screenshots/sme-mobile-profile.jpg",
+      "bytes": 30426,
+      "sha256": "2b0dc32e729248b4cfc2e0cb4faa057053d507ca3fb714815b4e738f63167540"
+    },
+    {
+      "file": "screenshots/telecom-desktop.jpg",
+      "bytes": 106989,
+      "sha256": "e2909d3d203268533e3c1ed1c81a6e61db02e17828a1c9a2220839b528e8d7d2"
+    },
+    {
+      "file": "screenshots/youth-card-desktop.jpg",
+      "bytes": 93832,
+      "sha256": "5fff5481560c14ce3f2b05e6125510a889233f97cce4f6f41dcce8b714616220"
+    },
+    {
+      "file": "screenshots/youth-card-mobile-loaded.jpg",
+      "bytes": 43554,
+      "sha256": "3da38f0521228cd5891e90e3506edb4aeccb15a9bc427fad0dc1c3eca92afc73"
+    },
+    {
+      "file": "screenshots/youth-desktop.jpg",
+      "bytes": 108923,
+      "sha256": "fb6c12c5f8e0c82e32c6c23a30ef5a5781107d081b0e12444a4f79b4d5ced383"
+    },
+    {
+      "file": "screenshots/youth-mobile-profile.jpg",
+      "bytes": 43553,
+      "sha256": "53407255e04c954caddcbfc4a9de52c5849b7e26fad16d2b37e572f7216e9a0e"
+    },
+    {
+      "file": "sitemap-links.json",
+      "bytes": 251313,
+      "sha256": "33b5aae778182fdfec8dfa4dd30368974f1fb46d74a55455e701fd8962138439"
+    },
+    {
+      "file": "stylesheet-index.json",
+      "bytes": 4632,
+      "sha256": "53239af230d03c2d8979c767ca87860274cf05a13b963a29822afb79cc164c7c"
+    }
+  ]
+}
