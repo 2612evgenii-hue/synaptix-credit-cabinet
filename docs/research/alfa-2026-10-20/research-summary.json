@@ -23,6 +23,8 @@
   "token_source_files": 34,
   "token_definitions": 4847,
   "bank_css_stylesheets": 42,
+  "user_provided_mobile_images_reviewed": 12,
+  "user_provided_mobile_images_vendored": 0,
   "scope": "Public sampled interfaces and explicit demo; no claim of all 1413 pages or authenticated product states",
   "sampling": "Computed samples include mounted offscreen nodes; bounded headings/controls/panels. No complete CSS inventory for every route."
 }

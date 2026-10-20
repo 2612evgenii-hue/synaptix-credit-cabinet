@@ -3,8 +3,8 @@
   "files": [
     {
       "file": "README.md",
-      "bytes": 8768,
-      "sha256": "90496ee0482b004d9c7852623f2b5c74b653d61999cd5a3342ad22b11f62fd81"
+      "bytes": 9373,
+      "sha256": "eeda2b022ba08056bfd569f1d268c27bb85f5a1d550033d4a1bfb4e650d6e2f3"
     },
     {
       "file": "browser-restoration.json",
@@ -13,8 +13,8 @@
     },
     {
       "file": "build_index.py",
-      "bytes": 9145,
-      "sha256": "fe0221e4fb0d6ff6c87b0d5151ddbde6edfea052a5bd5847a67cc3c1ff83fd47"
+      "bytes": 9306,
+      "sha256": "e62ca903a4b37074a4b4c1c4c056c41e0a22f9b2deab2169152cf9a420ad9e80"
     },
     {
       "file": "contact-sheet.jpg",
@@ -72,6 +72,11 @@
       "sha256": "bbfa6e7b2048f75f7242398cc469baa28e6259788d4fbdbd1e20b8071b074e36"
     },
     {
+      "file": "mobile-image-observations.json",
+      "bytes": 7438,
+      "sha256": "697133bb12f13b315c7ddb6949264eca0729ad8aeef487940e52e400646b9456"
+    },
+    {
       "file": "mortgage-field-states.json",
       "bytes": 11768,
       "sha256": "cca9db0fb3bb5b133fdfd930830ef5c358d4aef30d6669e77db08239495f4c70"
@@ -108,8 +113,8 @@
     },
     {
       "file": "research-summary.json",
-      "bytes": 784,
-      "sha256": "ae079175fac7e800bffbe230be457fdc325941c4ddc3732850dea089e7395bb7"
+      "bytes": 875,
+      "sha256": "85055a8001f6e96d1fba6f3777c6e0b1755129b5c0cb3b1920620db1d0e8a65b"
     },
     {
       "file": "scan-failures.json",

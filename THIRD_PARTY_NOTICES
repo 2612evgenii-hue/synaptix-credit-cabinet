@@ -51,6 +51,12 @@ source paths and blob hashes. No font binaries or bank runtime packages are
 vendored or added as application dependencies. Verify asset-specific rights
 before incorporating fonts, icons or imagery into the implementation.
 
+Supplementary design observations: 12 user-provided mobile banking images.
+Only design observations, approximate raster geometry and flat color samples
+are recorded. Original images, account identifiers, financial values and
+conversation contents are not redistributed or transcribed. These observations
+do not establish the application's implementation stack or source CSS values.
+
 Planned simulated integrations (NOT IMPLEMENTED):
 - Credit bureau: deterministic local response, no real bureau access
 - Company registry / tax authority: deterministic local response

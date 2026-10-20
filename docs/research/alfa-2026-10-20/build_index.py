@@ -110,6 +110,8 @@ def main():
         "token_source_files": len(definitions),
         "token_definitions": sum(len(x["tokens"]) for x in definitions),
         "bank_css_stylesheets": len(read("home-css-details.json")),
+        "user_provided_mobile_images_reviewed": read("mobile-image-observations.json")["source_image_count"],
+        "user_provided_mobile_images_vendored": 0,
         "scope": "Public sampled interfaces and explicit demo; no claim of all 1413 pages or authenticated product states",
         "sampling": "Computed samples include mounted offscreen nodes; bounded headings/controls/panels. No complete CSS inventory for every route.",
     }

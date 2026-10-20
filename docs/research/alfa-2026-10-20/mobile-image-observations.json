@@ -1,0 +1,297 @@
+{
+  "date": "2026-10-20",
+  "source_kind": "user-provided private mobile banking images; design-only observations",
+  "source_image_count": 12,
+  "source_order": "attachment order; original filenames and file paths withheld",
+  "image_dimensions_px": {
+    "width": 576,
+    "height": 1280
+  },
+  "raw_images_vendored": false,
+  "personal_financial_values_transcribed": false,
+  "measurement_method": {
+    "geometry": "approximate visual bounds in raster pixels; no DOM or source styles",
+    "color": "median RGB in manually selected flat patches of JPEG source images",
+    "normalization": "raster_px * 360 / 576, only as an example layout scale; actual CSS width and device density unknown",
+    "font_family": "not established from raster",
+    "application_version": "unknown; update prompt visible",
+    "runtime_stack": "not established; still images cannot distinguish native, WebView and PWA",
+    "interaction": "not tested; appearance of controls does not prove enabled/disabled semantics or behavior"
+  },
+  "screens": [
+    {
+      "source_id": "mobile-01",
+      "screen_role": "bank-chat",
+      "design_observations": [
+        "outlined incoming bubbles",
+        "day capsule and subdued timestamps",
+        "blue links",
+        "four quick-question tiles with larger outer group corners",
+        "message composer with circular actions"
+      ]
+    },
+    {
+      "source_id": "mobile-02",
+      "screen_role": "chat-list",
+      "design_observations": [
+        "avatar and two text levels",
+        "right-aligned metadata and counters",
+        "capsule search",
+        "five-item bottom navigation"
+      ]
+    },
+    {
+      "source_id": "mobile-03",
+      "screen_role": "operation-detail",
+      "design_observations": [
+        "vertical hierarchy from logo to primary amount",
+        "circular contextual actions",
+        "thin group dividers",
+        "analytics rows and dark switch thumb"
+      ]
+    },
+    {
+      "source_id": "mobile-04",
+      "screen_role": "benefit-overview",
+      "design_observations": [
+        "active dark filter capsule",
+        "wide illustrated promotion",
+        "two-column service tiles",
+        "small overlaid counters"
+      ]
+    },
+    {
+      "source_id": "mobile-05",
+      "screen_role": "category-selection",
+      "design_observations": [
+        "two-column standalone tiles",
+        "top-right square indicators",
+        "bottom selection summary",
+        "visually muted full-width action"
+      ]
+    },
+    {
+      "source_id": "mobile-06",
+      "screen_role": "cashback-overview",
+      "design_observations": [
+        "partially visible adjacent promotion",
+        "large illustration beside text",
+        "quiet summary panel with contrasting bottom strip"
+      ]
+    },
+    {
+      "source_id": "mobile-07",
+      "screen_role": "payment-categories",
+      "design_observations": [
+        "large rounded category groups",
+        "monochrome category signs",
+        "generous vertical row rhythm"
+      ]
+    },
+    {
+      "source_id": "mobile-08",
+      "screen_role": "payment-overview",
+      "design_observations": [
+        "composite summary card with tinted lower strip",
+        "horizontal service tiles",
+        "circular transfer actions with multiline labels"
+      ]
+    },
+    {
+      "source_id": "mobile-09",
+      "screen_role": "product-shelves",
+      "design_observations": [
+        "horizontal product tiles",
+        "title at top-left and illustration at bottom-right",
+        "offset translucent layers under selected tiles"
+      ]
+    },
+    {
+      "source_id": "mobile-10",
+      "screen_role": "illustrated-information",
+      "design_observations": [
+        "full-width upper artwork",
+        "large heading and readable paragraphs",
+        "wide dark lower action"
+      ]
+    },
+    {
+      "source_id": "mobile-11",
+      "screen_role": "home-content-feed",
+      "design_observations": [
+        "image-and-caption cards",
+        "partially visible next card",
+        "circular quick transfers",
+        "section title with chevron"
+      ]
+    },
+    {
+      "source_id": "mobile-12",
+      "screen_role": "home-product-summary",
+      "design_observations": [
+        "profile action and capsule badge",
+        "white panel on gray background",
+        "stacked summary cards",
+        "capsule search and quick filters"
+      ]
+    }
+  ],
+  "flat_color_samples": [
+    {
+      "source_id": "mobile-01",
+      "role": "working screen background",
+      "patch_xyxy": [
+        540,
+        250,
+        560,
+        280
+      ],
+      "median_hex": "#ffffff"
+    },
+    {
+      "source_id": "mobile-05",
+      "role": "card surface",
+      "patch_xyxy": [
+        70,
+        350,
+        130,
+        400
+      ],
+      "median_hex": "#f2f3f5"
+    },
+    {
+      "source_id": "mobile-07",
+      "role": "payment category panel",
+      "patch_xyxy": [
+        400,
+        380,
+        500,
+        450
+      ],
+      "median_hex": "#f2f3f5"
+    },
+    {
+      "source_id": "mobile-12",
+      "role": "upper background",
+      "patch_xyxy": [
+        10,
+        195,
+        560,
+        215
+      ],
+      "median_hex": "#f2f3f5"
+    },
+    {
+      "source_id": "mobile-07",
+      "role": "update banner",
+      "patch_xyxy": [
+        250,
+        105,
+        350,
+        115
+      ],
+      "median_hex": "#29292b"
+    },
+    {
+      "source_id": "mobile-04",
+      "role": "active filter",
+      "patch_xyxy": [
+        60,
+        390,
+        80,
+        400
+      ],
+      "median_hex": "#212123"
+    },
+    {
+      "source_id": "mobile-10",
+      "role": "primary information action",
+      "patch_xyxy": [
+        200,
+        1200,
+        350,
+        1220
+      ],
+      "median_hex": "#1c1c1e"
+    }
+  ],
+  "approximate_geometry_raster_px": [
+    {
+      "role": "main horizontal margins",
+      "range": [
+        25,
+        31
+      ]
+    },
+    {
+      "role": "two-column category tile",
+      "width": 256,
+      "height": 258,
+      "source_id": "mobile-05"
+    },
+    {
+      "role": "category tile gap",
+      "range": [
+        12,
+        14
+      ],
+      "source_id": "mobile-05"
+    },
+    {
+      "role": "category tile text inset",
+      "range": [
+        24,
+        26
+      ],
+      "source_id": "mobile-05"
+    },
+    {
+      "role": "large rounded card visible corner",
+      "range": [
+        36,
+        44
+      ]
+    },
+    {
+      "role": "circular action area diameter in different groups",
+      "range": [
+        74,
+        98
+      ]
+    },
+    {
+      "role": "square selection indicator width",
+      "value": 30,
+      "source_id": "mobile-05"
+    },
+    {
+      "role": "lower information action height",
+      "value": 85,
+      "source_id": "mobile-10"
+    },
+    {
+      "role": "app bottom navigation height excluding OS area",
+      "range": [
+        80,
+        84
+      ]
+    },
+    {
+      "role": "chat quick-question group gap",
+      "range": [
+        4,
+        6
+      ],
+      "source_id": "mobile-01"
+    }
+  ],
+  "implementation_proposals": {
+    "chat_tile_group_web": {
+      "outer_corner_css_px": 24,
+      "inner_corner_css_px": 8,
+      "gap_css_px": 4
+    },
+    "status": "proposed starting values for a web prototype, not extracted app styles"
+  },
+  "scope": "Visual components only. No original screenshots, personal names, account identifiers, financial values or conversation contents are included."
+}
