@@ -1,7 +1,7 @@
 SYNAPTIX — Third-party notices
-Updated: 2026-10-20
+Updated: 2026-10-21
 
-This inventory describes the repository scaffold, not a completed application.
+This inventory describes repository tooling and the standalone demo frontend.
 Add every runtime/build dependency, image, model, dataset and external service
 when introduced, including exact version, source, license and purpose.
 Do not treat this file as a blanket license grant for the team's code.
@@ -47,8 +47,8 @@ labelled demo. They do not contain the user's mortgage phone or personal forms.
 Bank names, marks, photographs and illustrations remain with their respective
 rights holders; the research does not grant a license for product redistribution.
 Core Components source is MIT-licensed; token definitions are recorded with
-source paths and blob hashes. No font binaries or bank runtime packages are
-vendored or added as application dependencies. Verify asset-specific rights
+source paths and blob hashes. That research change did not add font binaries or bank runtime packages. The
+frontend dependencies introduced subsequently are listed below. Verify asset-specific rights
 before incorporating fonts, icons or imagery into the implementation.
 
 Supplementary design observations: 12 user-provided mobile banking images.
@@ -60,7 +60,7 @@ do not establish the application's implementation stack or source CSS values.
 Planned simulated integrations (NOT IMPLEMENTED):
 - Credit bureau: deterministic local response, no real bureau access
 - Company registry / tax authority: deterministic local response
-- Signing and disbursement: local simulation; no real signature or money transfer
+- Signing and disbursement: IMPLEMENTED in browser scenario only; no real signature or money transfer
 
 LLM/models: none selected or included. If introduced, open weights required by
 case; record model revision, weights license, artifact checksums, resource needs
@@ -68,3 +68,24 @@ and offline fallback. Hosted paid APIs must not be required by the review build.
 
 Project source license: not selected by the team. No open-source license grant
 is implied by repository creation. Resolve submission/IP terms before publishing.
+
+Frontend runtime/build dependencies (exact transitive versions in apps/web/package-lock.json):
+- React / React DOM 18.3.1 — https://github.com/facebook/react — MIT
+- @alfalab/core-components 50.37.0 — https://github.com/core-ds/core-components — MIT
+- @alfalab/icons-glyph 2.293.0 and @alfalab/icons-logotype 2.37.0 — https://www.npmjs.com/package/@alfalab/icons-glyph and https://www.npmjs.com/package/@alfalab/icons-logotype — MIT package metadata; bank marks remain trademarks
+- @fontsource/inter 5.2.8 — https://fontsource.org/fonts/inter — SIL Open Font License 1.1
+- Vite 8.3.5 — https://github.com/vitejs/vite — MIT
+- @vitejs/plugin-react 6.1.2 — https://github.com/vitejs/vite-plugin-react — MIT
+- TypeScript 5.9.3 — https://github.com/microsoft/TypeScript — Apache-2.0
+- tsx 4.23.15 — https://github.com/privatenumber/tsx — MIT
+- Prettier 3.9.10 — https://github.com/prettier/prettier — MIT
+- @types/node 22.19.15, @types/react 18.3.28, @types/react-dom 18.3.7 — DefinitelyTyped — MIT
+Container build/runtime references: node:22.22.2-alpine (Node MIT plus base-image notices), nginx:1.28.0-alpine (nginx BSD-2-Clause plus base-image notices).
+The frontend build does not redistribute Alfa Interface or Styrene font files.
+
+Generated artwork: apps/web/public/assets/{business-store,equipment,calendar}.png
+Created 2026-10-21 with OpenAI image generation, using user-provided illustrations
+as material/color references. New compositions; no original bank bitmap assets
+included. Images show synthetic objects, no customers or confidential data.
+Asset hashes and generation descriptions: docs/frontend-assets.json.
+No image-generation API is used at frontend runtime. No paid API is required.

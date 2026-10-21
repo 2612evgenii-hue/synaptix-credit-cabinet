@@ -1,0 +1,7 @@
+services:
+  frontend:
+    build:
+      context: ./apps/web
+    ports:
+      - "127.0.0.1:4180:8080"
+    restart: unless-stopped
