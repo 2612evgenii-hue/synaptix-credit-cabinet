@@ -1,0 +1,33 @@
+{
+  "assets": [
+    {
+      "path": "apps/web/public/assets/business-store.png",
+      "sha256": "0cbe66cc91402d237bf6e755d853c537fd55962e808e933ece802e1495a55f53",
+      "bytes": 1448936,
+      "created": "2026-10-21",
+      "method": "OpenAI image generation",
+      "promptSummary": "Isometric storefront, turquoise glass and red packages, pale gold terminal, rounded polished materials, transparent background",
+      "referenceUse": "user-provided images for material, volume and color only; new composition"
+    },
+    {
+      "path": "apps/web/public/assets/equipment.png",
+      "sha256": "768714336daf2de9c2dbeed0682d7a4a3368e66b1607c0e68121baf659c4d3c7",
+      "bytes": 1626929,
+      "created": "2026-10-21",
+      "method": "OpenAI image generation",
+      "promptSummary": "Turquoise espresso machine, brushed silver, red cup, pale gold accents, soft studio shadows, transparent background",
+      "referenceUse": "user-provided images for material, volume and color only; new composition"
+    },
+    {
+      "path": "apps/web/public/assets/calendar.png",
+      "sha256": "e1ebd343948201b2e9eaf2ee0bf9486798811d5273ec2442a669ee69dd2bae21",
+      "bytes": 1380308,
+      "created": "2026-10-21",
+      "method": "OpenAI image generation",
+      "promptSummary": "Coral red calendar with turquoise check and clock, frosted white sheets, pale gold binding, transparent background",
+      "referenceUse": "user-provided images for material, volume and color only; new composition"
+    }
+  ],
+  "originalBankBitmapsRedistributed": false,
+  "fonts": "Locally packaged Inter OFL; no Styrene or Alfa Interface binaries"
+}
